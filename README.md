@@ -1,1 +1,1 @@
-www.ekedahl.xyz
+https://ekedahl.xyz/
