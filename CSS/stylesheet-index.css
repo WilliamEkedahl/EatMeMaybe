@@ -12,14 +12,19 @@ body{
     padding: 0;
 }
 
-@media (min-width: 390px) and  (max-width: 844px) {
+/* Iphone dimentions */
+@media (max-width: 390px) {
 
 }
 
-@media (min-width: 1920px) and  (max-width: 1080px) {
+/* Tablet dimentions */
+@media (max-width: 1024px) {
 
 }
 
-@media (min-width: 390px) and  (max-width: 844px) {
+/* Desktop dimentions */
+@media (max-width: 1920px) {
 
 }
+
+
