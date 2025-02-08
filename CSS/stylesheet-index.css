@@ -1,84 +1,103 @@
-/* General Reset and Base Styles */
-body, h1, ul, li, a {
+*{
     margin: 0;
     padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333333;
-    line-height: 1.6;
+body{
+    min-height: 100vh;
+    background: url(../MEDIA/backgroundLogo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 header {
     background-color: #4a4adf;
-    padding: 1em 0;
+    padding: 1rem 0;
 }
 
-nav ul {
+nav{
+    background-color: #5B57D3;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul{
+    width: 100%;
+    list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-nav ul li {
-    display: inline;
+nav li{
+    height: 50px;
+    padding-right: 10px;
 }
 
-nav ul li a {
-    color: #fff;
-    font-weight: bold;
-    padding: 0.5em 1em;
+nav a{
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #7a76f424;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
 }
 
-nav ul li a:hover {
-    background-color: #3636a5;
+nav a:hover{
+    background-color: #33317c;
 }
 
-/* iPhone Dimensions */
-@media (max-width: 390px) {
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+.logo{
+    list-style: none;
+    display: flex;
+    justify-content: left;
+    position: absolute;
+    left: 10px;
+}
 
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 0.4em 0.8em;
-    }
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.091);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 
-    header {
-        padding: 0.5em;
+.sidebar li{
+    width: 100%;
+}
+
+.sidebar a{
+    width: 100%;
+}
+
+.menuButton{
+    display: none;
+}
+
+@media(max-width: 800px){
+    .hideOnMobile{
+        display: none;
+    }
+    .menuButton{
+        display: block;
     }
 }
 
-/* Tablet Dimensions */
-@media (max-width: 1024px) {
-    nav ul {
-        flex-direction: row;
-        gap: 1rem;
-    }
-
-    nav ul li a {
-        font-size: 1rem;
-        padding: 0.5em 1em;
-    }
-}
-
-/* Desktop Dimensions */
-@media (max-width: 1920px) {
-    nav ul {
-        gap: 2rem;
-    }
-
-    nav ul li a {
-        font-size: 1.2rem;
-        padding: 0.6em 1.2em;
+@media(max-width: 400px){
+    .sidebar{
+        width: 100%;
     }
 }
