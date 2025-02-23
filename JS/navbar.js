@@ -1,8 +1,19 @@
+
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
+}
+
+function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+}
+
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
-  
-  
+
 window.onclick = function(e) {
     if (!e.target.matches('.dropbtn')) {
     var myDropdown = document.getElementById("myDropdown");
