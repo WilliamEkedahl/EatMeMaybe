@@ -30,8 +30,23 @@
     </header>
 </nav>
 
-<div class="login">
-    <form method="POST" action="../authenticate.js"
+<div id="login" class="form">
+    <form method="POST" action="../authenticate.js">
+        <h1>Login to your account</h1>
+        <label>
+            Username:
+            <input type="text" name="username" required></input>
+        </label></br>
+        <label>
+            Password:
+            <input type="password" name="password" required></input>
+            </label></br>
+        <button id="loginButton" class="button" type="submit">Login</button>
+    </form>
+</div>
+<div>
+    <h2>Don't have an account?</h2>
+    <button id="signUpButton" class ="button" onClick="location.href='signin.html'">Sign up</button>
 </div>
 
 
