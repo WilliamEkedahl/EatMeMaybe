@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-    <meta name ="viewport" content ="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>EatMeMaybe</title>
-    <link rel ="stylesheet" href ="../CSS/stylesheet-products.css">
+    <link rel="stylesheet" href="../CSS/stylesheet-products.css">
 </head>
 <body>
     <nav>
         <ul class="sidebar">
-            <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li onclick="hideSidebar()"><a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </a></li>
             <li><a href="../index.html">Home</a></li>
             <li><a href="addItem.html">Add item</a></li>
             <li><a href="products.html">Products</a></li>
@@ -26,32 +30,60 @@
                 <li class="hideOnMobile"><a href="about.html">About</a></li>
                 <li class="hideOnMobile"><a href="addItem.html">Add item</a></li>
                 <li class="hideOnMobile"><a href="profileSettings.html">Profile</a></li>
-                <li class="menuButton" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+                <li class="menuButton" onclick="showSidebar()">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                        </svg>
+                    </a>
+                </li>
             </ul>
         </header>
     </nav>
 
-    <!-- Meny for å søke i produktkategorier -->
     <div class="content">
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Søk etter produkter">
-        <button class="search-btn">🔍</button>
+        <!-- Søk og kategori-meny -->
+        <div class="search-container">
+            <select id="category-dropdown" class="category-dropdown">
+                <option value="">All Articles</option>
+                <option value="frozen">Frozen Articles</option>
+                <option value="cooling">Refrigerated Articles</option>
+                <option value="dry">Dry Articles</option>
+                <option value="fresh">Fresh Articles</option>
+            </select>
+    
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search for articles">
+            <button class="search-btn" onclick="filterItems()">🔍</button>
+        </div>
+    
+        <!-- Leddet mellom søkebaren og tabellen, med overskriftene som 'sticky' -->
+        <div class="table-header">
+            <div class="header-item">Name</div>
+            <div class="header-item">Category</div>
+            <div class="header-item">Expiration</div>
+        </div>
+    
+        <!-- Tabell med dataene -->
+        <div class="table-container">
+            <table id="product-table">
+                <tbody id="product-list"></tbody>
+            </table>
+        </div>
     </div>
-    <button class="category">FRYSEVARER</button>
-    <button class="category">KJØLEVARER</button>
-    <button class="category">KOLONIALVARER</button>
-</div>
+    
 
-<script>
-    function showSidebar(){
-        const sidebar = document.querySelector('.sidebar')
-        sidebar.style.display = 'flex'
-    }
-    function hideSidebar(){
-        const sidebar = document.querySelector('.sidebar')
-        sidebar.style.display = 'none'
-    }
-</script>
-<script src="JS/navbar.js"></script>
 
+
+    <script src="../JS/search.js" defer></script>
+
+    <script>
+        function showSidebar(){
+            document.querySelector('.sidebar').style.display = 'flex';
+        }
+        function hideSidebar(){
+            document.querySelector('.sidebar').style.display = 'none';
+        }
+    </script>
+    <script src="../JS/navbar.js" defer></script>
 </body>
+</html>
