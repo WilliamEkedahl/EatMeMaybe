@@ -1,0 +1,108 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #4a4adf;
+    padding: 1rem 0;
+    display: flex;
+}
+
+.logo {
+    list-style: none;
+    display: flex;
+    justify-content: left;
+    position: relative;
+    left: 10px;
+}
+
+nav {
+    background-color: #5B57D3;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    
+    ul {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    li {
+        height: 50px;
+        padding-right: 10px;
+    }
+
+    a {
+        height: 100%;
+        padding: 0 30px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: white;
+        background-color: #7a76f424;
+        border-radius: 8px;
+        
+        &:hover {
+            background-color: #33317c;
+        }
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.26);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    li {
+        width: 100%;
+    }
+
+    a {
+        width: 100%;
+    }
+}
+
+.menuButton {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hideOnMobile {
+        display: none;
+    }
+    
+    .menuButton {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}

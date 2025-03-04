@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>EatMeMaybe</title>
-    <link rel="stylesheet" href="../CSS/stylesheet-products.css">
+    <link rel="stylesheet" href="../CSS/mainview.css">
+    <link rel="stylesheet" href="../CSS/products-content.css">
 </head>
 <body>
     <nav>
@@ -15,7 +16,6 @@
                 </svg>
             </a></li>
             <li><a href="../index.html">Home</a></li>
-            <li><a href="addItem.html">Add item</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="profileSettings.html">Profile</a></li>
@@ -28,7 +28,6 @@
                 <li class="hideOnMobile"><a href="../index.html">Home</a></li>
                 <li class="hideOnMobile"><a href="products.html">Products</a></li>
                 <li class="hideOnMobile"><a href="about.html">About</a></li>
-                <li class="hideOnMobile"><a href="addItem.html">Add item</a></li>
                 <li class="hideOnMobile"><a href="profileSettings.html">Profile</a></li>
                 <li class="menuButton" onclick="showSidebar()">
                     <a href="#">
@@ -42,39 +41,49 @@
     </nav>
 
     <div class="content">
-        <!-- Søk og kategori-meny -->
         <div class="search-container">
             <select id="category-dropdown" class="category-dropdown">
                 <option value="">All Articles</option>
-                <option value="frozen">Frozen Articles</option>
-                <option value="cooling">Refrigerated Articles</option>
-                <option value="dry">Dry Articles</option>
-                <option value="fresh">Fresh Articles</option>
+                <option value="Frozen Articles">Frozen Articles</option>
+                <option value="Cooling Articles">Cooling Articles</option>
+                <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+                <option value="Dry Articles">Dry Articles</option>
             </select>
-    
             <input type="text" id="search-bar" class="search-bar" placeholder="Search for articles">
             <button class="search-btn" onclick="filterItems()">🔍</button>
         </div>
-    
-        <!-- Leddet mellom søkebaren og tabellen, med overskriftene som 'sticky' -->
+
         <div class="table-header">
-            <div class="header-item">Name</div>
-            <div class="header-item">Category</div>
-            <div class="header-item">Expiration</div>
+            <div class="header-item">Product Name</div>
+            <div class="header-item">Product Category</div>
         </div>
-    
-        <!-- Tabell med dataene -->
+
         <div class="table-container">
             <table id="product-table">
                 <tbody id="product-list"></tbody>
             </table>
         </div>
     </div>
+
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-content" onclick="event.stopPropagation()"\>
+            <button class="modal-close-btn" onclick="closeModal()">✖</button>
+            <h2 id="modal-product-name">Product Name</h2>
+            <p id="modal-product-category">Product Category</p>
+            
+            <label id="quantity-title" for="quantity-input">Choose Quantity</label>
+            <div class="quantity-selector">
+                <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                <input type="number" id="quantity-input" min="1" value="1">
+                <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+            </div>
     
-
-
-
-    <script src="../JS/search.js" defer></script>
+            <button class="add-article-btn">Add Article</button>
+        </div>
+    </div>
+    
+    <script src="../JS/search.js"></script>
+    <script src="../JS/navbar.js"></script>
 
     <script>
         function showSidebar(){
@@ -84,6 +93,6 @@
             document.querySelector('.sidebar').style.display = 'none';
         }
     </script>
-    <script src="../JS/navbar.js" defer></script>
+    
 </body>
 </html>
