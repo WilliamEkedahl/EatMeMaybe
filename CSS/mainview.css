@@ -93,8 +93,8 @@ nav a:hover {
 }
 
 @media (max-width: 768px) {
-  .hideOnMobile {
-    display: none;
+  .hideOnMobile, .dropdown{
+    display: none !important;
   }
   .menuButton {
     display: block;
