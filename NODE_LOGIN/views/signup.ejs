@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/CSS/mainview.css">
+<link rel ="stylesheet" href ="/CSS/index-content.css">
+<link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<body>
+<nav>
+    <ul class="sidebar">
+        <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+        <li><a href="index">Home</a></li>
+        <li><a href="addItem">Add item</a></li>
+        <li><a href="products">Products</a></li>
+        <li><a href="about.ejs">About</a></li>
+        <li><a href="profileSettings">Profile</a></li>
+    </ul>
+    <header>
+        <ul class="logo">
+            <li><a href="#index">Logo</a></li>
+        </ul>
+        <ul>
+            <li class="hideOnMobile"><a href="index">Home</a></li>
+            <li class="hideOnMobile"><a href="products">Products</a></li>
+            <li class="hideOnMobile"><a href="about.ejs">About</a></li>
+            <li class="hideOnMobile"><a href="addItem">Add item</a></li>
+            <li class="hideOnMobile"><a href="profileSettings">Profile</a></li>
+            <li class="menuButton" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+        </ul>
+    </header>
+</nav>
+
+<ul>
+    <% if (typeof errors != 'undefined' && errors.length > 0) { %>
+        <% errors.forEach(function(error) { %>
+            <li><%= error.message %></li>
+        <% }); %>
+    <% } %>
+</ul>
+
+<div id="signUp" class="form">
+    <form method="POST" action="/signup">
+        <div>
+        <h1>Sign up today!</h1>
+       </div>
+        <div>
+        <label>
+            Username:
+            <input type="text" id="username" name="username" required></input>
+        </label></br>
+        </div>
+        <div>
+        <label>
+            Email:
+            <input type="text" id="email" name="email" required></input>
+        </label></br>
+        </div>
+        <div>
+        <label>
+            Password:
+            <input type="text" id="password" name="password" required></input>
+        </label></br>
+        </div>
+        <div>
+        <label>
+            Confirm password:
+            <input type="text" id="password2" name="password2" required></input>
+        </label></br>
+        </div>
+
+        <div>
+        <button id="signUpButton" value="signup" class="button" type="submit">Continue</button>
+        </div>
+        <a href="/login">Already registered? Login here</a>
+    </form>
+</div>
+</body>
+</html>

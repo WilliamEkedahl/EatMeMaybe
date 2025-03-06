@@ -1,0 +1,15 @@
+npm init -y
+
+
+npm run start
+
+npm i express
+npm i -D nodemon
+npm i ejs
+npm i dotenv pg
+npm i dotenv pg
+npm i bcrypt
+
+nodemon server.js
+
+npm run dev

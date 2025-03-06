@@ -4,5 +4,7 @@
 database.ini
 # Editor-based HTTP Client requests
 /httpRequests/
-.env
+.env1
 .vscode
+.idea
+/.env
