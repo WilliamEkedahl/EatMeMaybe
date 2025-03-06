@@ -89,51 +89,57 @@ nav a:hover{
 }
 
 /* Innhold */
-.container{
+.container {
+    text-align: center;
+    
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 3%;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
+    gap: 10px;
+    width: 300px;
     margin: auto;
-    background-color: aqua;
-    align-items: center;
+}
+
+input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #e0e0e0;
+    width: 100%;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+}
+
+button {
+    background-color: #159a31;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 108%;
+    /* box-sizing: border-box;
     justify-content: center;
+    align-items: center;
+    margin: auto; */
+    
+    
 }
 
-.form-first{
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-    padding: 15px 300px;
-    background-color: white;
-    margin: 5px;
+button:hover {
+    background-color: #128c2a;
 }
 
-.form-second{
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-    padding: 15px 300px;
-    background-color: white;
-    margin: 5px;
-}
-.form-third{
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-    padding: 15px 300px;
-    background-color: white;
-    margin: 5px;
-}
-
-.container .form-first{
-    position: relative;
-    background-color: grey;
-}
-
-.fieldProd{
-    margin: 10px;
-}
 
 @media(max-width: 800px){
     .hideOnMobile, .dropdown {
