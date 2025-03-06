@@ -1,55 +1,66 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadCSV();
+    document.getElementById("search-bar").addEventListener("input", filterItems);
+    document.getElementById("category-dropdown").addEventListener("change", filterItems);
 });
 
-let products = []; // Lagre CSV-data her
+let products = [];
 
 async function loadCSV() {
     try {
-        const response = await fetch("../data.csv"); // Endre sti om nødvendig
+        const response = await fetch("../products.csv");
         const data = await response.text();
-        parseCSV(data);
+        products = data.split("\n").slice(1).map(row => {
+            const [name, category] = row.split(",").map(item => item.trim());
+            return { name, category };
+        });
+        displayProducts(products);
     } catch (error) {
-        console.error("Feil ved lasting av CSV:", error);
+        console.error("Error loading CSV:", error);
     }
 }
 
-function parseCSV(data) {
-    const rows = data.split("\n").slice(1); // Fjerner header
-    products = rows.map(row => {
-        const [name, category, expiration] = row.split(",");
-        return { name, category, expiration };
-    });
-    displayProducts(products);
-}
-
 function displayProducts(filteredProducts) {
-    const tableBody = document.getElementById("product-list");
-    tableBody.innerHTML = ""; // Tømmer tidligere rader
-
-    filteredProducts.forEach(product => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+    document.getElementById("product-list").innerHTML = filteredProducts.map(product => `
+        <tr onclick="openModal('${product.name}', '${product.category}')">
             <td>${product.name}</td>
             <td>${product.category}</td>
-            <td>${product.expiration}</td>
-        `;
-        tableBody.appendChild(row);
-    });
+        </tr>
+    `).join('');
 }
 
 function filterItems() {
-    const searchQuery = document.getElementById("search-bar").value.toLowerCase();
-    const selectedCategory = document.getElementById("category-dropdown").value;
-
-    const filtered = products.filter(product => 
-        (selectedCategory === "" || product.category === selectedCategory) &&
-        (searchQuery === "" || product.name.toLowerCase().includes(searchQuery))
-    );
-
-    displayProducts(filtered);
+    const query = document.getElementById("search-bar").value.toLowerCase();
+    const category = document.getElementById("category-dropdown").value;
+    displayProducts(products.filter(product =>
+        (!category || product.category === category) &&
+        (!query || product.name.toLowerCase().includes(query))
+    ));
 }
 
-// Koble filterfunksjonen til søkefeltet
-document.getElementById("search-bar").addEventListener("input", filterItems);
-document.getElementById("category-dropdown").addEventListener("change", filterItems);
+function openModal(name, category) {
+    document.getElementById('modal-product-name').textContent = name;
+    document.getElementById('modal-product-category').textContent = category;
+    
+    const modalOverlay = document.getElementById('product-modal');
+    modalOverlay.classList.add('show');
+    modalOverlay.style.visibility = 'visible';
+}
+
+function closeModal() {
+    const modalOverlay = document.getElementById('product-modal');
+    modalOverlay.classList.remove('show');
+    
+    setTimeout(() => {
+        modalOverlay.style.visibility = 'hidden';
+    }, 300);
+}
+
+document.getElementById('product-modal').addEventListener('click', event => {
+    if (event.target === event.currentTarget) closeModal();
+});
+
+function changeQuantity(amount) {
+    let input = document.getElementById('quantity-input');
+    input.value = Math.max(1, parseInt(input.value) + amount);
+}
