@@ -62,7 +62,7 @@ nav a:hover {
 .sidebar {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -250px;
   height: 100vh;
   width: 250px;
   z-index: 999;
@@ -70,10 +70,16 @@ nav a:hover {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  transition: right 0.3s ease-in-out, opacity 0.2s ease-in-out; /* Gliding animasjon */
+  opacity: 0; /* Hidden as a standard */
+}
+.sidebar.show {
+  right: 0; /* When active it get moved in */
+  opacity: 1; /* Shows as a fade in */
 }
 .sidebar li {
   width: 100%;
@@ -87,8 +93,8 @@ nav a:hover {
 }
 
 @media (max-width: 768px) {
-  .hideOnMobile {
-    display: none;
+  .hideOnMobile, .dropdown{
+    display: none !important;
   }
   .menuButton {
     display: block;
