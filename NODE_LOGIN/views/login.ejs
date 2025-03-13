@@ -36,6 +36,17 @@
     <form method="POST" action="/login">
         <div>
         <h1>Login to your account</h1>
+            <ul>
+            <% if(messages.success_msg) {%>
+                <li> <%= messages.success_msg%></li>
+                <% } %>
+            </ul>
+
+            <ul>
+                <% if(messages.error) {%>
+                    <li> <%= messages.error%></li>
+                <% } %>
+            </ul>
         </div>
         <div>
         <label>

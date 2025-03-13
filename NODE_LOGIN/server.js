@@ -2,28 +2,69 @@ const express = require('express');
 const app = express();
 const { pool } = require("./dbConfig");
 const bcrypt = require("bcrypt");
+const session = require("express-session"); //cookies to see if you are logged in
+const flash = require("express-flash");
+const passport = require("passport");
+
+const initializePassport = require("./passportConfig");
+
+initializePassport(passport);
 
 const PORT = process.env.PORT || 4000;
+
+//middle ware
+app.use(passport.initialize());
+
 
 //serve static files (CSS, IMAGES, JS)
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+
+    resave: false,
+
+    //save session details if no value has changed
+    saveUninitialized: false,
+}));
+
+app.use(flash());
+
+app.set('view engine', 'ejs');
+
+// Middleware to check if the user is logged in
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next(); // User is authenticated, proceed to the next middleware
+    } else {
+        return res.redirect('/login'); // If not, redirect to the login page
+    }
+}
+
+// Middleware to check if the user is already logged in
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/index'); // If logged in, redirect to the index page
+    }
+    return next();
+}
+
+app.get('/', checkAuthenticated,  (req, res) => {
     res.render('index');
 });
 
-app.set('view engine', 'ejs');
+
 
 app.get('/signup', (req, res) => {
     res.render("signup");
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render("login");
 });
 
-app.get('/products', (req, res) => {
+app.get('/products', checkAuthenticated, (req, res) => {
     res.render('products');
 });
 
@@ -66,7 +107,55 @@ app.post('/signup', async (req, res) => {
         errors.push({message: "Please enter a valid email"});
     }
 
-    if (errors.length > 0) {
+    try {
+        // Check if user already exists
+        const userExists = await pool.query(
+            "SELECT * FROM mydb.users WHERE email = $1 OR username = $2",
+            [email, username]
+        );
+
+        if (userExists.rows.length > 0) {
+            errors.push({ message: "Email or Username already exists" });
+            return res.render('signup', { errors });
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        console.log("Hashed password:", hashedPassword);
+
+        // Insert new user into the database
+        await pool.query(
+            "INSERT INTO mydb.users (username, email, password) VALUES ($1, $2, $3)",
+            [username, email, hashedPassword]
+        );
+
+        console.log('User registered successfully');
+        req.flash('success_msg', 'Successfully registered! You can log in now');
+        res.redirect("/login"); // Redirect to login page after successful signup
+
+    } catch (error) {
+        console.error("Database error:", error);
+        res.status(500).send("Server error");
+    }
+});
+
+app.post("/login",
+    passport.authenticate("local", {
+        successRedirect: "/index",
+        failureRedirect: "/login",
+        failureFlash: true
+    })
+);
+
+
+app.listen(PORT, () => {
+console.log(`Listening on port ${PORT}`);
+});
+
+//OLD CODE
+/*     //check if the user already exists
+
+ if (errors.length > 0) {
         res.render('signup', {errors});
     } //if form validation is approved hash the password
 
@@ -75,8 +164,7 @@ app.post('/signup', async (req, res) => {
     console.log(hashedPassword);
 
 
-    //check if the user already exists
-    const userExists = await pool.query(
+    pool.query(
         "SELECT * FROM mydb.users WHERE email = $1 OR username = $2",
         [email, username],
         (error, results) => {
@@ -86,13 +174,17 @@ app.post('/signup', async (req, res) => {
             if (results.rows.length > 0) {
                 errors.push({message: "Email or Username already exists"});
                 res.render('signup', {errors});
+            } else {
+                pool.query(
+
+                )
             }
         }
     );
 
 
     // add a new user to the database
-    const newUser = await pool.query(
+    pool.query(
         "INSERT INTO mydb.users (username, email, password) VALUES ($1, $2, $3)",
         [username, email, hashedPassword],
         (error, results) => {
@@ -100,13 +192,8 @@ app.post('/signup', async (req, res) => {
                 throw error;
             }
             console.log('User registered successfully:');
-            res.redirect('/login'); // Redirect to login page after successful signup
+            req.flash('success_msg', 'Successfully registered!. You can log in now');
+            res.redirect("/login"); // Redirect to login page after successful signup
         }
     );
-});
-
-
-
-app.listen(PORT, () => {
-console.log(`Listening on port ${PORT}`);
-});
+}); */

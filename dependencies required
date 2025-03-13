@@ -9,6 +9,9 @@ npm i ejs
 npm i dotenv pg
 npm i dotenv pg
 npm i bcrypt
+npm i express-session express-flash
+npm i passport passport-local
+
 
 nodemon server.js
 
