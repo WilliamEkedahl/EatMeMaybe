@@ -64,7 +64,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render("login");
 });
 
-app.get('/products', checkAuthenticated, (req, res) => {
+app.get('/products', (req, res) => {
     res.render('products');
 });
 
@@ -141,7 +141,7 @@ app.post('/signup', async (req, res) => {
 
 app.post("/login",
     passport.authenticate("local", {
-        successRedirect: "/index",
+        successRedirect: "/products",
         failureRedirect: "/login",
         failureFlash: true
     })

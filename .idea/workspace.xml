@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/NODE_LOGIN/passportConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/views/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies required" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies required" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +46,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Debug&quot;,
     &quot;JavaScript Debug.login.html.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.authenticate.js.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/46725/Desktop/USN/Web og Systemutvikling WES120V&quot;,
@@ -65,37 +55,15 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\NODE_LOGIN" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\NODE_LOGIN\views" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\public" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\views" />
       <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\DOCS" />
+      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\HTML" />
+      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\CSS" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/NODE_LOGIN/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.dev" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -112,14 +80,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738846824292</updated>
-      <workItem from="1738846826148" duration="5927000" />
-      <workItem from="1739235793143" duration="601000" />
-      <workItem from="1741098927938" duration="4249000" />
-      <workItem from="1741225479556" duration="12790000" />
-      <workItem from="1741238606964" duration="995000" />
-      <workItem from="1741819874231" duration="4187000" />
-      <workItem from="1741830050455" duration="178000" />
-      <workItem from="1741830241409" duration="6101000" />
+      <workItem from="1738846826148" duration="737000" />
+      <workItem from="1740299602823" duration="17055000" />
     </task>
     <servers />
   </component>
