@@ -7,4 +7,4 @@ database.ini
 .env1
 .vscode
 .idea
-/.env
+/NODE_LOGIN/.env

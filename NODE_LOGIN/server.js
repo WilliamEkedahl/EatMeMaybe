@@ -50,7 +50,7 @@ app.post('/signup', async (req, res) => {
         errors.push({message: "please fill in all the fields"});
     }
 
-    if (password.length > 45 || username.length > 45){
+    if (password.length > 45 || username.length > 45) {
         errors.push({message: "The Username or Password can not be longer than 45 characters"});
     }
 
@@ -76,33 +76,33 @@ app.post('/signup', async (req, res) => {
 
 
     //check if the user already exists
-    pool.query(
-        "SELECT * FROM users WHERE email = $1 OR username = $2",
+    const userExists = await pool.query(
+        "SELECT * FROM mydb.users WHERE email = $1 OR username = $2",
         [email, username],
         (error, results) => {
             if (error) {
                 throw error;
             }
+            if (results.rows.length > 0) {
+                errors.push({message: "Email or Username already exists"});
+                res.render('signup', {errors});
+            }
         }
     );
 
-  /*  if (results.rows.length > 0) {
-        errors.push({message: "Email or Username already exists"});
-        res.render('signup', {errors});
-    } */
 
-        // add a new user to the database
-        pool.query(
-            "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id",
-            [username, email, hashedPassword],
-            (error, results) => {
-                if (error) {
-                    throw error;
-                }
-                console.log('User registered successfully:');
-                res.redirect('/login'); // Redirect to login page after successful signup
+    // add a new user to the database
+    const newUser = await pool.query(
+        "INSERT INTO mydb.users (username, email, password) VALUES ($1, $2, $3)",
+        [username, email, hashedPassword],
+        (error, results) => {
+            if (error) {
+                throw error;
             }
-        );
+            console.log('User registered successfully:');
+            res.redirect('/login'); // Redirect to login page after successful signup
+        }
+    );
 });
 
 
