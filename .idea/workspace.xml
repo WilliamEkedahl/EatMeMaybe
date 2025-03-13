@@ -5,12 +5,438 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/NODE_LOGIN/passportConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.bin/color-support" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.bin/mkdirp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.bin/node-pre-gyp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.bin/nopt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.bin/rimraf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/.github/workflows/codeql.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/bin/node-pre-gyp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/bin/node-pre-gyp.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/contributing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/clean.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/configure.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/info.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/install.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/node-pre-gyp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/package.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/pre-binding.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/publish.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/rebuild.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/reinstall.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/reveal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/testbinary.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/testpackage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/unpublish.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/abi_crosswalk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/compile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/handle_gyp_opts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/napi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/nw-pre-gyp/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/nw-pre-gyp/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/s3_setup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/@mapbox/node-pre-gyp/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/abbrev/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/abbrev/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/abbrev/abbrev.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/abbrev/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/promisify.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/promisify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/dist/src/promisify.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/src/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/src/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/debug/src/node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/ms/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/ms/license.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/ms/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/node_modules/ms/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/agent-base/src/promisify.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/ansi-regex/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/ansi-regex/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/ansi-regex/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/ansi-regex/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/ansi-regex/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/aproba/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/aproba/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/aproba/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/aproba/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/aproba/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/lib/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/lib/tracker-base.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/lib/tracker-group.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/lib/tracker-stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/lib/tracker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/are-we-there-yet/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/.github/workflows/ci.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/SECURITY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/appveyor.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/bcrypt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/binding.gyp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/examples/async_compare.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/examples/forever_gen_salt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/promises.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/src/bcrypt.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/src/bcrypt_node.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/src/blowfish.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/src/node_blf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test-docker.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test/async.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test/implementation.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test/promise.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test/repetitions.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/bcrypt/test/sync.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/chownr/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/chownr/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/chownr/chownr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/chownr/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/bin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/color-support/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/console-control-strings/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/console-control-strings/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/console-control-strings/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/console-control-strings/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/History.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/License" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/delegates/test/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/lib/detect-libc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/lib/filesystem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/lib/process.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/detect-libc/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/LICENSE-MIT.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/es2015/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/es2015/text.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/emoji-regex/text.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/node_modules/minipass/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/node_modules/minipass/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/node_modules/minipass/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/node_modules/minipass/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/node_modules/minipass/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs-minipass/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs.realpath/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs.realpath/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs.realpath/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs.realpath/old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/fs.realpath/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/base-theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/error.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/has-color.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/plumbing.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/process.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/progress-bar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/render-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/set-immediate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/set-interval.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/spin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/template-item.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/theme-set.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/themes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/gauge/wide-truncate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/glob.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/glob/sync.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/has-unicode/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/has-unicode/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/has-unicode/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/has-unicode/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/agent.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/agent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/agent.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/parse-proxy-response.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/parse-proxy-response.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/dist/parse-proxy-response.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/src/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/src/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/debug/src/node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/ms/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/ms/license.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/ms/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/node_modules/ms/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/https-proxy-agent/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/inflight/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/inflight/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/inflight/inflight.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/inflight/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/is-fullwidth-code-point/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/is-fullwidth-code-point/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/is-fullwidth-code-point/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/is-fullwidth-code-point/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/is-fullwidth-code-point/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/.bin/semver" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/.bin/semver.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/.bin/semver.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/bin/semver.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/range.bnf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/node_modules/semver/semver.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/make-dir/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/index.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minipass/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/node_modules/minipass/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/node_modules/minipass/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/node_modules/minipass/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/node_modules/minipass/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/node_modules/minipass/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/minizlib/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/bin/cmd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/find-made.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/mkdirp-manual.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/mkdirp-native.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/opts-arg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/path-arg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/lib/use-native.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/mkdirp/readme.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/common.gypi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/except.gypi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/napi-inl.deprecated.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/napi-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/napi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/node_api.gyp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/noexcept.gypi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/nothing.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/package-support.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/tools/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/tools/check-napi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/tools/clang-format.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/tools/conversion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-addon-api/tools/eslint-format.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/lib/index.es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/lib/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/lib/index.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/node-fetch/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/bin/nopt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/lib/nopt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/nopt/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/npmlog/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/npmlog/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/npmlog/log.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/npmlog/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/object-assign/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/object-assign/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/object-assign/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/object-assign/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/once/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/once/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/once/once.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/once/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/path-is-absolute/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/path-is-absolute/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/path-is-absolute/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/path-is-absolute/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/GOVERNANCE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/errors-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/errors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/experimentalWarning.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/_stream_duplex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/_stream_passthrough.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/_stream_readable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/_stream_transform.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/_stream_writable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/async_iterator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/buffer_list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/destroy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/end-of-stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/from-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/from.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/pipeline.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/state.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/stream-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/lib/internal/streams/stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/readable-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/readable-stream/readable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/bin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/rimraf/rimraf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/set-blocking/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/set-blocking/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/set-blocking/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/set-blocking/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/set-blocking/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/signal-exit/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/signal-exit/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/signal-exit/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/signal-exit/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/signal-exit/signals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string-width/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string-width/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string-width/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string-width/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string-width/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string_decoder/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string_decoder/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string_decoder/lib/string_decoder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/string_decoder/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/strip-ansi/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/strip-ansi/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/strip-ansi/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/strip-ansi/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/strip-ansi/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/create.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/extract.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/get-write-flag.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/high-level-opt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/large-numbers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/mkdir.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/mode-fix.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/normalize-unicode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/normalize-windows-path.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/pack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/parse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/path-reservations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/pax.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/read-entry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/replace.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/strip-absolute-path.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/strip-trailing-slashes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/types.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/unpack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/warn-mixin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/winchars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/lib/write-entry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tar/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tr46/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tr46/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tr46/lib/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tr46/lib/mappingTable.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/tr46/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/History.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/util-deprecate/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/webidl-conversions/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/webidl-conversions/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/webidl-conversions/lib/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/webidl-conversions/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/lib/URL-impl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/lib/URL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/lib/public-api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/lib/url-state-machine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/lib/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/whatwg-url/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wide-align/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wide-align/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wide-align/align.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wide-align/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wrappy/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wrappy/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wrappy/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/wrappy/wrappy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/yallist/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/yallist/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/yallist/iterator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/yallist/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/node_modules/yallist/yallist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NODE_LOGIN/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NODE_LOGIN/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/NODE_LOGIN/views/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies required" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies required" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -54,9 +480,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Debug&quot;,
     &quot;JavaScript Debug.login.html.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.authenticate.js.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/46725/Desktop/USN/Web og Systemutvikling WES120V&quot;,
@@ -65,37 +489,15 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\NODE_LOGIN" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\NODE_LOGIN\views" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\public" />
-      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\views" />
       <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\DOCS" />
+      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\HTML" />
+      <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\CSS" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/NODE_LOGIN/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.dev" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -112,14 +514,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738846824292</updated>
-      <workItem from="1738846826148" duration="5927000" />
-      <workItem from="1739235793143" duration="601000" />
-      <workItem from="1741098927938" duration="4249000" />
-      <workItem from="1741225479556" duration="12790000" />
-      <workItem from="1741238606964" duration="995000" />
-      <workItem from="1741819874231" duration="4187000" />
-      <workItem from="1741830050455" duration="178000" />
-      <workItem from="1741830241409" duration="6101000" />
+      <workItem from="1738846826148" duration="737000" />
+      <workItem from="1740299602823" duration="17055000" />
     </task>
     <servers />
   </component>
