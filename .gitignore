@@ -8,3 +8,4 @@ database.ini
 .vscode
 .idea
 /NODE_LOGIN/.env
+node_modules
