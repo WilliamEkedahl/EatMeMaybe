@@ -141,7 +141,7 @@ app.post('/signup', async (req, res) => {
 
 app.post("/login",
     passport.authenticate("local", {
-        successRedirect: "/index",
+        successRedirect: "/",
         failureRedirect: "/login",
         failureFlash: true
     })
