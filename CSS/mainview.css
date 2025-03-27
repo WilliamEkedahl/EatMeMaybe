@@ -16,7 +16,6 @@ body {
 }
 
 header {
-  background-color: #4a4adf;
   padding: 1rem 0;
   display: flex;
 }
@@ -30,7 +29,7 @@ header {
 }
 
 nav {
-  background-color: #5B57D3;
+  background-color: #4a4adf;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
@@ -52,7 +51,7 @@ nav a {
   display: flex;
   align-items: center;
   color: white;
-  background-color: rgba(122, 118, 244, 0.1411764706);
+  background-color: #7a76f424;
   border-radius: 8px;
 }
 nav a:hover {

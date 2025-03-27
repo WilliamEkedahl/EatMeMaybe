@@ -1,3 +1,4 @@
+/*
 *{
     margin: 0;
     padding: 0;
@@ -5,13 +6,11 @@
 
 body{
     min-height: 100vh;
-    /*background: url(../MEDIA/backgroundLogo.jpg);
-    background-size: cover; */
     background-repeat: no-repeat;
     background-position: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
-}
+} 
 
 header {
     padding: 1rem 0;
@@ -87,6 +86,7 @@ nav a:hover{
 .menuButton{
     display: none;
 }
+*/
 
 /* Innhold */
 .container {
@@ -127,7 +127,7 @@ button {
     border-radius: 20px;
     font-size: 18px;
     font-weight: bold;
-    width: 108%;
+    width: 100%;
     /* box-sizing: border-box;
     justify-content: center;
     align-items: center;
@@ -140,7 +140,7 @@ button:hover {
     background-color: #128c2a;
 }
 
-
+/*
 @media(max-width: 800px){
     .hideOnMobile, .dropdown {
         display: none !important;
@@ -155,4 +155,4 @@ button:hover {
         width: 100%;
     }
 }
-
+*/
