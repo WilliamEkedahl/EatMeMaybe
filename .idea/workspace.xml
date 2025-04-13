@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/about-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/about-content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/index-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/index-content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/mainview.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/mainview.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/products-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/products-content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/profileSettings-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/profileSettings-content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/stylesheet-signUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/stylesheet-signUp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/profileSettings.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/profileSettings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/signUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/authenticate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/helloWorld.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/helloWorld.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/backgroundLogo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/backgroundLogo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/close.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/close.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/home.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/home.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/menu.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/menu.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/picturesgohere.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/picturesgohere.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEDIA/settings.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/settings.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,41 +38,43 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "WilliamEkedahl"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WilliamEkedahl&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/WilliamEkedahl/EatMeMaybe.git",
-    "accountId": "7cc14f50-aecb-4f8d-b17b-65f93f257e3a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WilliamEkedahl/EatMeMaybe.git&quot;,
+    &quot;accountId&quot;: &quot;7cc14f50-aecb-4f8d-b17b-65f93f257e3a&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2sfVsYnqda1SB8RU9HV9ICXZHy7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/46725/Desktop/USN/Web og Systemutvikling WES120V",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/46725/Desktop/USN/Web og Systemutvikling WES120V&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/HTML" />
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\DOCS" />
       <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\HTML" />
       <recent name="C:\Users\46725\Desktop\USN\Web og Systemutvikling WES120V\EatMeMaybe\CSS" />
