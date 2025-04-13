@@ -5,30 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.firebase/hosting.cHVibGlj.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.cHVibGlj.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/about-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/about-content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/index-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/index-content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/mainview.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/mainview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/products-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/products-content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/profileSettings-content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/profileSettings-content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/stylesheet-signUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/CSS/stylesheet-signUp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/profileSettings.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/profileSettings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/signUp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/HTML/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/authenticate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/helloWorld.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/helloWorld.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/backgroundLogo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/backgroundLogo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/close.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/close.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/home.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/home.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/menu.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/menu.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/picturesgohere.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/picturesgohere.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MEDIA/settings.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/MEDIA/settings.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CNAME" beforeDir="false" afterPath="$PROJECT_DIR$/CNAME" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase-debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/firebase.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
