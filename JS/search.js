@@ -1,66 +1,152 @@
+
+// Wait until the webpage is fully loaded, then run the main setup function
 document.addEventListener("DOMContentLoaded", () => {
-    loadCSV();
-    document.getElementById("search-bar").addEventListener("input", filterItems);
-    document.getElementById("category-dropdown").addEventListener("change", filterItems);
+    initializeUI();
 });
 
+// Array for storing all the products loaded from the CSV file
 let products = [];
 
-async function loadCSV() {
+/**
+ * The initializeUI function runs when the page is fully loaded and ready.
+ * It first loads product data from the CSV file and displays it on the page.
+ * Then it sets up all necessary event listeners to make the page interactive:
+ *    - Handle user input for search and category filtering.
+ *    - Handle modal open/close interactions and quantity changes.
+ *    - Handle sidebar menu toggling on mobile.
+ */
+function initializeUI() {
+    fetchAndDisplayCSV();
+
+    document.getElementById("search-bar").addEventListener("input", filterItems);
+    document.getElementById("category-dropdown").addEventListener("change", filterItems);
+    document.getElementById("search-btn").addEventListener("click", filterItems);
+
+    document.getElementById("modal-close-btn").addEventListener("click", closeModal);
+    document.getElementById("decrease-btn").addEventListener("click", () => changeQuantity(-1));
+    document.getElementById("increase-btn").addEventListener("click", () => changeQuantity(1));
+
+    document.getElementById("hide-sidebar-btn").addEventListener("click", hideSidebar);
+    document.getElementById("show-sidebar-btn").addEventListener("click", showSidebar);
+
+    document.getElementById("product-modal").addEventListener("click", function (e) {
+        if (e.target === e.currentTarget) closeModal();
+    });
+}
+
+/**
+ * The fetchAndDisplayCSV function loads the product data from a CSV file and displays it to the user. 
+ * It first downloads the CSV-file as a wrapper called a response object.
+ * It then takes the text from the object and stores it in a const called "text".
+ * The function parseCSV is called on this const, which parses the text into Javascript objects.
+ * Finally the displayProducts function is called to display the products to the user in a table.
+ * Should there be a problem with these operations, the function catches this and displays a relevant error message. 
+ */
+async function fetchAndDisplayCSV() {
     try {
         const response = await fetch("../products.csv");
-        const data = await response.text();
-        products = data.split("\n").slice(1).map(row => {
-            const [name, category] = row.split(",").map(item => item.trim());
-            return { name, category };
-        });
+        const text = await response.text();
+        products = parseCSV(text);
         displayProducts(products);
-    } catch (error) {
-        console.error("Error loading CSV:", error);
+    } catch (err) {
+        console.error("Error loading CSV:", err);
     }
 }
 
-function displayProducts(filteredProducts) {
-    document.getElementById("product-list").innerHTML = filteredProducts.map(product => `
-        <tr onclick="openModal('${product.name}', '${product.category}')">
-            <td>${product.name}</td>
-            <td>${product.category}</td>
-        </tr>
-    `).join('');
+/**
+ * The parseCSV function takes the CSV text and turns it into usable Javascript objects.
+ * It skips the first line (which usually has column names), and then splits each line into name and category.
+ * These are then stored in objects like { name: "Apple", category: "Fruit" }.
+ */
+function parseCSV(data) {
+    return data.split("\n").slice(1).map(function(row) {
+        const [name, category] = row.split(",").map(function(item) {
+            return item.trim();
+        });
+        return { name, category };
+    });
 }
 
-function filterItems() {
-    const query = document.getElementById("search-bar").value.toLowerCase();
-    const category = document.getElementById("category-dropdown").value;
-    displayProducts(products.filter(product =>
-        (!category || product.category === category) &&
-        (!query || product.name.toLowerCase().includes(query))
-    ));
+/**
+ * The displayProducts function shows the given list of products in a table on the page.
+ * It creates one row for each product using HTML, and places it inside the table.
+ * The function also makes it possible to click on each row to open a modal by calling the openModal function.
+ */
+function displayProducts(items) {
+    const list = document.getElementById("product-list");
+    list.innerHTML = "";
+
+    items.forEach(({ name, category }) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${category}</td>
+        `;
+        row.addEventListener("click", () => openModal(name, category));
+        list.appendChild(row);
+    });
 }
 
+/**
+ * The openModal function displays a popup window (called a modal) when the user clicks on a product row.
+ * The modal shows the product’s name and category, and gives the user the option to choose a quantity to add.
+ * First, it updates the modal content with the correct product information based on what the user chose.
+ * Then it shows the modal by applying a CSS class that makes it visible and triggers a fade-in animation.
+ */
 function openModal(name, category) {
     document.getElementById('modal-product-name').textContent = name;
     document.getElementById('modal-product-category').textContent = category;
-    
-    const modalOverlay = document.getElementById('product-modal');
-    modalOverlay.classList.add('show');
-    modalOverlay.style.visibility = 'visible';
+
+    const modal = document.getElementById('product-modal');
+    modal.classList.add('show');
 }
 
+/**
+ * The closeModal function hides the product modal when the user either click the close button or outside the window. 
+ * It removes the "show" class for animation, and then hides the modal completely after a short delay.
+ */
 function closeModal() {
-    const modalOverlay = document.getElementById('product-modal');
-    modalOverlay.classList.remove('show');
-    
-    setTimeout(() => {
-        modalOverlay.style.visibility = 'hidden';
-    }, 300);
+    const modal = document.getElementById('product-modal');
+    modal.classList.remove('show');
 }
 
-document.getElementById('product-modal').addEventListener('click', event => {
-    if (event.target === event.currentTarget) closeModal();
-});
-
+/**
+ * The function changeQuantity changes the number in the quantity input field, when the user changes this. 
+ * If the user clicks "+" or "−", this adjusts the value up or down, but never below 1 for practical reasons. 
+ */
 function changeQuantity(amount) {
-    let input = document.getElementById('quantity-input');
+    const input = document.getElementById('quantity-input');
     input.value = Math.max(1, parseInt(input.value) + amount);
+}
+
+/**
+ * The filterItems function makes it possible for the user to search in the products list based on types or selects.
+ * It checks if the product matches the search text and/or the selected category.
+ * Only products that match one or both of these will be shown in the table.
+ */
+function filterItems() {
+    const query = document.getElementById("search-bar").value.toLowerCase();
+    const category = document.getElementById("category-dropdown").value;
+
+    const filtered = products.filter(function({ name, category: cat }) {
+        return (!category || cat === category) &&
+               (!query || name.toLowerCase().includes(query));
+    });
+
+    displayProducts(filtered);
+}
+
+/**
+ * The showSidebar function makes the sidebar visible by adding a CSS class to it.
+ * It is activated for use on mobile devices and contains a burger menu with page selection options. 
+ */
+function showSidebar() {
+    document.querySelector(".sidebar").classList.add("visible");
+}
+
+/**
+ * The hideSidebar function hides the sidebar menu by removing the CSS class that makes it visible.
+ */
+function hideSidebar() {
+    document.querySelector(".sidebar").classList.remove("visible");
 }
