@@ -16,7 +16,7 @@ let products = [];
  *    - Handle sidebar menu toggling on mobile.
  */
 function initializeUI() {
-    fetchAndDisplayCSV();
+    fetchAndDisplayFirestore();
 
     document.getElementById("search-bar").addEventListener("input", filterItems);
     document.getElementById("category-dropdown").addEventListener("change", filterItems);
@@ -42,30 +42,20 @@ function initializeUI() {
  * Finally the displayProducts function is called to display the products to the user in a table.
  * Should there be a problem with these operations, the function catches this and displays a relevant error message. 
  */
-async function fetchAndDisplayCSV() {
+async function fetchAndDisplayFirestore() {
     try {
-        const response = await fetch("../products.csv");
-        const text = await response.text();
-        products = parseCSV(text);
+        const snapshot = await db.collection("products").get();
+        products = []; // Clear the array before populating with Firestore data
+        snapshot.forEach(doc => {
+            products.push({ id: doc.id, ...doc.data() }); // Include document ID and data
+        });
         displayProducts(products);
-    } catch (err) {
-        console.error("Error loading CSV:", err);
+    } catch (error) {
+        console.error("Error fetching products from Firestore:", error);
     }
 }
 
-/**
- * The parseCSV function takes the CSV text and turns it into usable Javascript objects.
- * It skips the first line (which usually has column names), and then splits each line into name and category.
- * These are then stored in objects like { name: "Apple", category: "Fruit" }.
- */
-function parseCSV(data) {
-    return data.split("\n").slice(1).map(function(row) {
-        const [name, category] = row.split(",").map(function(item) {
-            return item.trim();
-        });
-        return { name, category };
-    });
-}
+
 
 /**
  * The displayProducts function shows the given list of products in a table on the page.
