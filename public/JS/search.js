@@ -45,9 +45,9 @@ function initializeUI() {
 async function fetchAndDisplayFirestore() {
     try {
         const snapshot = await db.collection("products").get();
-        products = []; // Clear the array before populating with Firestore data
+        products = []; 
         snapshot.forEach(doc => {
-            products.push({ id: doc.id, ...doc.data() }); // Include document ID and data
+            products.push({ id: doc.id, ...doc.data() }); 
         });
         displayProducts(products);
     } catch (error) {

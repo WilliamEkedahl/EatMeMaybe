@@ -6,3 +6,4 @@ database.ini
 /httpRequests/
 .env
 .vscode
+package.json
