@@ -1,23 +1,48 @@
+<<<<<<< HEAD
 /* For index buttons */
+=======
+>>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
   gap: 10px;
   margin-top: 50px;
+=======
+  gap: 5px;
+  margin-top: 50px;
+  padding: 0 20px;
+>>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+<<<<<<< HEAD
   width: 60%;
   gap: 10px;
+=======
+  width: 100%;
+  max-width: 600px;
+  gap: 10px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 10px 15px;
+  transition: transform 0.2s ease;
+}
+
+.bar-container:hover {
+  transform: scale(1.01);
+>>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .bar {
   flex-grow: 1;
   height: 40px;
+<<<<<<< HEAD
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -37,6 +62,32 @@
 }
 .bar.green {
   background-color: limegreen;
+=======
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding: 0 15px;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+/* bar colours*/
+.bar.red {
+  background-color: #fddede;
+  color: #a94442;
+}
+.bar.orange {
+  background-color: #fff4e5;
+  color: #b26a00;
+}
+.bar.green {
+  background-color: #e5f9ed;
+  color: #2e7d32;
+>>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .buttons {
@@ -45,6 +96,7 @@
 }
 
 button {
+<<<<<<< HEAD
   width: 40px;
   height: 30px;
   border: none;
@@ -57,3 +109,33 @@ button {
 button:hover {
   background: #aaa;
 }/*# sourceMappingURL=index-content.css.map */
+=======
+  width: 36px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: #ececec;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #d4d4d4;
+}
+
+/* input bar if we use input instead of span */
+.bar-input {
+  width: 100%; /* input takes the full width */
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  padding: 0;
+}
+>>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9

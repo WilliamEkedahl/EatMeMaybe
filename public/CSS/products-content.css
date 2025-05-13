@@ -196,7 +196,7 @@
   margin: 0;
 }
 
-.add-article-btn {
+.add-product-btn {
   margin-top: 30px;
   background-color: #5a46d8;
   color: white;
@@ -211,8 +211,36 @@
   text-align: center;
   transition: background 0.3s ease, transform 0.2s ease;
 }
-.add-article-btn:hover {
+.add-product-btn:hover {
   background-color: #4836b1;
+}
+
+/* Styling for modal that pops up when user adds an item */
+.message-modal {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  background-color: #5a46d8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  width: 300px;
+  text-align: center;
+  display: none;
+}
+
+.message-modal-content {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  color: #333;
+}
+
+/* When the .show class is added, the modal becomes visible */
+.message-modal.show {
+  display: block;
 }
 
 /* Media queries */
