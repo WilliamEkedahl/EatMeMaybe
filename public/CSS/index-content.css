@@ -1,29 +1,16 @@
-<<<<<<< HEAD
-/* For index buttons */
-=======
->>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-<<<<<<< HEAD
-  gap: 10px;
-  margin-top: 50px;
-=======
   gap: 5px;
   margin-top: 50px;
   padding: 0 20px;
->>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-<<<<<<< HEAD
-  width: 60%;
-  gap: 10px;
-=======
   width: 100%;
   max-width: 600px;
   gap: 10px;
@@ -36,33 +23,11 @@
 
 .bar-container:hover {
   transform: scale(1.01);
->>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .bar {
   flex-grow: 1;
   height: 40px;
-<<<<<<< HEAD
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  background-color: gray;
-  padding: 0 15px;
-}
-.bar.red {
-  background-color: red;
-}
-.bar.orange {
-  background-color: orange;
-}
-.bar.green {
-  background-color: limegreen;
-=======
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -87,7 +52,6 @@
 .bar.green {
   background-color: #e5f9ed;
   color: #2e7d32;
->>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
 }
 
 .buttons {
@@ -96,20 +60,6 @@
 }
 
 button {
-<<<<<<< HEAD
-  width: 40px;
-  height: 30px;
-  border: none;
-  border-radius: 5px;
-  background: #ccc;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-button:hover {
-  background: #aaa;
-}/*# sourceMappingURL=index-content.css.map */
-=======
   width: 36px;
   height: 30px;
   border: none;
@@ -138,4 +88,11 @@ button:hover {
   text-align: center;
   padding: 0;
 }
->>>>>>> 86fd095e76d652b9a331a8139dc1ed013009f7b9
+
+.delete-btn {
+  background-color: #c0392b;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #e74c3c;
+}
