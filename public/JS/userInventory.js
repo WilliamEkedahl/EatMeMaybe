@@ -9,17 +9,37 @@ async function fetchUserInventory() {
 
         snapshot.forEach(doc => {
             const data = doc.data();
+            const addedAt = data.addedAt?.toDate() || new Date(0);
+
+            // Dynamisk holdbarhet basert på kategori
+            let shelfLifeDays = 7; // standardverdi
+
+            if (data.category === "Cooling Articles") {
+                shelfLifeDays = 90;
+            } else if (data.category === "Asian") {
+                shelfLifeDays = 30;
+            }
+
+            const expirationDate = new Date(addedAt);
+            expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
+
+            const today = new Date();
+            const timeDiff = expirationDate.getTime() - today.getTime();
+            const daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
+
             inventoryItems.push({
                 id: doc.id,
                 name: data.name,
                 category: data.category,
                 quantity: data.quantity,
-                date: data.addedAt?.toDate() || new Date(0),
+                addedAt,
+                expirationDate,
+                daysLeft,
             });
         });
 
-        // Sorter etter dato, nyeste først
-        inventoryItems.sort((a, b) => a.date - b.date);
+        // Sorter etter dato, eldste først
+        inventoryItems.sort((a, b) => a.daysLeft - b.daysLeft);
 
         displayUserInventory(inventoryItems);
     } catch (error) {
@@ -37,17 +57,27 @@ function displayUserInventory(items) {
 
     inventoryTable.innerHTML = "";
 
-    items.forEach(({ id, name, category, quantity, date }) => {
+    items.forEach(({ id, name, category, quantity, addedAt, daysLeft }) => {
         const row = document.createElement("tr");
-
+    
+        let daysLeftClass = "";
+        if (daysLeft <= 3) {
+            daysLeftClass = ' class="expiring-red"';
+        } else if (daysLeft <= 7) {
+            daysLeftClass = ' class="expiring-orange"';
+        } else {
+            daysLeftClass = ' class="expiring-green"';
+        }
+    
         row.innerHTML = `
             <td>${name}</td>
             <td>${category}</td>
             <td>${quantity}</td>
-            <td>${date.toLocaleDateString("no-NO")} ${date.toLocaleTimeString("no-NO")}</td>
+            <td>${addedAt.toLocaleDateString("no-NO")} ${addedAt.toLocaleTimeString("no-NO")}</td>
+            <td${daysLeftClass}>${daysLeft} dager</td>
             <td><button data-id="${id}" class="delete-btn">Slett</button></td>
         `;
-
+    
         inventoryTable.appendChild(row);
     });
 
