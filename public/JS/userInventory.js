@@ -19,7 +19,7 @@ async function fetchUserInventory() {
         });
 
         // Sorter etter dato, nyeste først
-        inventoryItems.sort((a, b) => b.date - a.date);
+        inventoryItems.sort((a, b) => a.date - b.date);
 
         displayUserInventory(inventoryItems);
     } catch (error) {
