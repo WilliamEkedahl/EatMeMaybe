@@ -69,7 +69,7 @@ async function importCSVDataToFirestore(csvFilePath) {
   }
 }
 
-const csvFilePath = '../products.csv';
+const csvFilePath = '/products.csv';
 
 // Starts the import
 importCSVDataToFirestore(csvFilePath);
