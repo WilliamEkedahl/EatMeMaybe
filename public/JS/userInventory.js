@@ -79,13 +79,13 @@ function displayUserInventory(items) {
             <td>${quantity}</td>
             <td>${addedAt.toLocaleDateString("no-NO")} ${addedAt.toLocaleTimeString("no-NO")}</td>
             <td${daysLeftClass}>${daysLeft === 0 ? "EXPIRED" : daysLeft + " days"}</td>
-            <td><button data-id="${id}" class="delete-btn">Slett</button></td>
+            <td><button data-id="${id}" class="delete-btn">Remove</button></td>
         `;
     
         inventoryTable.appendChild(row);
     });
 
-    // Legg til event listeners for alle "Slett"-knapper
+    // Legg til event listeners for alle "Remove"-knapper
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
             const itemId = event.target.getAttribute("data-id");
