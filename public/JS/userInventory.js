@@ -74,7 +74,7 @@ function displayUserInventory(items) {
             <td>${category}</td>
             <td>${quantity}</td>
             <td>${addedAt.toLocaleDateString("no-NO")} ${addedAt.toLocaleTimeString("no-NO")}</td>
-            <td${daysLeftClass}>${daysLeft} dager</td>
+            <td${daysLeftClass}>${daysLeft === 0 ? "EXPIRED" : daysLeft + " days"}</td>
             <td><button data-id="${id}" class="delete-btn">Slett</button></td>
         `;
     
