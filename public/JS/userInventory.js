@@ -15,7 +15,11 @@ async function fetchUserInventory() {
             let shelfLifeDays = 7; // standardverdi
 
             if (data.category === "Cooling Articles") {
-                shelfLifeDays = 90;
+                shelfLifeDays = 14;
+            } else if (data.category === "Frozen Products") {
+                shelfLifeDays = 180;
+            } else if (data.category === "Fruits and Vegetables") {
+                shelfLifeDays = 3;
             } else if (data.category === "Asian") {
                 shelfLifeDays = 30;
             }
