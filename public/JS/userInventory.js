@@ -85,12 +85,26 @@ function displayUserInventory(items) {
         inventoryTable.appendChild(row);
     });
 
-    // Legg til event listeners for alle "Remove"-knapper
+    // Legg til event listeners for alle "Remove"-knapper med confirmation
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
             const itemId = event.target.getAttribute("data-id");
-            await deleteInventoryItem(itemId);
-            fetchUserInventory(); // Oppdater tabellen etter sletting
+            const confirmed = window.confirm("Are you sure you want to remove this product?");
+        
+            if (confirmed) {
+                await deleteInventoryItem(itemId);
+                fetchUserInventory(); // Oppdater tabellen etter sletting
+
+                const statusMessage = document.getElementById("status-message");
+                    statusMessage.textContent = "Product removed.";
+                    statusMessage.style.display = "block"; // vis meldingen
+
+                setTimeout(() => {
+                    statusMessage.style.display = "none"; // skjul den igjen
+                    statusMessage.textContent = "";
+                }, 3000);
+
+            }
         });
     });
 }

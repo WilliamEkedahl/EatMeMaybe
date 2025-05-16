@@ -99,3 +99,18 @@ td.expiring-green {
   font-weight: bold;
 }
   */
+
+  #status-message {
+    display: none;
+    margin-top: 1rem;
+    padding: 12px 20px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    width: fit-content;
+    max-width: 600px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
