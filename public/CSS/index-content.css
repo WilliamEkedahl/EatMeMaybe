@@ -1,94 +1,81 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  margin-top: 50px;
-  padding: 0 20px;
-}
-
-.bar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
-  gap: 10px;
-  background-color: #f9f9f9;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  padding: 10px 15px;
-  transition: transform 0.2s ease;
-}
-
-.bar-container:hover {
-  transform: scale(1.01);
-}
-
-.bar {
-  flex-grow: 1;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  padding: 0 15px;
-  background-color: #e0e0e0;
-  transition: background-color 0.3s;
-}
-
-/* bar colours*/
-.bar.red {
-  background-color: #fddede;
-  color: #a94442;
-}
-.bar.orange {
-  background-color: #fff4e5;
-  color: #b26a00;
-}
-.bar.green {
-  background-color: #e5f9ed;
-  color: #2e7d32;
-}
-
-.buttons {
-  display: flex;
-  gap: 5px;
-}
-
-button {
-  width: 36px;
-  height: 30px;
-  border: none;
-  border-radius: 6px;
-  background: #ececec;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  transition: background 0.2s;
-}
-
-button:hover {
-  background: #d4d4d4;
-}
-
-/* input bar if we use input instead of span */
-.bar-input {
-  width: 100%; /* input takes the full width */
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  text-align: center;
+* {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  margin: 2rem 0 1rem;
+  margin-left: 1rem;
+  font-size: 1.8rem;
+  color: black;
+}
+
+/* Tabellen */
+table {
+  width: calc(100% - 2rem); 
+  margin: 0 1rem;  
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #d7d7d7;
+  color: black;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* fargekoder for dager igjen */
+td.expiring-red {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+td.expiring-orange {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+td.expiring-green {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+/* Slett knappen */
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+
+
+/*
 .delete-btn {
   background-color: #c0392b;
   color: white;
@@ -111,3 +98,4 @@ td.expiring-green {
   color: #27ae60;
   font-weight: bold;
 }
+  */
