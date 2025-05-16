@@ -26,6 +26,9 @@ function initializeUI() {
     document.getElementById("category-dropdown").addEventListener("change", filterItems);
     document.getElementById("search-btn").addEventListener("click", filterItems);
 
+    /* product*/
+    document.getElementById("add-new-product-btn").addEventListener("click", addNewProductToFirestore);
+
     document.getElementById("modal-close-btn").addEventListener("click", closeModal);
     document.getElementById("decrease-btn").addEventListener("click", () => changeQuantity(-1));
     document.getElementById("increase-btn").addEventListener("click", () => changeQuantity(1));
@@ -59,6 +62,33 @@ async function fetchAndDisplayFirestore() {
         displayProducts(products);
     } catch (error) {
         console.error("Error fetching products from Firestore:", error);
+    }
+}
+
+/* mn product*/
+async function addNewProductToFirestore() {
+    const nameInput = document.getElementById('new-product-name');
+    const categorySelect = document.getElementById('new-product-category');
+
+    const name = nameInput.value.trim();
+    const category = categorySelect.value;
+
+    if (!name || !category) {
+        showMessageModal("Please enter both a name and select a category.");
+        return;
+    }
+
+    const product = { name, category };
+
+    try {
+        await db.collection("products").add(product);
+        showMessageModal("Product added successfully!");
+        nameInput.value = "";
+        categorySelect.value = "";
+        fetchAndDisplayFirestore(); // Oppdater produktlisten
+    } catch (error) {
+        console.error("Error adding new product:", error);
+        showMessageModal("Failed to add product. Please try again.");
     }
 }
 

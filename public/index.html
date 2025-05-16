@@ -48,75 +48,29 @@
         </header>
     </nav>
 
-    <div class="container">
-        <div class="bar-container">
-            <div class="bar red">
-            <span>Milk - Expires in 1 day</span></div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar red">
-                <input type="text" class="bar-input" placeholder="Enter text here">
-            </div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar orange"></div>
-            <span>Cheese - Expires in 3 days</span>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar orange"></div>
-            <span>Cheeselooooooooooooooooooooooooo oooooooooooooooooo ooooooooooooong - Expires in 3 days</span>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar green"></div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar green"></div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar green"></div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    
-        <div class="bar-container">
-            <div class="bar green"></div>
-            <div class="buttons">
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-        </div>
-    </div>
+
+    <h2>My Inventory</h2>
+    <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Date Added</th>
+            <th>Expires In</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="inventory-table-body">
+          <!-- Rader fylles med JS -->
+        </tbody>
+      </table>
+
+      <div id="status-message"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="JS/firestore.js"></script>
+    <script src="JS/userInventory.js"></script>
     <script src="JS/navbar.js"></script>
 </body>
