@@ -14,12 +14,14 @@ async function fetchUserInventory() {
             // Dynamisk holdbarhet basert på kategori
             let shelfLifeDays = 7; // standardverdi
 
-            if (data.category === "Cooling Articles") {
+            if (data.category === "Cooling Products") {
                 shelfLifeDays = 14;
             } else if (data.category === "Frozen Products") {
                 shelfLifeDays = 180;
-            } else if (data.category === "Fruits and Vegetables") {
+            } else if (data.category === "Fruits & Vegetables") {
                 shelfLifeDays = 3;
+            } else if (data.category === "Dry Products") {
+                shelfLifeDays = 60;
             } else if (data.category === "Asian") {
                 shelfLifeDays = 30;
             }
