@@ -44,17 +44,22 @@
     </nav>
 
     <div class="content">
-        <div class="search-container">
-            <select id="category-dropdown" class="category-dropdown">
-                <option value="">All Products</option>
-                <option value="Frozen Products">Frozen Products</option>
-                <option value="Cooling Products">Cooling Products</option>
-                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-                <option value="Dry Products">Dry Products</option>
-            </select>
-            <input type="text" id="search-bar" class="search-bar" placeholder="Search for products">
-            <button type="button" class="search-btn" id="search-btn">🔍</button>
-        </div>
+<div class="search-container">
+    <select id="category-dropdown" class="category-dropdown">
+        <option value="">All Products</option>
+        <option value="Frozen Products">Frozen Products</option>
+        <option value="Cooling Products">Cooling Products</option>
+        <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+        <option value="Dry Products">Dry Products</option>
+    </select>
+
+    <div class="input-wrapper">
+        <input type="text" id="search-bar" class="search-bar" placeholder="Search for products" autocomplete="off">
+        <div id="ghost-suggestion" class="ghost-text"></div>
+    </div>
+
+    <button type="button" class="search-btn" id="search-btn">🔍</button>
+</div>
 
         <div class="add-product-container">
             <input type="text" id="new-product-name" placeholder="New product name">
