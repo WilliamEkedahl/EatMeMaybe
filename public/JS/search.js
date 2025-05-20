@@ -20,7 +20,7 @@ let selectedProduct = { name: "", category: "" };
  *    - Handle sidebar menu toggling on mobile.
  */
 function initializeUI() {
-    fetchAndDisplayFirestore();
+    //fetchAndDisplayFirestore(); LASTER INN HELE DRITEN FRA FIRESTORE, SE pagination.js
 
     document.getElementById("search-bar").addEventListener("input", filterItems);
     document.getElementById("category-dropdown").addEventListener("change", filterItems);
@@ -222,19 +222,4 @@ function showMessageModal(message) {
     setTimeout(() => {
         modal.classList.remove('show');
     }, 2000);
-}
-
-/**
- * The showSidebar function makes the sidebar visible by adding a CSS class to it.
- * It is activated for use on mobile devices and contains a burger menu with page selection options. 
- */
-function showSidebar() {
-    document.querySelector(".sidebar").classList.add("visible");
-}
-
-/**
- * The hideSidebar function hides the sidebar menu by removing the CSS class that makes it visible.
- */
-function hideSidebar() {
-    document.querySelector(".sidebar").classList.remove("visible");
 }
