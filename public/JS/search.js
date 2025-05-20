@@ -25,6 +25,8 @@ function initializeUI() {
     document.getElementById("search-bar").addEventListener("input", filterItems);
     document.getElementById("category-dropdown").addEventListener("change", filterItems);
     document.getElementById("search-btn").addEventListener("click", filterItems);
+    document.getElementById("search-bar").addEventListener("input", showGhostSuggestion);
+    document.getElementById("search-bar").addEventListener("keydown", acceptGhostSuggestion);
 
     /* product*/
     document.getElementById("add-new-product-btn").addEventListener("click", addNewProductToFirestore);
@@ -59,7 +61,13 @@ async function fetchAndDisplayFirestore() {
         snapshot.forEach(doc => {
             products.push({ id: doc.id, ...doc.data() }); 
         });
-        displayProducts(products);
+        products.sort((a, b) => {
+    if (a.category.toLowerCase() < b.category.toLowerCase()) return -1;
+    if (a.category.toLowerCase() > b.category.toLowerCase()) return 1;
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+});
+
+displayProducts(products);
     } catch (error) {
         console.error("Error fetching products from Firestore:", error);
     }
@@ -131,6 +139,47 @@ function filterItems() {
     displayProducts(filtered);
 }
 
+let currentSuggestion = "";
+
+async function showGhostSuggestion() {
+    const input = document.getElementById("search-bar");
+    const ghost = document.getElementById("ghost-suggestion");
+    const query = input.value.toLowerCase().trim();
+
+    if (!query) {
+        ghost.textContent = "";
+        currentSuggestion = "";
+        return;
+    }
+
+    try {
+        const snapshot = await db.collection("products").get();
+        const match = [...snapshot.docs]
+            .map(doc => doc.data().name)
+            .find(name => name.toLowerCase().startsWith(query));
+
+        if (match) {
+            ghost.textContent = input.value + match.slice(query.length);
+            currentSuggestion = match;
+        } else {
+            ghost.textContent = "";
+            currentSuggestion = "";
+        }
+
+    } catch (err) {
+        console.error("Ghost autocomplete error:", err);
+    }
+}
+
+function acceptGhostSuggestion(e) {
+    if ((e.key === "ArrowRight" || e.key === "Tab") && currentSuggestion) {
+        e.preventDefault();
+        document.getElementById("search-bar").value = currentSuggestion;
+        document.getElementById("ghost-suggestion").textContent = "";
+        currentSuggestion = "";
+        filterItems(); // trigger filtrering etter autocomplete
+    }
+}
 /**
  * The openModal function displays a popup window (called a modal) when the user clicks on a product row.
  * The modal shows the product’s name and category, and gives the user the option to choose a quantity to add.

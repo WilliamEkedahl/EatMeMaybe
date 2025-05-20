@@ -32,6 +32,27 @@
   flex: 1;
   text-align: left;
 }
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+}
+
+.ghost-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10.5px;
+  font-size: 15px;
+  color: #ccc;
+  pointer-events: none;
+  z-index: 1;
+  font-family: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+}
 .search-container .search-btn {
   background: #5a46d8;
   color: white;
