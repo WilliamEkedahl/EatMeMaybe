@@ -1,18 +1,23 @@
-//Do I NEEED THIS FILE?
 
 
+const submitBtn = document.getElementById('signUpButton');
+const submit = document.getElementById('submit');
 
-//input fields
-const email = document.getElementById('email').value;
-const username = document.getElementById('username').value;
-const password = document.getElementById('password').value;
-const password = document.getElementById('confPassword').value;
-
-const submit = document.getElementById('signUpButton');
-
-submit.addEventListener('click', function(event) {
+submitBtn.addEventListener('click', function(event) {
     event.preventDefault();
-})
+
+    //input fields
+    const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confPassword = document.getElementById('confPassword').value;
+
+    if (password !== confpassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+    signUp(email, username, password);
+});
 
 /**signUp
  * we retrive the auto generated UID that firebase makes for us.
@@ -22,13 +27,13 @@ submit.addEventListener('click', function(event) {
  */
 
 function signUp(email, username, password) {
-    auth.signUpWithEmail(email, username, password)
+    auth.createUserWithEmailAndPassword(email, password)
         .then(cred => {
-        const UID = cred.users.uid; //A Unique firebase generated id for each user
-        return db.collection("users").doc(UID).set({email: email, username: username});
+            const UID = cred.user.uid; //A Unique firebase generated id for each user
+            return db.collection("users").doc(UID).set({email: email, username: username});
     })
-    .then()) => {window.location.href = "index.html";})
-    .catch(error => {alert.err.message});
+    .then(() => {window.location.href = "index.html";})
+        .catch(error => {alert.error.message)});
 }
 
 /** SignIn
@@ -38,9 +43,9 @@ function signUp(email, username, password) {
  */
 //signIn
 function signIn(email, password) {
-    auth.signInWithEmail(email, password)
+    auth.signInWithEmailAndPassword(email, password)
     .then(result => {window.location.href = "index.html";})
-        .catch(error => {alert.err.message});
+        .catch(error => {alert.error.message});
 }
 
 /**Signout
