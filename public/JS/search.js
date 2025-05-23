@@ -54,6 +54,7 @@ function initializeUI() {
  * Finally the displayProducts function is called to display the products to the user in a table.
  * Should there be a problem with these operations, the function catches this and displays a relevant error message. 
  */
+
 async function fetchAndDisplayFirestore() {
     try {
         const snapshot = await db.collection("products").get();
@@ -102,11 +103,13 @@ async function addNewProductToFirestore() {
 
 
 
+
 /**
  * The displayProducts function shows the given list of products in a table on the page.
  * It creates one row for each product using HTML, and places it inside the table.
  * The function also makes it possible to click on each row to open a modal by calling the openModal function.
  */
+
 function displayProducts(items) {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
@@ -122,11 +125,14 @@ function displayProducts(items) {
     });
 }
 
+
 /**
  * The filterItems function makes it possible for the user to search in the products list based on types or selects.
  * It checks if the product matches the search text and/or the selected category.
  * Only products that match one or both of these will be shown in the table.
  */
+
+/*
 function filterItems() {
     const query = document.getElementById("search-bar").value.toLowerCase();
     const category = document.getElementById("category-dropdown").value;
@@ -170,6 +176,7 @@ async function showGhostSuggestion() {
         console.error("Ghost autocomplete error:", err);
     }
 }
+ */
 
 function acceptGhostSuggestion(e) {
     if ((e.key === "ArrowRight" || e.key === "Tab") && currentSuggestion) {
