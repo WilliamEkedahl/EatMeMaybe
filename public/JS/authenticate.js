@@ -1,7 +1,7 @@
 //signUpButton
 const signUpBtn = document.getElementById('signUpButton');
 if (signUpBtn) {
-    signUpBtn.addEventListener('click', function (event) {
+    signUpBtn.addEventListener('submit', function (event) {
         event.preventDefault();
 
         //input fields
