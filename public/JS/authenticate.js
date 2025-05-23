@@ -14,4 +14,56 @@ submit.addEventListener('click', function(event) {
     event.preventDefault();
 })
 
-alert("works");
+/**signUp
+ * we retrive the auto generated UID that firebase makes for us.
+ * @param email
+ * @param username
+ * @param password
+ */
+
+function signUp(email, username, password) {
+    auth.signUpWithEmail(email, username, password)
+        .then(cred => {
+        const UID = cred.users.uid; //A Unique firebase generated id for each user
+        return db.collection("users").doc(UID).set({email: email, username: username});
+    })
+    .then()) => {window.location.href = "index.html";})
+    .catch(error => {alert.err.message});
+}
+
+/** SignIn
+ * window.location.href changes the current window (view) to the specified page,
+ * @param email
+ * @param password
+ */
+//signIn
+function signIn(email, password) {
+    auth.signInWithEmail(email, password)
+    .then(result => {window.location.href = "index.html";})
+        .catch(error => {alert.err.message});
+}
+
+/**Signout
+ *
+ */
+function signOut() {
+    auth.signOut().then(result => {window.location.href = "login.html";})
+}
+
+/**UserAuthenticated
+ *
+ */
+function userAuthenticated(callback){
+    auth.onAuthStateChanged((user) => {
+        if(user){
+            callback(user);
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+}
+
+
+
+
+
