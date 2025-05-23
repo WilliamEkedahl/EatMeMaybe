@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../CSS/products-content.css">
 </head>
 <body>
+<script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+<script src="../JS/firestore.js"></script>
+<script src="../JS/authenticate.js"></script>
     <nav>
         <ul class="sidebar">
             <li><a href="#" id="hide-sidebar-btn">
@@ -44,34 +48,30 @@
     </nav>
 
     <div class="content">
-<div class="search-container">
-    <select id="category-dropdown" class="category-dropdown">
-        <option value="">All Products</option>
-        <option value="Frozen Products">Frozen Products</option>
-        <option value="Cooling Products">Cooling Products</option>
-        <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-        <option value="Dry Products">Dry Products</option>
-    </select>
 
-    <div class="input-wrapper">
-        <input type="text" id="search-bar" class="search-bar" placeholder="Search for products" autocomplete="off">
-        <div id="ghost-suggestion" class="ghost-text"></div>
-    </div>
-
-    <button type="button" class="search-btn" id="search-btn">🔍</button>
-</div>
-
-        <div class="add-product-container">
-            <input type="text" id="new-product-name" placeholder="New product name">
-            <select id="new-product-category">
-                <option value="">Select category</option>
-                <option value="Frozen Products">Frozen Products</option>
-                <option value="Cooling Products">Cooling Products</option>
-                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-                <option value="Dry Products">Dry Products</option>
-            </select>
-            <button id="add-new-product-btn">Add Product</button>
+        <div class="navigation-buttons">
+            <button class="nav-btn" id="table1-btn">All Products</button>
+            <button class="nav-btn" id="table2-btn">Your Custom products</button>
+            <button class="nav-btn" id="add-btn">Add Custom product</button>
         </div>
+        
+        <div class="search-container">
+
+        <select id="category-dropdown" class="category-dropdown">
+            <option value="">All Categories</option>
+            <option value="Frozen Products">Frozen Products</option>
+            <option value="Cooling Products">Cooling Products</option>
+            <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+            <option value="Dry Products">Dry Products</option>
+        </select>
+
+        <div class="input-wrapper">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search product name" autocomplete="off">
+            <div id="ghost-suggestion" class="ghost-text"></div>
+        </div>
+
+        <button type="button" class="search-btn" id="search-btn">🔍</button>
+    </div>
         
 
         <div class="table-header">
@@ -84,13 +84,6 @@
                 <tbody id="product-list"></tbody>
             </table>
         </div>
-
-        <div class="pagination-controls">
-            <button id="prev-page-btn">Previous</button>
-            <span  id="current-page">Page 1</span>
-            <button id="next-page-btn">Next</button>
-        </div>
-        
     </div>
 
     <div id="product-modal" class="modal-overlay">
@@ -115,13 +108,9 @@
             <p id="modal-message"></p>
         </div>
     </div>
-     
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
-    <script src="../JS/firestore.js"></script>
     <script src="../JS/search.js"></script>
-    <script src="../JS/pagination.js"></script>
     <script src="../JS/products.js"></script>
+    <script src="../JS/authenticate.js"></script>
     <script src="../JS/navbar.js"></script>  
 </body>
 </html>
