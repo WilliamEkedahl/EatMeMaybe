@@ -8,10 +8,6 @@
     <link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
 </head>
 <body>
-<script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
-<script src="../JS/firestore.js"></script>
-<script src="../JS/authenticate.js"></script>
     <nav>
         <ul class="sidebar">
             <li onclick="hideSidebar()"><a href="#">
@@ -54,9 +50,13 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="password" id="confPassword" name="confPassword" placeholder="Confirm password" required>
-            <button type="submit" id="submit">Sign up</button>
+            <button type="submit" id="signUpButton">Sign up</button>
             <a href="signin.html">Already have an account? Sign in!</a>
         </form>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="../JS/firestore.js"></script>
+    <script src="../JS/authenticate.js"></script>
     <script src="../JS/navbar.js"></script>
 </body>
