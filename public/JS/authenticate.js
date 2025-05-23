@@ -29,7 +29,7 @@ if (signInBtn) {
     signInBtn.addEventListener('submit', function (event) {
         event.preventDefault();
         const email = document.getElementById('email').value;
-        const password = document.getElementById('pass').value;
+        const password = document.getElementById('password').value;
 
         signIn(email, password);
     });
