@@ -1,23 +1,35 @@
+//signUpButton
+const signUpBtn = document.getElementById('signUpButton');
+if (signUpBtn) {
+    signUpBtn.addEventListener('click', function (event) {
+        event.preventDefault();
 
+        //input fields
+        const email = document.getElementById('email').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confPassword = document.getElementById('confPassword').value;
 
-const submitBtn = document.getElementById('signUpButton');
-const submit = document.getElementById('submit');
+        if (password !== confPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+        signUp(email, username, password);
+    });
+}
 
-submitBtn.addEventListener('click', function(event) {
-    event.preventDefault();
+//signInButton
+const signInBtn = document.getElementById('signInButton');
+if (signInBtn) {
+    signInBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    //input fields
-    const email = document.getElementById('email').value;
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const confPassword = document.getElementById('confPassword').value;
+        signIn(email, password);
+    });
+}
 
-    if (password !== confpassword) {
-        alert("Passwords do not match!");
-        return;
-    }
-    signUp(email, username, password);
-});
 
 /**signUp
  * we retrive the auto generated UID that firebase makes for us.
@@ -31,9 +43,13 @@ function signUp(email, username, password) {
         .then(cred => {
             const UID = cred.user.uid; //A Unique firebase generated id for each user
             return db.collection("users").doc(UID).set({email: email, username: username});
-    })
-    .then(() => {window.location.href = "index.html";})
-        .catch(error => {alert.error.message)});
+        })
+        .then(() => {
+            window.location.href = "index.html";
+        })
+        .catch(error => {
+            alert(error.message);
+        });
 }
 
 /** SignIn
@@ -45,7 +61,9 @@ function signUp(email, username, password) {
 function signIn(email, password) {
     auth.signInWithEmailAndPassword(email, password)
     .then(result => {window.location.href = "index.html";})
-        .catch(error => {alert.error.message});
+        .catch(error => {
+            alert(error.message);
+        });
 }
 
 /**Signout
