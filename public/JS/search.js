@@ -54,6 +54,7 @@ function initializeUI() {
  * Finally the displayProducts function is called to display the products to the user in a table.
  * Should there be a problem with these operations, the function catches this and displays a relevant error message. 
  */
+/*
 async function fetchAndDisplayFirestore() {
     try {
         const snapshot = await db.collection("products").get();
@@ -99,6 +100,7 @@ async function addNewProductToFirestore() {
         showMessageModal("Failed to add product. Please try again.");
     }
 }
+/*
 
 
 
@@ -107,6 +109,7 @@ async function addNewProductToFirestore() {
  * It creates one row for each product using HTML, and places it inside the table.
  * The function also makes it possible to click on each row to open a modal by calling the openModal function.
  */
+/*
 function displayProducts(items) {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
@@ -121,6 +124,7 @@ function displayProducts(items) {
         list.appendChild(row);
     });
 }
+ */
 
 /**
  * The filterItems function makes it possible for the user to search in the products list based on types or selects.
