@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta name ="viewport" content ="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -7,8 +8,8 @@
     <link rel = "stylesheet" href = "CSS/mainview.css">
     <link rel ="stylesheet" href ="CSS/index-content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
+
 <body>
     <nav>
         <ul class="sidebar">
@@ -50,23 +51,59 @@
 
 
     <h2>My Inventory</h2>
-    <table>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Date Added</th>
-            <th>Expires In</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="inventory-table-body">
-          <!-- Rader fylles med JS -->
-        </tbody>
-      </table>
 
-      <div id="status-message"></div>
+    <div class="category-nav">
+        <button class="category-btn" data-category="">
+            <img src="MEDIA/grocery-cart.png" alt="All">
+        </button>
+        <button class="category-btn" data-category="Frozen Products">
+            <img src="MEDIA/frozen.png" alt="Frozen">
+        </button>
+        <button class="category-btn" data-category="Cooling Products">
+            <img src="MEDIA/fridge.png" alt="Cooling">
+        </button>
+        <button class="category-btn" data-category="Fruits and Vegetables">
+            <img src="MEDIA/vegetable.png" alt="Fruits and Vegetables">
+        </button>
+        <button class="category-btn" data-category="Dry Products">
+            <img src="MEDIA/spices.png" alt="Dry">
+        </button>
+    </div>
+
+    <div class="inventory-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Date Added</th>
+                    <th>Expires In</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-table-body">
+                <!-- Rader fylles med JS her -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="status-message"></div>
+
+    <template id="inventory-row-template">
+        <tr>
+            <td class="product-category"></td>
+            <td class="product-name"></td>
+            <td class="product-quantity"></td>
+            <td class="product-added-at"></td>
+            <td class="product-days-left"></td>
+            <td>
+                <button class="increase-btn">➕</button>
+                <button class="decrease-btn">➖</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+    </template>
 
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
