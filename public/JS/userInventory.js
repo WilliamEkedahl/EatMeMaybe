@@ -1,10 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetchUserInventory();
- 
+
     // Event listeners for kategoriknapper
     const categoryButtons = document.querySelectorAll(".category-btn");
+
+    // Sett "All Products" som aktiv ved start
+    const defaultBtn = document.querySelector('.category-btn[data-category=""]');
+    if (defaultBtn) defaultBtn.classList.add("active");
+
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
+            // Fjern 'active' fra alle knapper
+            categoryButtons.forEach(b => b.classList.remove("active"));
+            // Legg til 'active' på valgt knapp
+            btn.classList.add("active");
+
             const category = btn.getAttribute("data-category");
             filterInventoryByCategory(category);
         });
