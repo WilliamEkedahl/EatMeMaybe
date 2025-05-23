@@ -54,7 +54,7 @@ function initializeUI() {
  * Finally the displayProducts function is called to display the products to the user in a table.
  * Should there be a problem with these operations, the function catches this and displays a relevant error message. 
  */
-/*
+
 async function fetchAndDisplayFirestore() {
     try {
         const snapshot = await db.collection("products").get();
@@ -100,7 +100,7 @@ async function addNewProductToFirestore() {
         showMessageModal("Failed to add product. Please try again.");
     }
 }
-/*
+
 
 
 
@@ -131,6 +131,8 @@ function displayProducts(items) {
  * It checks if the product matches the search text and/or the selected category.
  * Only products that match one or both of these will be shown in the table.
  */
+
+/*
 function filterItems() {
     const query = document.getElementById("search-bar").value.toLowerCase();
     const category = document.getElementById("category-dropdown").value;
@@ -174,6 +176,7 @@ async function showGhostSuggestion() {
         console.error("Ghost autocomplete error:", err);
     }
 }
+ */
 
 function acceptGhostSuggestion(e) {
     if ((e.key === "ArrowRight" || e.key === "Tab") && currentSuggestion) {
