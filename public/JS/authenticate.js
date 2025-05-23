@@ -1,10 +1,12 @@
 //signUpButton
-const signUpBtn = document.getElementById('signUpButton');
+
+const signUpBtn = document.getElementById('signUpForm'); // Make sure your <form> has id="signUpForm"
+
 if (signUpBtn) {
     signUpBtn.addEventListener('submit', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent default form submission
 
-        //input fields
+        // Input fields
         const email = document.getElementById('email').value;
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
@@ -14,17 +16,20 @@ if (signUpBtn) {
             alert("Passwords do not match!");
             return;
         }
+
         signUp(email, username, password);
     });
 }
 
+
+
 //signInButton
-const signInBtn = document.getElementById('signInButton');
+const signInBtn = document.getElementById('signInForm');
 if (signInBtn) {
-    signInBtn.addEventListener('click', function (event) {
+    signInBtn.addEventListener('submit', function (event) {
         event.preventDefault();
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const password = document.getElementById('pass').value;
 
         signIn(email, password);
     });
@@ -45,7 +50,7 @@ function signUp(email, username, password) {
             return db.collection("users").doc(UID).set({email: email, username: username});
         })
         .then(() => {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         })
         .catch(error => {
             alert(error.message);
@@ -60,7 +65,7 @@ function signUp(email, username, password) {
 //signIn
 function signIn(email, password) {
     auth.signInWithEmailAndPassword(email, password)
-    .then(result => {window.location.href = "index.html";})
+    .then(result => {window.location.href = "../index.html";})
         .catch(error => {
             alert(error.message);
         });
