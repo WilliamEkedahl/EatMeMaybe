@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetchUserInventory();
+    //fetchUserInventory();
 
     // Event listeners for kategoriknapper
     const categoryButtons = document.querySelectorAll(".category-btn");
@@ -23,15 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
  
 let allInventoryItems = [];
 let activeCategoryFilter = null;
+let userInventoryRef = null;
+
+// Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
+window.auth.onAuthStateChanged(user => {
+    if (user) {
+        const userId = user.uid;
+        userInventoryRef = window.db.collection("users").doc(userId).collection("userInventory");
+        fetchUserInventory();
+    } else {
+        console.error("Ingen bruker er logget inn.");
+    }
+});
  
 async function fetchUserInventory() {
     try {
-        const snapshot = await db.collection("User_Inventory").get();
+        const snapshot = await userInventoryRef.get();
         const inventoryItems = [];
  
         snapshot.forEach(doc => {
             const data = doc.data();
-            const addedAt = data.addedAt?.toDate() || new Date(0);
+            let addedAt;
+        if (data.addedAt && typeof data.addedAt.toDate === "function") {
+            addedAt = data.addedAt.toDate();
+        } else {
+            console.warn(`Ugyldig eller manglende 'addedAt' for dokument ${doc.id}, setter til nåværende tid.`);
+            addedAt = new Date();
+        }
  
             // Dynamisk holdbarhet basert på kategori
             let shelfLifeDays = 7; // standardverdi
@@ -136,20 +154,32 @@ function displayUserInventory(items) {
  
         // Øk kvantitet
         increaseBtn.addEventListener("click", async () => {
-            await updateItemQuantity(id, quantity + 1);
-            fetchUserInventory();
+            const newQuantity = Number(quantity) + 1;
+            await updateItemQuantity(id, newQuantity);
+            
+            const item = allInventoryItems.find(item => item.id === id);
+            if (item) item.quantity = newQuantity;
+
+            redisplayFilteredInventory();
         });
  
         // Reduser kvantitet
         decreaseBtn.addEventListener("click", async () => {
-            if (quantity > 1) {
-                await updateItemQuantity(id, quantity - 1);
-                fetchUserInventory();
+            const currentQuantity = Number(quantity);
+            if (currentQuantity > 1) {
+                await updateItemQuantity(id, currentQuantity - 1);
+                
+                const item = allInventoryItems.find(item => item.id === id);
+                if (item) item.quantity = currentQuantity - 1;
+
+                redisplayFilteredInventory();
             } else {
                 const confirmed = window.confirm("Quantity is 1. Remove product completely?");
                 if (confirmed) {
                     await deleteInventoryItem(id);
-                    fetchUserInventory();
+                    
+                    allInventoryItems = allInventoryItems.filter(item => item.id !== id);
+                    redisplayFilteredInventory();
                 }
             }
         });
@@ -160,7 +190,9 @@ function displayUserInventory(items) {
             const confirmed = window.confirm("Are you sure you want to remove this product?");
             if (confirmed) {
                 await deleteInventoryItem(id);
-                fetchUserInventory();
+                
+                allInventoryItems = allInventoryItems.filter(item => item.id !== id);
+                redisplayFilteredInventory();
  
                 const statusMessage = document.getElementById("status-message");
                 statusMessage.textContent = "Product removed.";
@@ -179,7 +211,7 @@ function displayUserInventory(items) {
  
 async function deleteInventoryItem(itemId) {
     try {
-        await db.collection("User_Inventory").doc(itemId).delete();
+        await userInventoryRef.doc(itemId).delete();
         console.log(`Element med ID ${itemId} er slettet.`);
     } catch (error) {
         console.error("Feil ved sletting av element:", error);
@@ -188,11 +220,20 @@ async function deleteInventoryItem(itemId) {
  
 async function updateItemQuantity(itemId, newQuantity) {
     try {
-        await db.collection("User_Inventory").doc(itemId).update({
-            quantity: newQuantity
-        });
+        await userInventoryRef.doc(itemId).update({
+    quantity: newQuantity
+});
         console.log(`Oppdatert kvantitet for ${itemId} til ${newQuantity}.`);
     } catch (error) {
         console.error("Feil ved oppdatering av kvantitet:", error);
+    }
+}
+
+function redisplayFilteredInventory() {
+    if (activeCategoryFilter) {
+        const filtered = allInventoryItems.filter(item => item.category === activeCategoryFilter);
+        displayUserInventory(filtered);
+    } else {
+        displayUserInventory(allInventoryItems);
     }
 }
