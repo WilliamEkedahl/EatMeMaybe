@@ -26,11 +26,26 @@ let activeCategoryFilter = null;
 let userInventoryRef = null;
 
 // Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
-window.auth.onAuthStateChanged(user => {
+window.auth.onAuthStateChanged(async user => {
     if (user) {
         const userId = user.uid;
         userInventoryRef = window.db.collection("users").doc(userId).collection("userInventory");
         fetchUserInventory();
+
+        // Hent brukernavnet fra Firestore og oppdater h2-tittel
+        try {
+            const userDoc = await window.db.collection("users").doc(userId).get();
+            if (userDoc.exists) {
+                const username = userDoc.data().username;
+                const inventoryTitle = document.getElementById("inventory-title");
+                if (inventoryTitle) {
+                    inventoryTitle.textContent = `${username}'s inventory`;
+                }
+            }
+        } catch (error) {
+            console.error("Kunne ikke hente brukernavn:", error);
+        }
+
     } else {
         console.error("Ingen bruker er logget inn.");
     }
