@@ -58,13 +58,12 @@ async function fetchUserInventory() {
  
         snapshot.forEach(doc => {
             const data = doc.data();
-            let addedAt;
-        if (data.addedAt && typeof data.addedAt.toDate === "function") {
-            addedAt = data.addedAt.toDate();
-        } else {
-            console.warn(`Ugyldig eller manglende 'addedAt' for dokument ${doc.id}, setter til nåværende tid.`);
-            addedAt = new Date();
-        }
+            if (!(data.addedAt && typeof data.addedAt.toDate === "function")) {
+                console.warn(`Ugyldig eller manglende 'addedAt' for dokument ${doc.id}, hopper over dette elementet.`);
+                return; // Hopp over dette dokumentet i snapshot.forEach
+            }
+
+            const addedAt = data.addedAt.toDate();
  
             // Dynamisk holdbarhet basert på kategori
             let shelfLifeDays = 7; // standardverdi
