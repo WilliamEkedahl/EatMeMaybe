@@ -48,7 +48,7 @@
         <div class="navigation-buttons">
             <button class="nav-btn" id="table1-btn">All Products</button>
             <button class="nav-btn" id="table2-btn">Your Custom products</button>
-            <button class="nav-btn" id="add-btn">Add Custom product</button>
+            <button class="nav-btn" id="add-new-product-btn">Add Custom product</button>
         </div>
         
         <div class="search-container">
@@ -68,8 +68,7 @@
 
         <button type="button" class="search-btn" id="search-btn">🔍</button>
     </div>
-        
-
+    
         <div class="table-header">
             <div class="header-item">Product Name</div>
             <div class="header-item">Product Category</div>
@@ -80,6 +79,7 @@
                 <tbody id="product-list"></tbody>
             </table>
         </div>
+
     </div>
 
     <div id="product-modal" class="modal-overlay">
@@ -95,23 +95,50 @@
                 <button type="button" class="quantity-btn" id="increase-btn">+</button>
             </div>
     
-            <button type="button" class="add-product-btn">Add Product</button>
+            <button type="button" class="add-product-btn" id="add-product-btn">Add Product</button>
         </div>
     </div>
+
+    <!-- Custom Product Modal -->
+<div id="custom-product-modal2" class="modal2">
+  <div class="modal-content2">
+    <button type="button" class="close2" id="custom-modal-close-btn2">✖</button>
+    <h2 id="modal-product-name">Add Custom Product</h2>
+
+    <div class="input-row input-inline">
+        <select id="product-category2" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="Frozen Products">Frozen Products</option>
+            <option value="Cooling Products">Cooling Products</option>
+            <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+            <option value="Dry Products">Dry Products</option>
+        </select>
+    <input type="text" id="custom-product-name2" placeholder="Enter product name">
+</div>
+
+<label id="quantity-title" for="quantity-input">Choose Quantity</label>
+<div class="quantity-selector">
+    <button type="button" class="quantity-btn" id="decrease-btn">−</button>
+    <input type="number" id="quantity-input" min="1" value="1">
+    <button type="button" class="quantity-btn" id="increase-btn">+</button>
+</div>
+
+
+    <button type="button" class="add-custom-product-btn" id="add-custom-product-btn">Add Product</button>
+  </div>
+</div>
 
     <div id="custom-modal" class="message-modal">
         <div class="message-modal-content">
             <p id="modal-message"></p>
         </div>
     </div>
+
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
     <script src="../JS/firestore.js"></script>
     <script src="../JS/authenticate.js"></script>
     <script src="../JS/search.js"></script>
-    <script src="../JS/products.js"></script>
-    <script src="../JS/authenticate.js"></script>
-    <script src="../JS/navbar.js"></script>  
 </body>
 </html>
