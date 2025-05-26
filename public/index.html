@@ -53,61 +53,81 @@
         </header>
     </nav>
 
-
-    <h2 id="inventory-title">My Inventory</h2>
-
-    <div class="category-nav">
-        <button class="category-btn" data-category="" title="All Products">
-            <img src="MEDIA/grocery-cart.png" alt="All">
-        </button>
-        <button class="category-btn" data-category="Fruits and Vegetables" title="Fruits and Vegetables">
-            <img src="MEDIA/vegetable.png" alt="Fruits and Vegetables">
-        </button>
-        <button class="category-btn" data-category="Cooling Products" title="Cooling Products">
-            <img src="MEDIA/fridge.png" alt="Cooling">
-        </button>
-        <button class="category-btn" data-category="Frozen Products" title="Frozen Products">
-            <img src="MEDIA/frozen.png" alt="Frozen">
-        </button>
-        <button class="category-btn" data-category="Dry Products" title="Dry Products">
-            <img src="MEDIA/spices.png" alt="Dry">
-        </button>
+    <!-- Div with message and buttons which appear if the user has not signed in -->
+    <div class="auth-message" style="display: none;">
+        <p>Oops, it looks like you're not signed in. Sign in or create an account to view your inventory.</p>
+        <div class="button-group"></div>
+            <button onclick="window.location.href='HTML/signin.html'">Sign in</button>
+            <button onclick="window.location.href='HTML/signUp.html'">Create account</button>
+        </div>
     </div>
 
-    <div class="inventory-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Date Added</th>
-                    <th>Expires In</th>
-                    <th>Modify</th>
-                </tr>
-            </thead>
-            <tbody id="inventory-table-body">
-                <!-- Rader fylles med JS her -->
-            </tbody>
-        </table>
+    <!-- Div for wrapping all the main content of the page and hide it until the user has signed in -->
+    <div id="main-content" style="display: none;">
+        <h2 id="inventory-title">My Inventory</h2>
+
+        <div class="category-nav">
+            <button class="category-btn" data-category="" title="All Products">
+                <img src="MEDIA/grocery-cart.png" alt="All">
+            </button>
+            <button class="category-btn" data-category="Fruits and Vegetables" title="Fruits and Vegetables">
+                <img src="MEDIA/vegetable.png" alt="Fruits and Vegetables">
+            </button>
+            <button class="category-btn" data-category="Cooling Products" title="Cooling Products">
+                <img src="MEDIA/fridge.png" alt="Cooling">
+            </button>
+            <button class="category-btn" data-category="Frozen Products" title="Frozen Products">
+                <img src="MEDIA/frozen.png" alt="Frozen">
+            </button>
+            <button class="category-btn" data-category="Dry Products" title="Dry Products">
+                <img src="MEDIA/spices.png" alt="Dry">
+            </button>
+        </div>
+
+        <div class="inventory-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Date Added</th>
+                        <th>Expires In</th>
+                        <th>Modify</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-table-body">
+                    <!-- Rader fylles med JS her -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Message which shows if the user inventory table is empty -->
+        <div class="empty-table-wrapper">
+            <div class="inventory-message" id="empty-inventory-message">
+                <p>Your inventory is empty! Start adding products to fill it up!</p>
+                <button onclick="window.location.href='HTML/products.html'">Add products</button>
+            </div>
+        </div>
+
+        <div id="status-message"></div>
+
+        <template id="inventory-row-template">
+            <tr>
+                <td class="product-category"></td>
+                <td class="product-name"></td>
+                <td class="product-quantity"></td>
+                <td class="product-added-at"></td>
+                <td class="product-days-left"></td>
+                <td>
+                    <button class="increase-btn">➕</button>
+                    <button class="decrease-btn">➖</button>
+                    <button class="delete-btn">❌</button>
+                </td>
+            </tr>
+        </template>
     </div>
 
-    <div id="status-message"></div>
-
-    <template id="inventory-row-template">
-        <tr>
-            <td class="product-category"></td>
-            <td class="product-name"></td>
-            <td class="product-quantity"></td>
-            <td class="product-added-at"></td>
-            <td class="product-days-left"></td>
-            <td>
-                <button class="increase-btn">➕</button>
-                <button class="decrease-btn">➖</button>
-                <button class="delete-btn">❌</button>
-            </td>
-        </tr>
-    </template>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
