@@ -38,18 +38,21 @@
   flex: 1;
   display: flex;
 }
-.ghost-text {
+#ghost-suggestion {
   position: absolute;
   top: 0;
   left: 0;
   padding: 10.5px;
   font-size: 15px;
-  color: #ccc;
+  color: rgba(0, 0, 0, 0.35);
   pointer-events: none;
+  white-space: pre;
+  user-select: none;
   z-index: 1;
-  font-family: inherit;
-  white-space: nowrap;
-  overflow: hidden;
+}
+
+#ghost-suggestion .typed {
+  color: transparent;
 }
 .search-container .search-btn {
   background: #5a46d8;

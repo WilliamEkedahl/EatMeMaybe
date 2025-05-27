@@ -127,7 +127,7 @@ function showGhostSuggestion() {
         .find(name => name.toLowerCase().startsWith(query));
 
     if (match) {
-        ghost.textContent = input.value + match.slice(query.length);
+        ghost.innerHTML = `<span class="typed">${input.value}</span>${match.slice(query.length)}`;
         currentSuggestion = match;
     } else {
         ghost.textContent = "";
