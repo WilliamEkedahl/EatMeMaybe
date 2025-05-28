@@ -51,9 +51,6 @@ document.addEventListener("DOMContentLoaded", (e)=> {
     }
 });
 
-document.getElementById("signInButton").addEventListener("click", (e)=> {
-    window.location.href = "HTML/signIn.html";
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".toggle-password").forEach(toggle => {
