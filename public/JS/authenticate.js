@@ -27,17 +27,16 @@ export async function signUp(email, username, password){
     }
 }
 
-export async function signIn(email, password){
+export async function signIn(email,password){
     try{
-        await signInWithEmailAndPassword(auth, email, password);       
-        
+        await signInWithEmailAndPassword(auth, email, password)
         window.location.href ="../index.html";
     } catch (error) {
         alert(error.message);
     }
 }
 
-export async function logOut(){
+export async function signOut(){
     await signOut(auth);
     window.location.href="signIn.html";
 }
