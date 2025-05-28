@@ -1,4 +1,5 @@
-import {signIn} from "./authenticate.js"
+import {signIn, logOut, signUp, } from "./authenticate.js"
+import {signOut} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
@@ -41,15 +42,14 @@ document.getElementById("signUpForm").addEventListener("submit", (e)=> {
     signUp(email, username, password);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".toggle-password").forEach(toggle => {
-    toggle.addEventListener("click", () => {
-      const input = document.getElementById(toggle.getAttribute("data-target"));
-      if (input.type === "password") {
-        input.type = "text";
-      } else {
-        input.type = "password";
-      }
-    });
-  });
+document.addEventListener("DOMContentLoaded", (e)=> {
+    const signOutButton = document.getElementById("signOutButton");
+    if (signOutButton) {
+        signOutButton.addEventListener("click", (e) =>{
+            e.preventDefault();
+            logOut();
+        });
+    }
 });
+
+
