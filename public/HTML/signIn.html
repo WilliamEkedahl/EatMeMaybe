@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-    <meta name ="viewport" content ="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="../CSS/mainview.css">
-    <link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
+    <title>Title</title>
 </head>
+<link rel="stylesheet" href="../CSS/mainview.css">
+<link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
 <body>
     <nav>
         <ul class="sidebar">
@@ -43,15 +42,17 @@
         </header>
     </nav>
 
-    <div class="container">
-        <h2>Create your account</h2>
-    <form id="signUpForm" action="#">
-  <input type="email" id="email" name="email" placeholder="Email" required />
-  <input type="text" id="username" name="username" placeholder="Username" required />
-  <input type="password" id="password" name="password" placeholder="Password" required />
-  <input type="password" id="confPassword" name="confPassword" placeholder="Confirm Password" required />
-  <button type="submit" id="signUpButton">Sign Up</button>
-</form>
-    </div>
+<div class="container">
+    <h2>Sign in</h2>
+    <form id="signInForm" action="#">
+        <input type="email" id="email" name="email" placeholder="Email" >
+        <input type="password" id="password" name="password" placeholder="Password" >
+        <button type="submit" id="signInButton" class="button">Continue</button>
+        <a href="signUp.html">Don't have an account? Register!</a>
+    </form>
+</div>
     <script type="module" src="../JS/authHandlers.js"></script>
+    <script src="../JS/navbar.js"></script>
+
 </body>
+</html>
