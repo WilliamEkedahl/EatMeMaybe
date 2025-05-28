@@ -28,6 +28,8 @@ function initializeUI() {
     //Modal2 (custom product modal)
     document.getElementById('add-new-product-btn').addEventListener('click', openModal2);
     document.getElementById('custom-modal-close-btn2').addEventListener('click', closeModal2);
+    document.getElementById("custom-decrease-btn").addEventListener("click", () => changeCustomQuantity(-1));
+    document.getElementById("custom-increase-btn").addEventListener("click", () => changeCustomQuantity(1));
     document.getElementById('custom-product-modal2').addEventListener('click', function(e) {
         if (e.target === this) closeModal2();
     });
@@ -171,6 +173,11 @@ function closeModal() {
 
 function changeQuantity(amount) {
     const input = document.getElementById('quantity-input');
+    input.value = Math.max(1, parseInt(input.value) + amount);
+}
+
+function changeCustomQuantity(amount) {
+    const input = document.getElementById('custom-quantity');
     input.value = Math.max(1, parseInt(input.value) + amount);
 }
 
