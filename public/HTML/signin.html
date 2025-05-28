@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../CSS/mainview.css">
-    <link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
 </head>
+<link rel="stylesheet" href="../CSS/mainview.css">
+<link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
 <body>
     <nav>
         <ul class="sidebar">
@@ -41,15 +41,18 @@
             </ul>
         </header>
     </nav>
-    <div class="container">
-        <h2>Sign in</h2>
-        <form id="signInForm" action="#">
-            <input type="email" id="email" name="email" placeholder="Email" >
-            <input type="password" id="password" name="password" placeholder="Password" >
-            <button type="submit" id="signInButton" class="button">Continue</button>
-            <a href="signUp.html">Don't have an account? Register!</a>
-        </form>
-    </div>
+
+<div class="container">
+    <h2>Sign in</h2>
+    <form id="signInForm" action="#">
+        <input type="email" id="email" name="email" placeholder="Email" >
+        <input type="password" id="password" name="password" placeholder="Password" >
+        <button type="submit" id="signInButton" class="button">Continue</button>
+        <a href="signUp.html">Don't have an account? Register!</a>
+    </form>
+</div>
     <script type="module" src="../JS/authHandlers.js"></script>
+    <script src="../JS/navbar.js"></script>
+
 </body>
 </html>

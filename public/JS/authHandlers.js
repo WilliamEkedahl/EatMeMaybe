@@ -1,4 +1,4 @@
-import {signIn} from "./authenticate.js"
+import {signIn, signUp} from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
@@ -12,12 +12,9 @@ document.getElementById("signUpForm").addEventListener("submit", (e)=> {
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const confPassword = document.getElementById('password2').value;
+    const confPassword = document.getElementById('confPassword').value;
 
-    if (password === confPassword) {
-        alert("passwords do not match!");
-        return;
-    }
+    
     signUp(email, username, password);
 });
 
