@@ -1,5 +1,4 @@
 import {signIn, logOut, signUp, } from "./authenticate.js"
-import {signOut} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
@@ -8,12 +7,12 @@ document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     signIn(email, password);
 });
 
-document.getElementById("signUpForm").addEventListener("submit", (e)=> {
+document.getElementById("signUpForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const confPassword = document.getElementById('password2').value;
+    const confPassword = document.getElementById('confPassword').value;
 
 
     if (!username || !email || !password || !confPassword) {
@@ -21,7 +20,7 @@ document.getElementById("signUpForm").addEventListener("submit", (e)=> {
         return;
     }
 
-    if (password.length > 45 || username.length > 45) {
+    if (password.length > 45 || username.length > 30) {
         alert("The Username or Password can not be longer than 45 characters");
         return;
     }

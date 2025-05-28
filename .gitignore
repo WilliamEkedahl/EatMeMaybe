@@ -7,3 +7,4 @@ database.ini
 .env
 .vscode
 package.json
+public/HTML/signIn.html
