@@ -36,7 +36,7 @@ export async function signIn(email,password){
     }
 }
 
-export async function signOut(){
+export async function logOut(){
     await signOut(auth);
     window.location.href="signIn.html";
 }
