@@ -13,8 +13,7 @@
   justify-content: center;
   gap: 10px;
   padding: 15px;
-  background: #fff;
-  border-bottom: 2px solid #ddd;
+  background: #fff7e4;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -24,13 +23,15 @@
   padding: 10px;
   border: none;
   outline: none;
-  background: #f1f1f1;
+  background: white;
   font-size: 16px;
   border-radius: 5px;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .search-container .search-bar {
   flex: 1;
   text-align: left;
+  background-color: white;
 }
 .input-wrapper {
   position: relative;
@@ -38,24 +39,21 @@
   flex: 1;
   display: flex;
 }
-#ghost-suggestion {
+.ghost-text {
   position: absolute;
   top: 0;
   left: 0;
   padding: 10.5px;
   font-size: 15px;
-  color: rgba(0, 0, 0, 0.35);
+  color: #ccc;
   pointer-events: none;
-  white-space: pre;
-  user-select: none;
   z-index: 1;
-}
-
-#ghost-suggestion .typed {
-  color: transparent;
+  font-family: inherit;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .search-container .search-btn {
-  background: #5a46d8;
+  background: #ffebbb;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -64,9 +62,33 @@
   border-left: 1px solid #ccc;
   border-radius: 20px;
   transition: background 0.3s ease;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .search-container .search-btn:hover {
-  background: #4836b1;
+  background: #ffde91;
+}
+
+.category-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.select-button {
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  background-color: #ffebbb;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.select-button:hover {
+  background-color: #ffde91;
 }
 
 /* Table */
@@ -77,42 +99,50 @@
   border-radius: 8px;
   padding: 10px;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .table-header {
   display: flex;
-  background: #f4f4f4;
+  background: #ffebbb;
   padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 10px;
   position: sticky;
   top: 0;
   z-index: 1;
   border-radius: 8px;
 }
+
 .table-header .header-item {
   flex: 1;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   word-wrap: break-word;
   border-right: 1px solid #ddd;
   font-size: large;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .table-header .header-item:last-child {
   border-right: none;
 }
+
 #product-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
+
 #product-table td {
   padding: 10px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
   word-wrap: break-word;
+  vertical-align: middle;
 }
+
 #product-table tbody tr:hover {
   background: #f1f1f1;
   cursor: pointer;
@@ -143,12 +173,12 @@
 }
 .modal-content,
 .modal-content2 {
-  background: white;
+  background: #fff7e4;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 16px;
   max-width: 500px;
   width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -158,35 +188,41 @@
 .close2 {
   position: absolute;
   top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: #333;
+  right: 15px;
+  font-size: 28px;
+  padding: 4px;
+  line-height: 1;
+  color: black;
   cursor: pointer;
   background: none;
   border: none;
 }
 .close2:hover,
 .close2:focus {
+  transform: scale(1.2);
+  color: black;
+  text-decoration: none;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  transform: scale(1.2);
   color: black;
   text-decoration: none;
 }
 
 /* Modal Content Styling */
 #modal-product-name {
-  font-size: 40px;
-  text-align: center;
-  margin-bottom: 30px;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 #modal-product-category {
-  margin-bottom: 80px;
-  font-weight: bold;
+  margin-bottom: 24px;
   font-size: 30px;
 }
 #quantity-title {
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  margin: 10px 0 15px;
 }
 .quantity-selector {
   display: flex;
@@ -198,14 +234,15 @@
   height: 40px;
   font-size: 20px;
   border: none;
-  background: #5a46d8;
-  color: white;
+  background: #ffebbb;
+  color: black;
   cursor: pointer;
   border-radius: 5px;
   transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .quantity-selector .quantity-btn:hover {
-  background: #4836b1;
+  background: #ffde91;
 }
 .quantity-selector input[type="number"] {
   width: 60px;
@@ -224,8 +261,8 @@
 }
 .add-product-btn {
   margin-top: 30px;
-  background: #5a46d8;
-  color: white;
+  background: #ffebbb;
+  color: black;
   border: none;
   padding: 12px 20px;
   font-size: 16px;
@@ -236,9 +273,30 @@
   width: 50%;
   text-align: center;
   transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .add-product-btn:hover {
-  background: #4836b1;
+  background: #ffde91;
+}
+
+.add-custom-product-btn {
+  margin-top: 30px;
+  background: #ffebbb;
+  color: black;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  display: block;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.add-custom-product-btn:hover {
+  background: #ffde91;
 }
 
 /* Feedback Modal */
@@ -248,19 +306,20 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
-  background: #5a46d8;
+  background: #fff7e4;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 9999;
   width: 300px;
   text-align: center;
   display: none;
 }
 .message-modal-content {
-  background: #f0f0f0;
+  background: #fff7e4;
   padding: 20px;
   border-radius: 10px;
-  color: #333;
+  color: black;
+  font-weight: bold;
 }
 .message-modal.show {
   display: block;
@@ -274,8 +333,8 @@
   margin: -20px 0 20px;
 }
 .nav-btn {
-  background: #5a46d8;
-  color: white;
+  background: #ffebbb;
+  color: black;
   border: none;
   padding: 12px 20px;
   font-size: 16px;
@@ -283,10 +342,10 @@
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .nav-btn:hover {
-  background: #4836b1;
+  background: #ffde91;
 }
 
 /* Modal2 Input Form */
@@ -306,7 +365,7 @@
   padding: 10px;
   border: none;
   outline: none;
-  background: #f1f1f1;
+  background: white;
   font-size: 16px;
   border-radius: 5px;
   flex: 1;
