@@ -1,5 +1,4 @@
 import {signIn, logOut, signUp, } from "./authenticate.js"
-import {signOut} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
