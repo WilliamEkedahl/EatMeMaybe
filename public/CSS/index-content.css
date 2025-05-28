@@ -4,7 +4,10 @@
   box-sizing: border-box;
 }
 
-body {
+
+html, body {
+  height: 100vh;       /* Full viewport høyde */
+  overflow: hidden;    /* Ingen scroll på hele siden */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -200,23 +203,59 @@ button {
   filter: brightness(0) invert(1);
 }
 
-.inventory-container {
-    max-height: 440px;  /* Du kan justere høyden etter behov */
-    overflow-y: auto;
-    border-radius: 8px;
-    margin-top: 1rem;
+.inventory-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto; /* hvis tabellen blir bred */
 }
 
-/* Sikrer at tabellen bruker full bredde */
-.inventory-container table {
-    width: calc(100% - 2rem); 
-    margin: 0 1rem;
+.inventory-wrapper table {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  border-collapse: collapse;
+  background-color: white;
+  table-layout: fixed;
+  border-radius: 8px;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+  /* Må ha display block for å bruke sticky på thead i scroll-container */
+  display: block;
+  max-height: 480px; /* maks høyde for scroll */
+  overflow-y: auto;
 }
 
-/* Gjør header sticky */
-.inventory-container thead th {
-    position: sticky;
-    top: 0;
-    background-color: #ffebbb;
-    z-index: 1;
+.inventory-wrapper thead, 
+.inventory-wrapper tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.inventory-wrapper thead {
+  background-color: #ffebbb;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.inventory-wrapper th,
+.inventory-wrapper td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word;
+}
+
+.inventory-wrapper tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.inventory-wrapper tbody {
+  /* Gjør tbody scrollbart ved behov */
+  display: block;
+  max-height: 400px; /* juster høyden etter behov */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 0 0 8px 8px;
 }
