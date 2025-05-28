@@ -98,6 +98,42 @@ function displayProducts(items) {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
 
+    // Kartlegger kategori til bilde
+    const categoryIcons = {
+        "Fruits and Vegetables": "../MEDIA/vegetable.png",
+        "Cooling Products": "../MEDIA/fridge.png",
+        "Frozen Products": "../MEDIA/frozen.png",
+        "Dry Products": "../MEDIA/spices.png"
+    };
+
+    items.forEach(({ name, category }) => {
+        const row = document.createElement("tr");
+
+        // Finn riktig ikon, eller bruk en fallback
+        const iconPath = categoryIcons[category] || "../MEDIA/grocery-cart.png";
+
+        row.innerHTML = `
+            <td>
+                <img src="${iconPath}" alt="${category}" class="category-icon">
+                ${category}
+            </td>
+            <td>${name}</td>
+            <td>
+                <button class="select-button" type="button">Select</button>
+            </td>
+        `;
+
+        // Åpner modal ved klikk på hele raden eller knappen
+        row.querySelector(".select-button").addEventListener("click", (e) => {
+            e.stopPropagation(); // Hindrer dobbel modal-åpning
+            openModal(name, category);
+        });
+
+        row.addEventListener("click", () => openModal(name, category));
+
+        list.appendChild(row);
+    });
+
     items.forEach(({ name, category }) => {
         const row = document.createElement("tr");
         row.innerHTML = `

@@ -42,12 +42,26 @@ export async function logOut(){
     window.location.href="signIn.html";
 }
 
-export function userAuthenticated(callback){
+export function userAuthenticated(callback = null) { // Gjør callback valgfri med standardverdi null
     onAuthStateChanged(auth, (user) => {
+        const mainContent = document.getElementById("main-content");
+        const notLoggedInMessage = document.querySelector(".auth-message");
+
         if (user) {
-            callback(user);
+            // Bruker er logget inn
+            if (mainContent) mainContent.style.display = "block";
+            if (notLoggedInMessage) notLoggedInMessage.style.display = "none";
+
+            // Hvis det er en callback-funksjon, kjør den med brukerobjektet
+            if (callback && typeof callback === 'function') {
+                callback(user);
+            }
         } else {
-            window.location.href="signIn.html";
+            // Ingen bruker er logget inn
+            if (mainContent) mainContent.style.display = "none";
+            if (notLoggedInMessage) notLoggedInMessage.style.display = "block";
         }
     });
 }
+
+userAuthenticated();

@@ -54,16 +54,15 @@
     </nav>
 
     <!-- Div with message and buttons which appear if the user has not signed in -->
-    <div class="auth-message" style="display: none;">
-        <p>Oops, it looks like you're not signed in. Sign in or create an account to view your inventory.</p>
-        <div class="button-group"></div>
+    <div class="auth-message" id="auth-message" style="display: none;"> <p>Oops, it looks like you're not signed in. Sign in or create an account to view your inventory.</p>
+        <div class="button-group">
             <button onclick="window.location.href='HTML/signin.html'">Sign in</button>
             <button onclick="window.location.href='HTML/signUp.html'">Create account</button>
         </div>
     </div>
 
     <!-- Div for wrapping all the main content of the page and hide it until the user has signed in -->
-    <div id="main-content" >
+    <div id="main-content" style="display: none;">
         <h2 id="inventory-title">My Inventory</h2>
 
         <div class="category-nav">
