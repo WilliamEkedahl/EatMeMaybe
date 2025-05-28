@@ -66,7 +66,6 @@ auth.onAuthStateChanged(async user => {
         } catch (error) {
             console.error("Kunne ikke hente brukernavn:", error);
         }
-
     } else {
         console.error("Ingen bruker er logget inn.");
     }
