@@ -1,4 +1,4 @@
-import {signIn, signUp} from "./authenticate.js"
+import {signIn} from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e)=> {
     e.preventDefault();
@@ -12,9 +12,32 @@ document.getElementById("signUpForm").addEventListener("submit", (e)=> {
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const confPassword = document.getElementById('confPassword').value;
+    const confPassword = document.getElementById('password2').value;
 
-    
+
+    if (!username || !email || !password || !confPassword) {
+        alert("please fill in all the fields");
+        return;
+    }
+
+    if (password.length > 45 || username.length > 45) {
+        alert("The Username or Password can not be longer than 45 characters");
+        return;
+    }
+
+    if (password.length < 8) {
+        alert("password must be at least 8 characters long");
+        return;
+    }
+
+    if (password !== confPassword) {
+        alert("passwords do not match");
+        return;
+    }
+
+    if (!email.includes('@')) {
+        alert("Please enter a valid email");
+    }
     signUp(email, username, password);
 });
 
