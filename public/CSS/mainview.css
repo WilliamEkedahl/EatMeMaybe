@@ -44,7 +44,7 @@ nav li {
   height: 50px;
   padding-right: 10px;
 }
-nav a {
+nav a, button {
   height: 100%;
   padding: 0 30px;
   text-decoration: none;
