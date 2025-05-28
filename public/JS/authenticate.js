@@ -1,97 +1,45 @@
-//signUpButton
+//import firebase modules
+import {auth, db } from "./firestore.js";
+import{
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-const signUpBtn = document.getElementById('signUpForm'); // Make sure your <form> has id="signUpForm"
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-if (signUpBtn) {
-    signUpBtn.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Input fields
-        const email = document.getElementById('email').value;
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const confPassword = document.getElementById('confPassword').value;
-
-        if (password !== confPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        signUp(email, username, password);
-    });
+export async function signUp(email, username, password){
+    try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const UID = cred.user.uid;
+        await setDoc(doc(db, "users", UID), {email, username});
+        window.location.href ="signIn.html";
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-
-
-//signInButton
-const signInBtn = document.getElementById('signInForm');
-if (signInBtn) {
-    signInBtn.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        signIn(email, password);
-    });
+export async function signIn(email, password){
+    try{
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href ="../index.html";
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-
-/**signUp
- * we retrive the auto generated UID that firebase makes for us.
- * @param email
- * @param username
- * @param password
- */
-
-function signUp(email, username, password) {
-    auth.createUserWithEmailAndPassword(email, password)
-        .then(cred => {
-            const UID = cred.user.uid; //A Unique firebase generated id for each user
-            return db.collection("users").doc(UID).set({email: email, username: username});
-        })
-        .then(() => {
-            window.location.href = "../index.html";
-        })
-        .catch(error => {
-            alert(error.message);
-        });
+export async function logOut(){
+    await signOut(auth);
+    window.location.href="signIn.html";
 }
 
-/** SignIn
- * window.location.href changes the current window (view) to the specified page,
- * @param email
- * @param password
- */
-//signIn
-function signIn(email, password) {
-    auth.signInWithEmailAndPassword(email, password)
-    .then(result => {window.location.href = "../index.html";})
-        .catch(error => {
-            alert(error.message);
-        });
-}
-
-/**Signout
- *
- */
-function signOut() {
-    auth.signOut().then(result => {window.location.href = "login.html";})
-}
-
-/**UserAuthenticated
- *
- */
-function userAuthenticated(callback){
-    auth.onAuthStateChanged((user) => {
-        if(user){
+export function userAuthenticated(callback){
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
             callback(user);
         } else {
-            window.location.href = "login.html";
+            window.location.href="signIn.html";
         }
     });
 }
-
-
-
-
-

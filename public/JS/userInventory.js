@@ -1,5 +1,14 @@
+import { auth, db } from "./firestore.js"
+import { 
+    collection, 
+    doc, 
+    getDoc,
+    getDocs,
+    deleteDoc,
+    updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { clearUserInventoryCache } from "./cache.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-    //fetchUserInventory();
 
     // Event listeners for kategoriknapper
     const categoryButtons = document.querySelectorAll(".category-btn");
@@ -21,20 +30,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
  
+const CACHE_TTL = 24 * 60 * 60 * 1000;
+
 let allInventoryItems = [];
 let activeCategoryFilter = null;
 let userInventoryRef = null;
 
+//Unngå duplisering av category
+const categoryShelfLives = {
+    "Cooling Products": 14,
+    "Frozen Products": 180,
+    "Fruits and Vegetables": 3,
+    "Dry Products": 60,
+    "Asian": 30
+} 
+
+
 // Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
-window.auth.onAuthStateChanged(async user => {
+auth.onAuthStateChanged(async user => {
     if (user) {
         const userId = user.uid;
-        userInventoryRef = window.db.collection("users").doc(userId).collection("userInventory");
-        fetchUserInventory();
+        userInventoryRef = collection(doc(db, "users", userId), "userInventory");
+        fetchUserInventory(userId);
 
         // Hent brukernavnet fra Firestore og oppdater h2-tittel
         try {
-            const userDoc = await window.db.collection("users").doc(userId).get();
+            const userDoc = await getDoc(doc(db, "users", userId));
             if (userDoc.exists) {
                 const username = userDoc.data().username;
                 const inventoryTitle = document.getElementById("inventory-title");
@@ -51,9 +72,45 @@ window.auth.onAuthStateChanged(async user => {
     }
 });
  
-async function fetchUserInventory() {
+async function fetchUserInventory(userId) {
+        const userCacheKey = `userInventory_${userId}`;
+        const userCacheTimeKey = `userInventory_cache_time_${userId}`;
+
+        const cached = localStorage.getItem(userCacheKey);
+        const timestamp = localStorage.getItem(userCacheTimeKey);
+        const now = Date.now();
+
+        if(cached && timestamp && now - parseInt(timestamp) < CACHE_TTL){
+            console.log("Laster bruker inventar fra cache", userId);
+            allInventoryItems = JSON.parse(cached);
+
+            allInventoryItems.forEach(item => {
+                item.addedAt = new Date(item.addedAt);
+
+                let shelfLifeDays = 7;
+
+                shelfLifeDays = categoryShelfLives[item.category] ?? 7;
+
+                const expirationDate = new Date(item.addedAt);
+                expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
+
+                const today = new Date();
+                const timeDiff = expirationDate.getTime() - today.getTime();
+                item.daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
+            });
+
+            if (activeCategoryFilter) {
+                filterInventoryByCategory(activeCategoryFilter);
+            }
+            else {
+                displayUserInventory(allInventoryItems);
+            }
+            return;
+        }
+ 
+        //hent fra firestore om ikke i cache
     try {
-        const snapshot = await userInventoryRef.get();
+        const snapshot = await getDocs(userInventoryRef);
         const inventoryItems = [];
  
         snapshot.forEach(doc => {
@@ -66,19 +123,9 @@ async function fetchUserInventory() {
             const addedAt = data.addedAt.toDate();
  
             // Dynamisk holdbarhet basert på kategori
-            let shelfLifeDays = 7; // standardverdi
- 
-            if (data.category === "Cooling Products") {
-                shelfLifeDays = 14;
-            } else if (data.category === "Frozen Products") {
-                shelfLifeDays = 180;
-            } else if (data.category === "Fruits and Vegetables") {
-                shelfLifeDays = 3;
-            } else if (data.category === "Dry Products") {
-                shelfLifeDays = 60;
-            } else if (data.category === "Asian") {
-                shelfLifeDays = 30;
-            }
+            let shelfLifeDays = 7;
+
+            shelfLifeDays = categoryShelfLives[data.category] ?? 7;
  
             const expirationDate = new Date(addedAt);
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
@@ -114,11 +161,16 @@ async function fetchUserInventory() {
             } else {
                 displayUserInventory(inventoryItems);
             }
+
+            //for å lagre til cache etter behandling
+            localStorage.setItem(userCacheKey, JSON.stringify(inventoryItems));
+            localStorage.setItem(userCacheTimeKey, now.toString());
  
     } catch (error) {
         console.error("Feil ved henting av brukerens lager:", error);
     }
 }
+
  
 function filterInventoryByCategory(category) {
     activeCategoryFilter = category;
@@ -225,19 +277,37 @@ function displayUserInventory(items) {
  
 async function deleteInventoryItem(itemId) {
     try {
-        await userInventoryRef.doc(itemId).delete();
+        const user = auth.currentUser;
+        if(!user){
+            console.error("Ingen bruker er logget inn for å slette element");
+            return;
+        }
+        const userId = user.uid;
+
+        await deleteDoc(doc(db, "users", userId, "userInventory", itemId));
         console.log(`Element med ID ${itemId} er slettet.`);
+        clearUserInventoryCache(userId);
+
     } catch (error) {
         console.error("Feil ved sletting av element:", error);
     }
 }
  
 async function updateItemQuantity(itemId, newQuantity) {
-    try {
-        await userInventoryRef.doc(itemId).update({
-    quantity: newQuantity
-});
+    try {   
+        const user = auth.currentUser;
+        if(!user){
+            console.error("Ingen bruker er logget inn for å oppdatere element");
+            return;
+        }
+        const userId = user.uid;
+
+        await updateDoc(doc(db, "users", userId, "userInventory", itemId), {
+            quantity: newQuantity
+        });
         console.log(`Oppdatert kvantitet for ${itemId} til ${newQuantity}.`);
+        clearUserInventoryCache(userId);
+
     } catch (error) {
         console.error("Feil ved oppdatering av kvantitet:", error);
     }

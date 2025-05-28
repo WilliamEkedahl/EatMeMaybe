@@ -44,7 +44,7 @@
                         </svg> <i class="fa fa-caret-down"></i></a>
                     <div class="dropdown-content" id="menuDropdown">
                         <a href="HTML/profileSettings.html">Profile settings</a>
-                        <a href="#">Link 2</a>
+                        <a href="HTML/signIn.html">Signin</a>
                         <a href="#">Link 3</a>
                     </div>
                 </li>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- Div for wrapping all the main content of the page and hide it until the user has signed in -->
-    <div id="main-content" style="display: none;">
+    <div id="main-content" >
         <h2 id="inventory-title">My Inventory</h2>
 
         <div class="category-nav">
@@ -128,11 +128,6 @@
         </template>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
-    <script src="JS/firestore.js"></script>
-    <script src="JS/authenticate.js"></script>
-    <script src="JS/userInventory.js"></script>
-    <script src="JS/navbar.js"></script>
+    <script type="module" src="JS/authHandlers.js"></script>
+    <script type="module" src="JS/userInventory.js"></script>
 </body>

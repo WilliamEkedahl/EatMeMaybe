@@ -1,3 +1,10 @@
+import { auth, db } from "./firestore.js"
+import { 
+    collection,  
+    getDocs, 
+    addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { clearUserInventoryCache } from "./cache.js";
+
 // INIT 
 document.addEventListener("DOMContentLoaded", () => {
     initializeUI();
@@ -11,6 +18,8 @@ let currentSuggestion = "";
 const CACHE_KEY = "products";
 const CACHE_TIME_KEY = "products_cache_time";
 const CACHE_TTL = 24 * 60 * 60 * 1000;
+
+const productsCollectionRef = collection(db, "products")
 
 // UI INIT 
 function initializeUI() {
@@ -59,7 +68,7 @@ function initializeUI() {
 
     try {
         console.log("Henter produkter fra Firestore");
-        const snapshot = await db.collection("products").get();
+        const snapshot = await getDocs(productsCollectionRef);
         products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
         products.sort((a, b) => {
@@ -77,10 +86,10 @@ function initializeUI() {
     }
 }
 
-function clearProductCache() {
+/**unction clearProductCache() {
     localStorage.removeItem(CACHE_KEY);
     localStorage.removeItem(CACHE_TIME_KEY);
-}
+}*/
 
 // DISPLAY
 function displayProducts(items) {
@@ -178,16 +187,27 @@ async function addNewProductToFirestore() {
         return;
     }
 
-    const product = { name, category };
+    const product = { name, category, quantity:1, addedAt: new Date() };
 
     try {
-        await db.collection("products").add(product);
+        const user = auth.currentUser;
+        if(!user){
+            showMessageModal("Må være logget på for dette!");
+            return;
+        }
+        const userId = user.uid;
+
+        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
+        const docRef = await addDoc(userInventoryCollectionRef, product);
+        console.log("Added product with ID:", docRef.id);
         showMessageModal("Product added successfully!");
+        clearUserInventoryCache(userId); //for å oppdatere i index
+
         nameInput.value = "";
         categorySelect.value = "";
 
-        clearProductCache(); 
-        loadProducts();      
+        //clearProductCache(); går ut pga vi ikke legger til products collection lenger.. for nå
+        //loadProducts();      
 
     } catch (error) {
         console.error("Error adding new product:", error);
@@ -216,9 +236,19 @@ async function addProductToInventory() {
     };
 
     try {
-        const doc = await db.collection("User_Inventory").add(product);
-        console.log("Added product with ID:", doc.id);
+        const user = auth.currentUser;
+        if(!user){
+            showMessageModal("Må være logget på for dette!");
+            return;
+        }
+        const userId = user.uid;
+        
+        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
+        const docRef = await addDoc(userInventoryCollectionRef, product);
+        console.log("Added product with ID:", docRef.id);
         showMessageModal("Product added successfully!");
+        clearUserInventoryCache(userId); //for å oppdatere i index
+
     } catch (err) {
         console.error("Failed to add product:", err);
         showMessageModal("Something went wrong. Please try again.");
