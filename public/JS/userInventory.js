@@ -357,49 +357,4 @@ async function updateItemQuantity(itemId, newQuantity) {
         console.error("Error occured when updating quantity:", error);
     }
 }
-/*
-import { deleteUserInventoryDoc } from "./.js";
 
-document.getElementById("delete-inventory-button").addEventListener("click", async () => {
-    if (confirm("Are you sure you want to delete your entire inventory?")) {
-        try {
-            await deleteUserInventoryDoc();
-            alert("Inventory deleted.");
-            // Optionally refresh UI or redirect
-        } catch (error) {
-            alert("Error deleting inventory: " + error.message);
-        }
-    }
-});
-
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-
-const db = getFirestore();
-const auth = getAuth();
-
-export async function deleteAllUserInventoryDocs() {
-    const user = auth.currentUser;
-
-    if (!user) {
-        throw new Error("User is not signed in.");
-    }
-
-    const userInventoryRef = collection(db, "users", user.uid, "userInventory");
-
-    try {
-        const snapshot = await getDocs(userInventoryRef);
-
-        const deletePromises = snapshot.docs.map((docSnap) =>
-            deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
-        );
-
-        await Promise.all(deletePromises);
-
-        console.log("All user inventory documents deleted successfully.");
-    } catch (error) {
-        console.error("Error deleting user inventory documents:", error);
-        throw error;
-    }
-}
-*/

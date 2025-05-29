@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, } from "./authenticate.js"
+import {signIn, logOut, signUp, deleteUserInventory } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -104,6 +104,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+document.getElementById("EmptyInventory").addEventListener("click", async () => {
+  if (confirm("Are you sure you want to delete your entire inventory?")) {
+    try {
+      await deleteUserInventory();
+      alert("Inventory deleted.");
+      // Optionally refresh UI or redirect
+    } catch (error) {
+      alert("Error deleting inventory: " + error.message);
+    }
+  }
+});
+
 
 
 

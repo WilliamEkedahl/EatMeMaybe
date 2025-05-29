@@ -58,4 +58,23 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
     });
 }
 
+export async function deleteUserInventory() {
+    const user = auth.currentUser;
+    if (!user) throw new Error("User is not signed in.");
+
+    const inventoryRef = collection(db, "users", user.uid, "userInventory");
+
+    try {
+        const snapshot = await getDocs(inventoryRef);
+        const deletePromises = snapshot.docs.map((docSnap) =>
+            deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
+        );
+        await Promise.all(deletePromises);
+        console.log("All inventory deleted.");
+    } catch (err) {
+        console.error("Failed to delete inventory:", err);
+        throw err;
+    }
+}
+
 userAuthenticated();
