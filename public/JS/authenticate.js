@@ -38,7 +38,7 @@ export async function signIn(email,password){
 
 export async function logOut(){
     await signOut(auth);
-    window.location.href="signIn.html";
+    alert("User logged out");
 }
 
 export function userAuthenticated(callback = null) { // Gjør callback valgfri med standardverdi null
