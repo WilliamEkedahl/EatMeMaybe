@@ -235,17 +235,18 @@ async function addNewProductToFirestore() {
     try {
         const user = auth.currentUser;
         if(!user){
-            showMessageModal("You have to be logged in to add products!");
+            showMessageModal("You have to be logged in to add a new product");
             return;
         }
         const userId = user.uid;
 
         const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
+        const snapshot = await getDocs(userInventoryCollectionRef);
         const docRef = await addDoc(userInventoryCollectionRef, product);
         console.log("Added product with ID:", docRef.id);
         showMessageModal("Product added successfully!");
         clearUserInventoryCache(userId); //for å oppdatere i index
-
+        //reset form
         nameInput.value = "";
         categorySelect.value = "";
 
@@ -267,7 +268,7 @@ async function addProductToInventory() {
     const { name, category } = selectedProduct;
 
     if (!name || !category || quantity < 1) {
-        showMessageModal("Please select a valid product and quantity!");
+        showMessageModal("Please select a valid product and quantity.");
         return;
     }
 
@@ -281,12 +282,16 @@ async function addProductToInventory() {
     try {
         const user = auth.currentUser;
         if(!user){
-            showMessageModal("You have to be logged in to add products!");
+            showMessageModal("You have to be logged in to add product.");
             return;
         }
         const userId = user.uid;
         
         const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
+
+        //check if the inventory is empty
+        const snapshot = await getDocs(userInventoryCollectionRef);
+
         const docRef = await addDoc(userInventoryCollectionRef, product);
         console.log("Added product with ID:", docRef.id);
         showMessageModal("Product added successfully!");
