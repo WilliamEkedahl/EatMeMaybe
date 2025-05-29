@@ -3,10 +3,10 @@
 <head>
     <meta name ="viewport" content ="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>EatMeMaybe - Forgot password</title>
-    <link rel="icon" type="image/png" href="../MEDIA/EatMeMaybeLogo1.png">
-    <link rel="stylesheet" href="../CSS/mainview.css">
-    <link rel ="stylesheet" href ="../CSS/stylesheet-signUp.css">
+    <title>EatMeMaybe - Change Username</title>
+    <link rel="icon" type="image/png" href="MEDIA/EatMeMaybeLogo1.png">
+    <link rel="stylesheet" href="CSS/mainview.css">
+    <link rel ="stylesheet" href ="CSS/stylesheet-signUp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -17,17 +17,17 @@
                     <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
                 </svg>
             </a></li>
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="profileSettings.html">Profile</a></li>
         </ul>
         <header>
             <ul class="logo">
-                <li><a href="../index.html"><img src="../MEDIA/EatMeMaybeLogo2RemoveBG.png" alt="logo" class="logo-img"></a></li>
+                <li><a href="index.html"><img src="MEDIA/EatMeMaybeLogo2RemoveBG.png" alt="logo" class="logo-img"></a></li>
             </ul>
             <ul>
-                <li class="hideOnMobile"><a href="../index.html">My Inventory</a></li>
+                <li class="hideOnMobile"><a href="index.html">My Inventory</a></li>
                 <li class="hideOnMobile"><a href="products.html">Add Products</a></li>
                 <li class="hideOnMobile"><a href="about.html">About</a></li>
                 <li class="dropdown">
@@ -37,7 +37,7 @@
                         </svg> <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-content" id="menuDropdown">
-                        <a class="dropbtn" id="signInButton" href="HTML/signIn.html">Sign in</a>
+                        <a class="dropbtn" id="signInButton" href="signIn.html">Sign in</a>
                         <button class="dropbtn" id="signOutButton">Sign out</button>
                         <a class="dropbtn" id="changeUsername-button" href="changeUsername.html">Change username</a>
                         <a class="dropbtn" id="changePassword-button" href="changePassword.html">Change password</a>
@@ -52,14 +52,22 @@
         </header>
     </nav>
 
-    <div class="container">
-  <h2>Enter email to get new password</h2>
-  <form id="changePasswordForm" action="#">
-    <input type="email" id="emailChange" name="email" placeholder="Email" required />
-    <button type="submit">Update Password</button>
+   <div class="container">
+  <h2>Change your username</h2>
+  <form id="changeUsernameForm" action="#">
+
+    <input type="text" id="currentUsername" name="currentUsername" placeholder="Current username" required />
+
+    <input type="text" id="newUsername" name="newUsername" placeholder="New username" required />
+
+    <input type="text" id="confirmNewUsername" name="confirmNewUsername" placeholder="Confirm new username" required />
+
+    <button type="submit">Update Username</button>
+  </form>
+</div>
   </form>
 </div>
 </form>
     </div>
-    <script type="module" src="../JS/authHandlers.js"></script>
+    <script type="module" src="JS/authHandlers.js"></script>
 </body>
