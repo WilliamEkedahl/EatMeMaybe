@@ -174,10 +174,11 @@ nav a:active {
   color: white;
   border-radius: 8px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   background-color: transparent;
   border: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 .dropbtn svg {
@@ -186,21 +187,19 @@ nav a:active {
 
 .dropbtn:active {
   transform: scale(0.97);
+  box-shadow: none;
 }
 
 .dropdown-content {
   position: absolute;
   right: 0;
-  left: auto;
   background-color: #F1AD00;
   min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
-  /* Animert dropdown */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -215,22 +214,27 @@ nav a:active {
   transform: translateY(0);
 }
 
-.dropdown-content button {
+/* Felles stil for både <a> og <button> i dropdown */
+.dropdown-content button,
+.dropdown-content a {
   display: block;
   width: 100%;
   box-sizing: border-box;
   background-color: transparent;
   color: white;
   padding: 12px 16px;
-  border: none;
   text-align: left;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease, padding-left 0.2s ease;
-}
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;}
 
-/* Enkel hover-effekt på knapper */
-.dropdown-content button:hover {
+/* Hover-effekt for begge */
+.dropdown-content button:hover,
+.dropdown-content a:hover {
   background-color: rgba(255, 255, 255, 0.15);
   padding-left: 20px;
+  box-shadow: none;
 }
+
