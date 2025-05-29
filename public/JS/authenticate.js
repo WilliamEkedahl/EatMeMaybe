@@ -1,18 +1,13 @@
 //import firebase modules
 import {auth, db } from "./firestore.js";
-import {clearUserInventoryCache} from "./cache.js";
 import{
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged,
-    updatePassword,
-    reauthenticateWithCredential,EmailAuthProvider,
-    updatePasswsord
-
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-import { doc, setDoc, collection, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { doc, setDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 export async function signUp(email, username, password){
     try {
