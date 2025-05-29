@@ -37,9 +37,11 @@
                         </svg> <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-content" id="menuDropdown">
-                        <a class="dropbtn" id="signInButton" href="HTML/signIn.html">Sign in</a>
+                        <a class="dropbtn" id="signInButton" href="signIn.html">Sign in</a>
                         <button class="dropbtn" id="signOutButton">Sign out</button>
-                        <a class="dropbtn" id="changePassword-button" >Change password</a>
+                        <a class="dropbtn" id="changeUsername-button" href="changeUsername.html">Change username</a>
+                        <a class="dropbtn" id="changePassword-button" href="changePassword.html">Change password</a>
+                        <button class="dropbtn" id="signOutButton">Delete account</button>
                     </div>
                 </li>
                 <li class="menuButton" onclick="showSidebar()"><a href="#" id="show-sidebar-btn">
@@ -53,6 +55,7 @@
 <div class="container">
     <h2>Sign in</h2>
     <form id="signInForm" action="#">
+        <div id="signInError" class="error-message"></div>
         <input type="email" id="email" name="email" placeholder="Email" >
         <div class="password-container">
             <input type="password" id="password" name="password" placeholder="Password" required>
