@@ -141,8 +141,12 @@ function filterItems() {
 
     const filtered = products.filter(({ name, category: cat }) =>
         (!category || cat === category) &&
-        (!query || name.toLowerCase().includes(query))
+        (!query || name.toLowerCase().startsWith(query))
     );
+
+    if (query) {
+        filtered.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    }
 
     displayProducts(filtered);
 }
