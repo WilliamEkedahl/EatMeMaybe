@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, changePassword } from "./authenticate.js"
+import {signIn, logOut, signUp } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
