@@ -163,7 +163,7 @@ nav a:active {
   position: relative;
   display: inline-block;
 }
- 
+
 .dropbtn {
   height: 100%;
   padding: 0 20px;
@@ -175,48 +175,62 @@ nav a:active {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
 }
- 
+
 .dropbtn svg {
   fill: white;
 }
- 
-.dropdown:hover .dropbtn {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
- 
+
 .dropbtn:active {
   transform: scale(0.97);
 }
- 
+
 .dropdown-content {
-  display: none;
   position: absolute;
   right: 0;
   left: auto;
-  background-color: #f9f9f9;
+  background-color: #F1AD00;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  /* Animert dropdown */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
 }
- 
-.dropdown-content a {
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content button {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  color: black;
-  background-color: #f9f9f9 !important;
+  background-color: transparent;
+  color: white;
   padding: 12px 16px;
-  text-decoration: none;
+  border: none;
   text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
- 
-.dropdown-content a:hover {
-  background-color: #ddd;
+
+/* Enkel hover-effekt på knapper */
+.dropdown-content button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding-left: 20px;
 }
- 
-.show {
-  display: block;
-}
- 

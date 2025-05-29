@@ -141,7 +141,7 @@ function filterItems() {
 
     const filtered = products.filter(({ name, category: cat }) =>
         (!category || cat === category) &&
-        (!query || name.toLowerCase().includes(query))
+        (!query || name.toLowerCase().startsWith(query))
     );
 
     displayProducts(filtered);
