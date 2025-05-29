@@ -358,7 +358,7 @@ async function updateItemQuantity(itemId, newQuantity) {
     }
 }
 
-import { deleteUserInventoryDoc } from "./inventory.js";
+import { deleteUserInventoryDoc } from "./.js";
 
 document.getElementById("delete-inventory-button").addEventListener("click", async () => {
     if (confirm("Are you sure you want to delete your entire inventory?")) {
