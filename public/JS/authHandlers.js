@@ -1,10 +1,10 @@
-import {signIn, logOut, signUp, deleteUserInventory } from "./authenticate.js"
+import {signIn, logOut, signUp, changePassword } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  const password = document.getElementById("password").value.trim();
   const errorBox = document.getElementById("signInError");
 
   function showError(message) {
@@ -38,8 +38,8 @@ document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
 
   const email = document.getElementById("email").value.trim();
   const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const confPassword = document.getElementById("confPassword").value;
+  const password = document.getElementById("password").value.trim();
+  const confPassword = document.getElementById("confPassword").value.trim();
   const errorBox = document.getElementById("signUpError");
 
   function showError(message) {
@@ -118,6 +118,34 @@ document.getElementById("EmptyInventory").addEventListener("click", async () => 
   }
 });
 
+document.addEventListener("DOMContentLoaded", async () => {
+  const form = document.getElementById("changePasswordForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const currentPassword = document.getElementById("currentPassword").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+    const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
+
+    if (newPassword.length < 8) {
+      alert("New password must be at least 8 characters long.");
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword){
+      alert("The new passwords do not match");
+      return;
+    }
+
+    try {
+      await passwordChange(currentPassword, newPassword);
+      alert("password updated successfully.");
+    } catch (error) {
+      alert("Failed to change password: " + error.message);
+      console.error(error);
+    }
+  });
+});
 
 
 

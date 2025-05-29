@@ -1,13 +1,18 @@
 //import firebase modules
 import {auth, db } from "./firestore.js";
+import {clearUserInventoryCache} from "./cache.js";
 import{
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    updatePassword,
+    reauthenticateWithCredential,EmailAuthProvider,
+    updatePasswsord
+
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-import { doc, setDoc, collection, addDoc,  getDocs, deleteDoc, } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { doc, setDoc, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 export async function signUp(email, username, password){
     try {
@@ -66,15 +71,27 @@ export async function deleteUserInventory() {
 
     try {
         const snapshot = await getDocs(inventoryRef);
+        console.log("Found docs:", snapshot.docs.map(doc => doc.id));
+
         const deletePromises = snapshot.docs.map((docSnap) =>
             deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
         );
         await Promise.all(deletePromises);
-        console.log("All inventory deleted.");
+        clearUserInventoryCache(user);
+        console.log("All items in the inventory deleted.");
     } catch (err) {
         console.error("Failed to delete inventory:", err);
         throw err;
     }
+}
+
+export async function changePassword(currentPassword, newPassword ){
+    const user = auth.currentUser;
+    if (!user) throw new Error("User is not signed in.");
+    //Re-authentica user
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
 }
 
 userAuthenticated();
