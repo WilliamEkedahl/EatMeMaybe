@@ -106,46 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.getElementById("EmptyInventory").addEventListener("click", async () => {
-  if (confirm("Are you sure you want to delete your entire inventory?")) {
-    try {
-      await deleteUserInventory();
-      alert("Inventory deleted.");
-      // Optionally refresh UI or redirect
-    } catch (error) {
-      alert("Error deleting inventory: " + error.message);
-    }
-  }
-});
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const form = document.getElementById("changePasswordForm");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const currentPassword = document.getElementById("currentPassword").value.trim();
-    const newPassword = document.getElementById("newPassword").value.trim();
-    const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
-
-    if (newPassword.length < 8) {
-      alert("New password must be at least 8 characters long.");
-      return;
-    }
-
-    if (newPassword !== confirmNewPassword){
-      alert("The new passwords do not match");
-      return;
-    }
-
-    try {
-      await passwordChange(currentPassword, newPassword);
-      alert("password updated successfully.");
-    } catch (error) {
-      alert("Failed to change password: " + error.message);
-      console.error(error);
-    }
-  });
-});
 
 
 
