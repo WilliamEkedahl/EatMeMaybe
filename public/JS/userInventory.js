@@ -357,7 +357,7 @@ async function updateItemQuantity(itemId, newQuantity) {
         console.error("Error occured when updating quantity:", error);
     }
 }
-
+/*
 import { deleteUserInventoryDoc } from "./.js";
 
 document.getElementById("delete-inventory-button").addEventListener("click", async () => {
@@ -402,3 +402,4 @@ export async function deleteAllUserInventoryDocs() {
         throw error;
     }
 }
+*/
