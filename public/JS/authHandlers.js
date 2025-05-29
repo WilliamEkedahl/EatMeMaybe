@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", (e)=> {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".toggle-password").forEach(toggle => {
     toggle.addEventListener("click", () => {
