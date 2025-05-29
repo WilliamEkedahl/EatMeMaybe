@@ -77,7 +77,7 @@ export async function deleteUserInventory() {
             deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
         );
         await Promise.all(deletePromises);
-        clearUserInventoryCache(user);
+        //clearUserInventoryCache(uId);
         console.log("All items in the inventory deleted.");
     } catch (err) {
         console.error("Failed to delete inventory:", err);
