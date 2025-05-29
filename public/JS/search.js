@@ -113,11 +113,11 @@ function displayProducts(items) {
         const iconPath = categoryIcons[category] || "../MEDIA/grocery-cart.png";
 
         row.innerHTML = `
+            <td>${name}</td>
             <td>
                 <img src="${iconPath}" alt="${category}" class="category-icon">
                 ${category}
             </td>
-            <td>${name}</td>
             <td>
                 <button class="select-button" type="button">Select</button>
             </td>
@@ -131,16 +131,6 @@ function displayProducts(items) {
 
         row.addEventListener("click", () => openModal(name, category));
 
-        list.appendChild(row);
-    });
-
-    items.forEach(({ name, category }) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${name}</td>
-            <td>${category}</td>
-        `;
-        row.addEventListener("click", () => openModal(name, category));
         list.appendChild(row);
     });
 }
