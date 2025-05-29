@@ -27,7 +27,10 @@ document.getElementById("signInForm")?.addEventListener("submit", (e) => {
     return;
   }
 
-  signIn(email, password);
+  signIn(email, password)
+    .catch(() => {
+      showError("Incorrect email or password.");
+    });
 });
 
 document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
