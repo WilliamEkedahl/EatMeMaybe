@@ -85,3 +85,12 @@
   height: 20px;
   fill: #5555557e;
 }
+.error-message {
+  color: #b00020;
+  background-color: #ffebeb;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: none;
+}

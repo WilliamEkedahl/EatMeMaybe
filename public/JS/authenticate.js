@@ -27,12 +27,13 @@ export async function signUp(email, username, password){
     }
 }
 
-export async function signIn(email,password){
-    try{
-        await signInWithEmailAndPassword(auth, email, password)
-        window.location.href ="../index.html";
+export async function signIn(email, password) {
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "../index.html";
     } catch (error) {
-        alert(error.message);
+        // I stedet for alert, kast feilen så den kan håndteres i koden som kaller signIn
+        throw error;
     }
 }
 
