@@ -226,7 +226,7 @@ async function addNewProductToFirestore() {
     const category = categorySelect.value;
 
     if (!name || !category) {
-        showMessageModal("Please enter both a name and select a category.");
+        showMessageModal("Please enter a name and select a category!");
         return;
     }
 
@@ -235,7 +235,7 @@ async function addNewProductToFirestore() {
     try {
         const user = auth.currentUser;
         if(!user){
-            showMessageModal("Må være logget på for dette!");
+            showMessageModal("You have to be logged in to add products!");
             return;
         }
         const userId = user.uid;
@@ -267,7 +267,7 @@ async function addProductToInventory() {
     const { name, category } = selectedProduct;
 
     if (!name || !category || quantity < 1) {
-        showMessageModal("Please select a valid product and quantity.");
+        showMessageModal("Please select a valid product and quantity!");
         return;
     }
 
@@ -281,7 +281,7 @@ async function addProductToInventory() {
     try {
         const user = auth.currentUser;
         if(!user){
-            showMessageModal("Må være logget på for dette!");
+            showMessageModal("You have to be logged in to add products!");
             return;
         }
         const userId = user.uid;
