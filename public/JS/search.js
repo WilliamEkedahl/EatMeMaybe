@@ -100,10 +100,10 @@ function displayProducts(items) {
 
     // Kartlegger kategori til bilde
     const categoryIcons = {
-        "Fruits and Vegetables": "../MEDIA/vegetable.png",
-        "Cooling Products": "../MEDIA/fridge.png",
-        "Frozen Products": "../MEDIA/frozen.png",
-        "Dry Products": "../MEDIA/spices.png"
+        "Fruits and Vegetables": "MEDIA/vegetable.png",
+        "Cooling Products": "MEDIA/fridge.png",
+        "Frozen Products": "MEDIA/frozen.png",
+        "Dry Products": " MEDIA/spices.png"
     };
 
     items.forEach(({ name, category }) => {

@@ -4,7 +4,7 @@
 <head>
     <meta name ="viewport" content ="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>EatMeMaybe</title>
+    <title>EatMeMaybe - My inventory</title>
     <link rel="icon" type="image/png" href="MEDIA/EatMeMaybeLogo1.png">
     <link rel = "stylesheet" href = "CSS/mainview.css">
     <link rel ="stylesheet" href ="CSS/index-content.css">
@@ -23,9 +23,9 @@
             </a>
         </li>
         <li><a href="index.html">Home</a></li>
-        <li><a href="HTML/products.html">Products</a></li>
-        <li><a href="HTML/about.html">About</a></li>
-        <li><a href="HTML/profileSettings.html">Profile</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="profileSettings.html">Profile</a></li>
     </ul>
         <header>
             <ul class="logo">
@@ -33,8 +33,8 @@
             </ul>
             <ul>
                 <li class="hideOnMobile"><a href="index.html">My Inventory</a></li>
-                <li class="hideOnMobile"><a href="HTML/products.html">Add Products</a></li>
-                <li class="hideOnMobile"><a href="HTML/about.html">About</a></li>
+                <li class="hideOnMobile"><a href="products.html">Add Products</a></li>
+                <li class="hideOnMobile"><a href="about.html">About</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn" onclick="dropdownFunction()">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
@@ -63,8 +63,8 @@
     <!-- Div with message and buttons which appear if the user has not signed in -->
     <div class="auth-message" id="auth-message" style="display: none;"> <p>Oops, it looks like you're not signed in. Sign in or create an account to view your inventory.</p>
         <div class="button-group">
-            <button onclick="window.location.href='HTML/signIn.html'">Sign in</button>
-            <button onclick="window.location.href='HTML/signUp.html'">Create account</button>
+            <button onclick="window.location.href='signIn.html'">Sign in</button>
+            <button onclick="window.location.href='signUp.html'">Create account</button>
         </div>
     </div>
 
@@ -89,7 +89,6 @@
                 <img src="MEDIA/spices.png" alt="Dry">
             </button>
         </div>
-
 <div class="inventory-wrapper">
   <table>
     <thead>
@@ -108,14 +107,11 @@
   </table>
 </div>
 
-
-
-
         <!-- Message which shows if the user inventory table is empty -->
         <div class="empty-table-wrapper">
             <div class="inventory-message" id="empty-inventory-message">
                 <p>Your inventory is empty! Start adding products to fill it up!</p>
-                <button onclick="window.location.href='HTML/products.html'">Add products</button>
+                <button onclick="window.location.href='products.html'">Add products</button>
             </div>
         </div>
 

@@ -14,13 +14,6 @@ export async function signUp(email, username, password){
         const cred = await createUserWithEmailAndPassword(auth, email, password);
         const UID = cred.user.uid;
         await setDoc(doc(db, "users", UID), {email, username});
-       /* const userInventory = collection(db, "users", UID, "userInventory");
-        await addDoc(userInventory, {
-            addedAt: new Date(),
-            category: "firstItem",
-            name:  "firstItem",
-            quantity: 1,
-        }); */
         window.location.href ="signIn.html";
     } catch (error) {
         alert(error.message);
@@ -30,7 +23,7 @@ export async function signUp(email, username, password){
 export async function signIn(email, password) {
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
     } catch (error) {
         // I stedet for alert, kast feilen så den kan håndteres i koden som kaller signIn
         throw error;
@@ -40,6 +33,7 @@ export async function signIn(email, password) {
 export async function logOut(){
     await signOut(auth);
     alert("User logged out");
+    window.location.href="index.html";
 }
 
 export function userAuthenticated(callback = null) { // Gjør callback valgfri med standardverdi null
