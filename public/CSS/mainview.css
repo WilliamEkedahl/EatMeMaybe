@@ -238,3 +238,12 @@ nav a:active {
   box-shadow: none;
 }
 
+.dropdown-content button {
+  margin: 0;
+  padding: 12px 16px;
+  line-height: 1.4;
+  font-family: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
