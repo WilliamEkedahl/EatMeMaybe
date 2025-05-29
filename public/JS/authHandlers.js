@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.getElementById("deleteInventoryButton").addEventListener("click", async () => {
+document.getElementById("EmptyInventory").addEventListener("click", async () => {
   if (confirm("Are you sure you want to delete your entire inventory?")) {
     try {
       await deleteUserInventory();
