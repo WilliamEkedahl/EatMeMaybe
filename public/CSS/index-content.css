@@ -259,3 +259,20 @@ button {
   overflow-x: hidden;
   border-radius: 0 0 8px 8px;
 }
+
+
+.increase-btn,
+.decrease-btn,
+.delete-btn {
+  background-color: #ffebbb;
+  border-radius: 6px;
+  border: 1px solid #ffebbb;
+  padding: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.increase-btn:hover,
+.decrease-btn:hover,
+.delete-btn:hover {
+  background-color: #ffde91;
+} 
