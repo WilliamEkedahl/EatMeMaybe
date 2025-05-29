@@ -14,13 +14,13 @@ export async function signUp(email, username, password){
         const cred = await createUserWithEmailAndPassword(auth, email, password);
         const UID = cred.user.uid;
         await setDoc(doc(db, "users", UID), {email, username});
-        const userInventory = collection(db, "users", UID, "userInventory");
+       /* const userInventory = collection(db, "users", UID, "userInventory");
         await addDoc(userInventory, {
             addedAt: new Date(),
             category: "firstItem",
             name:  "firstItem",
             quantity: 1,
-        });
+        }); */
         window.location.href ="signIn.html";
     } catch (error) {
         alert(error.message);

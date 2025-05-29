@@ -64,10 +64,10 @@ auth.onAuthStateChanged(async user => {
                 }
             }
         } catch (error) {
-            console.error("Kunne ikke hente brukernavn:", error);
+            console.error("Couldn't fetch username.:", error);
         }
     } else {
-        console.error("Ingen bruker er logget inn.");
+        console.error("No user is logged in.");
         // <--- NYTT: Legg til logikk her for å tømme tabell / vise "ikke logget inn" melding,
         // hvis dette ikke håndteres av authenticate.js eller HTML.
         // For eksempel, hvis #main-content styres fra authenticate.js.
@@ -79,7 +79,7 @@ auth.onAuthStateChanged(async user => {
 async function fetchUserInventory(userId) { // Mottar userId som argument
     // <--- NYTT: Sjekk om userInventoryRef er null (bruker ikke logget inn) for robusthet
     if (!userInventoryRef) {
-        console.error("Kan ikke hente inventar: userInventoryRef er ikke satt (ingen bruker er logget inn?).");
+        console.error("Cannot fetch inventory: userInventoryRef is not set (no user is logged in?).");
         displayUserInventory([]); // Vis tom tabell
         return; // Avbryt funksjonen
     }
@@ -92,7 +92,7 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
     const now = Date.now();
 
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
-        console.log("Laster bruker inventar fra cache", userId);
+        console.log("Loading user inventory from cache", userId);
         allInventoryItems = JSON.parse(cached);
 
         allInventoryItems.forEach(item => {
@@ -134,7 +134,7 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
         snapshot.forEach(doc => {
             const data = doc.data();
             if (!(data.addedAt && typeof data.addedAt.toDate === "function")) {
-                console.warn(`Ugyldig eller manglende 'addedAt' for dokument ${doc.id}, hopper over dette elementet.`);
+                console.warn(`Invalid or missing 'addedAt' for document. ${doc.id}, skips this element.`);
                 return; // Hopp over dette dokumentet i snapshot.forEach
             }
 
@@ -193,7 +193,7 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
         localStorage.setItem(userCacheTimeKey, now.toString());
 
     } catch (error) {
-        console.error("Feil ved henting av brukerens lager:", error);
+        console.error("Error occured when fetching user inventory:", error);
     }
 }
 
@@ -262,7 +262,7 @@ function displayUserInventory(items) {
 
         // Øk kvantitet
         increaseBtn.addEventListener("click", async () => {
-            const newQuantity = Number(quantity) + 1;
+            const newQuantity = Number(quantity) + 100000;
             await updateItemQuantity(id, newQuantity);
 
             const item = allInventoryItems.find(item => item.id === id);
@@ -324,17 +324,17 @@ async function deleteInventoryItem(itemId) {
     try {
         const user = auth.currentUser;
         if (!user) { // <--- NYTT: Brukersjekk for robusthet
-            console.error("Ingen bruker er logget inn for å slette element");
+            console.error("No user is logged in to delete this element");
             return;
         }
         const userId = user.uid;
 
         await deleteDoc(doc(db, "users", userId, "userInventory", itemId));
-        console.log(`Element med ID ${itemId} er slettet.`);
+        console.log(`Element with ID ${itemId} is deleted.`);
         clearUserInventoryCache(userId); // <--- NYTT: Kall til clearUserInventoryCache
 
     } catch (error) {
-        console.error("Feil ved sletting av element:", error);
+        console.error("Error occured when deleting element:", error);
     }
 }
 
@@ -342,7 +342,7 @@ async function updateItemQuantity(itemId, newQuantity) {
     try {
         const user = auth.currentUser;
         if (!user) { // <--- NYTT: Brukersjekk for robusthet
-            console.error("Ingen bruker er logget inn for å oppdatere element");
+            console.error("No user is logged in to update element");
             return;
         }
         const userId = user.uid;
@@ -350,70 +350,10 @@ async function updateItemQuantity(itemId, newQuantity) {
         await updateDoc(doc(db, "users", userId, "userInventory", itemId), {
             quantity: newQuantity
         });
-        console.log(`Oppdatert kvantitet for ${itemId} til ${newQuantity}.`);
+        console.log(`Updated quantity for ${itemId} til ${newQuantity}.`);
         clearUserInventoryCache(userId); // <--- NYTT: Kall til clearUserInventoryCache
 
     } catch (error) {
-        console.error("Feil ved oppdatering av kvantitet:", error);
+        console.error("Error occured when updating quantity:", error);
     }
 }
-
-// <--- FJERNET DENNE FUNKSJONEN HELT: attachInventoryEventListeners var i gammel fil, men logikken er nå integrert i displayUserInventory
-/*
-function attachInventoryEventListeners(row, id, quantity) {
-    const deleteBtn = row.querySelector(".delete-btn");
-    const increaseBtn = row.querySelector(".increase-btn");
-    const decreaseBtn = row.querySelector(".decrease-btn");
-
-    increaseBtn.addEventListener("click", async () => {
-        const newQuantity = Number(quantity) + 1;
-        await updateItemQuantity(id, newQuantity);
-
-        const item = allInventoryItems.find(item => item.id === id);
-        if (item) item.quantity = newQuantity;
-
-        redisplayFilteredInventory();
-    });
-
-    decreaseBtn.addEventListener("click", async () => {
-        const currentQuantity = Number(quantity);
-        if (currentQuantity > 1) {
-            await updateItemQuantity(id, currentQuantity - 1);
-
-            const item = allInventoryItems.find(item => item.id === id);
-            if (item) item.quantity = currentQuantity - 1;
-
-            redisplayFilteredInventory();
-        } else {
-            const confirmed = window.confirm("Quantity is 1. Remove product completely?");
-            if (confirmed) {
-                await deleteInventoryItem(id);
-
-                allInventoryItems = allInventoryItems.filter(item => item.id !== id);
-                redisplayFilteredInventory();
-            }
-        }
-    });
-
-    deleteBtn.setAttribute("data-id", id);
-    deleteBtn.addEventListener("click", async () => {
-        const confirmed = window.confirm("Are you sure you want to remove this product?");
-        if (confirmed) {
-            await deleteInventoryItem(id);
-
-            allInventoryItems = allInventoryItems.filter(item => item.id !== id);
-            redisplayFilteredInventory();
-
-            const statusMessage = document.getElementById("status-message");
-            if (statusMessage) {
-                statusMessage.textContent = "Product removed.";
-                statusMessage.style.display = "block";
-                setTimeout(() => {
-                    statusMessage.style.display = "none";
-                    statusMessage.textContent = "";
-                }, 3000);
-            }
-        }
-    });
-}
-*/
