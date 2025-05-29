@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, deleteUserInventory } from "./authenticate.js"
+import {signIn, logOut, signUp, deleteUserInventory, deleteCurrentUser } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -90,6 +90,16 @@ document.addEventListener("DOMContentLoaded", (e)=> {
         });
     }
 });
+
+ // <-- NYTT: Event listener for "Delete account" knappen
+    const deleteAccountButton = document.getElementById("deleteButton"); // Bruker den nye ID-en
+    if (deleteAccountButton) {
+        deleteAccountButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            deleteCurrentUser(); // Kall funksjonen for å slette brukeren
+        });
+    }
+    
 
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,10 +1,10 @@
-//import firebase modules
 import {auth, db } from "./firestore.js";
 import{
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    deleteUser
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 import { doc, setDoc, collection, addDoc,  getDocs, deleteDoc, } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
@@ -76,5 +76,43 @@ export async function deleteUserInventory() {
         throw err;
     }
 }
+
+export async function deleteCurrentUser() {
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("Ingen bruker er logget inn.");
+        return;
+    }
+
+    const confirmed = confirm("Er du sikker på at du vil slette kontoen din? Denne handlingen kan ikke angres, og alle dine data vil bli slettet.");
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        // Steg 1: Slett brukerens inventardata fra Firestore (viktig å slette før brukeren selv)
+        await deleteUserInventory(); 
+
+        // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
+        await deleteDoc(doc(db, "users", user.uid));
+        console.log("Brukerprofil-dokument slettet fra Firestore.");
+
+        // Steg 3: Slett selve brukeren fra Firebase Authentication
+        await deleteUser(user);
+        alert("Kontoen din er slettet.");
+        window.location.href = "signIn.html"; // Omdiriger til påloggingssiden etter sletting
+    } catch (error) {
+        console.error("Feil ved sletting av bruker:", error);
+        if (error.code === 'auth/requires-recent-login') {
+            // Håndterer sikkerhetskravet ved å tvinge re-pålogging
+            alert("For sikkerhets skyld må du logge inn på nytt for å slette kontoen din. Videresender til påloggingssiden.");
+            window.location.href = "signIn.html"; 
+        } else {
+            alert(`Feil ved sletting av konto: ${error.message}`);
+        }
+    }
+}
+
 
 userAuthenticated();
