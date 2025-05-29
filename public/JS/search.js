@@ -144,6 +144,10 @@ function filterItems() {
         (!query || name.toLowerCase().startsWith(query))
     );
 
+    if (query) {
+        filtered.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    }
+
     displayProducts(filtered);
 }
 
