@@ -25,7 +25,7 @@
   outline: none;
   background: white;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .search-container .search-bar {
@@ -60,7 +60,7 @@
   font-size: 16px;
   cursor: pointer;
   border-left: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 6px;
   transition: background 0.3s ease;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -96,7 +96,7 @@
   max-height: 400px;
   overflow-y: auto;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 10px;
   background: #fff;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
@@ -109,7 +109,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .table-header .header-item {
@@ -175,7 +175,7 @@
 .modal-content2 {
   background: #fff7e4;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 6px;
   max-width: 500px;
   width: 100%;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
@@ -237,7 +237,7 @@
   background: #ffebbb;
   color: black;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: background 0.3s ease, transform 0.2s ease;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -250,7 +250,7 @@
   font-size: 18px;
   text-align: center;
   border: 2px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
   outline: none;
   margin: 0 10px;
 }
@@ -267,7 +267,7 @@
   padding: 12px 20px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   display: block;
   cursor: pointer;
   width: 50%;
@@ -287,7 +287,7 @@
   padding: 12px 20px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   display: block;
   cursor: pointer;
   width: 50%;
@@ -307,7 +307,7 @@
   transform: translateX(-50%);
   padding: 20px;
   background: #fff7e4;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 9999;
   width: 300px;
@@ -317,7 +317,7 @@
 .message-modal-content {
   background: #fff7e4;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 6px;
   color: black;
   font-weight: bold;
 }
@@ -339,7 +339,7 @@
   padding: 12px 20px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
@@ -367,7 +367,7 @@
   outline: none;
   background: white;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   flex: 1;
 }
 
@@ -389,7 +389,7 @@
     padding: 12px;
   }
   .search-btn {
-    border-radius: 10px;
+    border-radius: 6px;
   }
   .navigation-buttons {
     flex-direction: column;
