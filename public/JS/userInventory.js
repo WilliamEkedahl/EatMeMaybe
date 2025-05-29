@@ -262,7 +262,7 @@ function displayUserInventory(items) {
 
         // Øk kvantitet
         increaseBtn.addEventListener("click", async () => {
-            const newQuantity = Number(quantity) + 100000;
+            const newQuantity = Number(quantity) + 1;
             await updateItemQuantity(id, newQuantity);
 
             const item = allInventoryItems.find(item => item.id === id);
