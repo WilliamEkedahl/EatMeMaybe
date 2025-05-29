@@ -38,11 +38,10 @@ let userInventoryRef = null;
 
 // Unngå duplisering av category
 const categoryShelfLives = {
-    "Cooling Products": 14,
+    "Cooling Products": 7,
     "Frozen Products": 180,
-    "Fruits and Vegetables": 3,
-    "Dry Products": 60,
-    "Asian": 30
+    "Fruits and Vegetables": 5,
+    "Dry Products": 240
 };
 
 // Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
@@ -105,6 +104,8 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
 
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            expirationDate.setHours(0, 0, 0, 0);
             const timeDiff = expirationDate.getTime() - today.getTime();
             item.daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
         });
@@ -147,6 +148,8 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
 
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            expirationDate.setHours(0, 0, 0, 0);
             const timeDiff = expirationDate.getTime() - today.getTime();
             const daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
 
