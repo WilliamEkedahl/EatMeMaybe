@@ -116,10 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const form = document.getElementById("changePasswordForm");
-  form.addEventListener("submit", (e) => {
+  const changePasswordForm = document.getElementById("changePasswordForm");
+  changePasswordForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const currentPassword = document.getElementById("currentPassword").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
     const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
@@ -143,10 +142,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
  });
- 
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const EmptyInventoryButton = document.getElementById("EmptyInventoryButton");
+  const EmptyInventoryButton = document.getElementById("emptyInventoryButton");
   if (EmptyInventoryButton){
     EmptyInventoryButton.addEventListener("click", (e) =>{
       e.preventDefault();
