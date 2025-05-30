@@ -36,7 +36,6 @@ function initializeUI() {
 
     document.getElementById("search-bar").addEventListener("input", filterItems);
     document.getElementById("category-dropdown").addEventListener("change", filterItems);
-    document.getElementById("search-btn").addEventListener("click", filterItems);
 
     document.getElementById("search-bar").addEventListener("input", showGhostSuggestion);
     document.getElementById("search-bar").addEventListener("keydown", acceptGhostSuggestion);
