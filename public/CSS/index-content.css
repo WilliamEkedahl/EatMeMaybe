@@ -131,7 +131,7 @@ td.expiring-red {
 }
 
 td.expiring-orange {
-  color: #e6d622;
+  color: #ecbc1d;
   font-weight: bold;
 }
 
@@ -185,14 +185,14 @@ button {
   justify-self: end;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #ffe3a3;
+  background-color: #ffebbb;
   color: black;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s ease;
-  margin-top: 0;
+  margin-top: 0; /* Fjern margin-top */
 }
 
 .emptyInventory-btn:hover {
@@ -231,34 +231,21 @@ button {
   filter: brightness(0) invert(1);
 }
 
-
-
+/* Ny og riktig wrapper-styling */
 .inventory-wrapper {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: auto; /* hvis tabellen blir bred */
+  flex: 1;
+  overflow-y: auto;
+  margin: 0 1rem 1rem 1rem;
+  max-height: calc(100vh - 250px); /* Justeres etter header/nav */
 }
 
 .inventory-wrapper table {
-  width: calc(100% - 2rem);
-  margin: 0 1rem;
+  width: 100%;
   border-collapse: collapse;
-  background-color: white;
   table-layout: fixed;
+  background-color: white;
   border-radius: 8px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
-  /* Må ha display block for å bruke sticky på thead i scroll-container */
-  display: block;
-  max-height: 480px; /* maks høyde for scroll */
-  overflow-y: auto;
-}
-
-.inventory-wrapper thead, 
-.inventory-wrapper tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
 }
 
 .inventory-wrapper thead {
@@ -280,16 +267,6 @@ button {
 .inventory-wrapper tbody tr:hover {
   background-color: #f1f1f1;
 }
-
-.inventory-wrapper tbody {
-  /* Gjør tbody scrollbart ved behov */
-  display: block;
-  max-height: 400px; /* juster høyden etter behov */
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-radius: 0 0 8px 8px;
-}
-
 
 .increase-btn,
 .decrease-btn,
