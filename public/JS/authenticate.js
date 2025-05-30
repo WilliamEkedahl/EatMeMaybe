@@ -63,7 +63,7 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
     });
 }
 
-export async function EmptyUserInventory() {
+export async function DeleteUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
     const userId = user.uid;
@@ -110,7 +110,7 @@ export async function deleteCurrentUser() {
 
     try {
         // Steg 1: Slett brukerens inventardata fra Firestore (viktig å slette før brukeren selv)
-        await deleteUserInventory();
+        await DeleteUserInventory();
 
         // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
         await deleteDoc(doc(db, "users", user.uid));
