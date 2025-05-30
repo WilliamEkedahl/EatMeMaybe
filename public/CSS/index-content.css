@@ -232,18 +232,33 @@ button {
 }
 
 
+
 .inventory-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto; /* hvis tabellen blir bred */
 }
 
 .inventory-wrapper table {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
   border-collapse: collapse;
-  table-layout: fixed;
   background-color: white;
-  border-radius: 6px;
+  table-layout: fixed;
+  border-radius: 8px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+  /* Må ha display block for å bruke sticky på thead i scroll-container */
+  display: block;
+  max-height: 480px; /* maks høyde for scroll */
+  overflow-y: auto;
+}
+
+.inventory-wrapper thead, 
+.inventory-wrapper tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .inventory-wrapper thead {
@@ -265,6 +280,16 @@ button {
 .inventory-wrapper tbody tr:hover {
   background-color: #f1f1f1;
 }
+
+.inventory-wrapper tbody {
+  /* Gjør tbody scrollbart ved behov */
+  display: block;
+  max-height: 400px; /* juster høyden etter behov */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 0 0 8px 8px;
+}
+
 
 .increase-btn,
 .decrease-btn,

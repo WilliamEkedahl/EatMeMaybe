@@ -402,3 +402,38 @@
     text-align: center;
   }
 }
+
+
+/* Tabellen */
+table {
+  width: 100%; 
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #d7d7d7;
+  color: black;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+button {
+    margin: 0 2px;
+    padding: 2px 4px;
+    cursor: pointer;
+}
