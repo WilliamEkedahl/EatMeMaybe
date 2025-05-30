@@ -11,7 +11,7 @@ import{
     deleteUser
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import {clearUserInventoryCache} from "./cache.js";
-import { doc, setDoc, getDocs, collection, changePassword, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { doc, setDoc, getDocs, collection, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 export async function signUp(email, username, password){
     try {
