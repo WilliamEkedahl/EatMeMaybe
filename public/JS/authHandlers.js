@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, changePassword, EmptyUserInventory, deleteCurrentUser  } from "./authenticate.js"
+import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -144,11 +144,11 @@ document.addEventListener("DOMContentLoaded", async () => {
  });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const EmptyInventoryButton = document.getElementById("emptyInventoryButton");
-  if (EmptyInventoryButton){
-    EmptyInventoryButton.addEventListener("click", (e) =>{
+  const DeleteInventoryButton = document.getElementById("DeleteInventoryButton");
+  if (DeleteInventoryButton){
+    DeleteInventoryButton.addEventListener("click", (e) =>{
       e.preventDefault();
-      EmptyUserInventory();
+      DeleteUserInventory();
     });
   }
 });
