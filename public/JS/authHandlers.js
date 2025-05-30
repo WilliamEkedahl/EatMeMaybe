@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, deleteCurrentUser } from "./authenticate.js"
+import {signIn, logOut, signUp, changePassword, deleteUserInventory, deleteCurrentUser } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", (e)=> {
             deleteCurrentUser(); // Kall funksjonen for å slette brukeren
         });
     }
-    
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -115,6 +115,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", async () => {
+  const form = document.getElementById("changePasswordForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const currentPassword = document.getElementById("currentPassword").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+    const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
+
+    if (newPassword.length < 8) {
+      alert("New password must be at least 8 characters long.");
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword){
+      alert("The new passwords do not match");
+      return;
+    }
+
+    try {
+      await passwordChange(currentPassword, newPassword);
+      alert("password updated successfully.");
+    } catch (error) {
+      alert("Failed to change password: " + error.message);
+      console.error(error);
+    }
+  });
+ });
 
 
 

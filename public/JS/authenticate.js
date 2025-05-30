@@ -1,13 +1,18 @@
+//import firebase modules
 import {auth, db } from "./firestore.js";
 import{
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword,
+    onAuthStateChanged,
     deleteUser
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-
-import { doc, setDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {clearUserInventoryCache} from "./cache.js";
+import { doc, setDoc, getDocs, collection, changePassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 export async function signUp(email, username, password){
     try {
@@ -61,21 +66,31 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
 export async function deleteUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
-
     const inventoryRef = collection(db, "users", user.uid, "userInventory");
-
     try {
         const snapshot = await getDocs(inventoryRef);
+        console.log("Found docs:", snapshot.docs.map(doc => doc.id));
+
         const deletePromises = snapshot.docs.map((docSnap) =>
             deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
         );
         await Promise.all(deletePromises);
-        console.log("All inventory deleted.");
+        clearUserInventoryCache(user);
+        console.log("All items in the inventory deleted.");
     } catch (err) {
         console.error("Failed to delete inventory:", err);
         throw err;
     }
-}
+ }
+
+ export async function changePassword(currentPassword, newPassword ){
+    const user = auth.currentUser;
+    if (!user) throw new Error("User is not signed in.");
+    //Re-authentica user
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
+ }
 
 export async function deleteCurrentUser() {
     const user = auth.currentUser;
@@ -92,7 +107,7 @@ export async function deleteCurrentUser() {
 
     try {
         // Steg 1: Slett brukerens inventardata fra Firestore (viktig å slette før brukeren selv)
-        await deleteUserInventory(); 
+        await deleteUserInventory();
 
         // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
         await deleteDoc(doc(db, "users", user.uid));
@@ -107,12 +122,10 @@ export async function deleteCurrentUser() {
         if (error.code === 'auth/requires-recent-login') {
             // Håndterer sikkerhetskravet ved å tvinge re-pålogging
             alert("For sikkerhets skyld må du logge inn på nytt for å slette kontoen din. Videresender til påloggingssiden.");
-            window.location.href = "signIn.html"; 
+            window.location.href = "signIn.html";
         } else {
             alert(`Feil ved sletting av konto: ${error.message}`);
         }
     }
 }
-
-
 userAuthenticated();
