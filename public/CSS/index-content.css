@@ -231,20 +231,18 @@ button {
   filter: brightness(0) invert(1);
 }
 
-/* Ny og riktig wrapper-styling */
+
 .inventory-wrapper {
   flex: 1;
   overflow-y: auto;
-  margin: 0 1rem 1rem 1rem;
-  max-height: calc(100vh - 250px); /* Justeres etter header/nav */
+  overflow-x: hidden;
 }
 
 .inventory-wrapper table {
-  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
