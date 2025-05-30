@@ -12,14 +12,15 @@ import{
     deleteUser
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import {clearUserInventoryCache} from "./cache.js";
-import { doc, setDoc, getDocs, collection, changePassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { doc, setDoc, getDocs, collection, changePassword, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 export async function signUp(email, username, password){
     try {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
         const UID = cred.user.uid;
         await setDoc(doc(db, "users", UID), {email, username});
-        window.location.href ="signIn.html";
+        signIn(email, password);
+        window.location.href ="index.html";
     } catch (error) {
         alert(error.message);
     }
@@ -63,9 +64,10 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
     });
 }
 
-export async function deleteUserInventory() {
+export async function EmptyUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
+    const userId = user.uid;
     const inventoryRef = collection(db, "users", user.uid, "userInventory");
     try {
         const snapshot = await getDocs(inventoryRef);
@@ -75,21 +77,23 @@ export async function deleteUserInventory() {
             deleteDoc(doc(db, "users", user.uid, "userInventory", docSnap.id))
         );
         await Promise.all(deletePromises);
-        clearUserInventoryCache(user);
+        clearUserInventoryCache(userId);
+        window.location.reload();
         console.log("All items in the inventory deleted.");
-    } catch (err) {
-        console.error("Failed to delete inventory:", err);
-        throw err;
+    } catch (error) {
+        console.error("Failed to delete inventory:", error);
+        throw error;
     }
  }
 
  export async function changePassword(currentPassword, newPassword ){
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
-    //Re-authentica user
+    //Re-authentica user -To make firebase happy :D
     const credential = EmailAuthProvider.credential(user.email, currentPassword);
     await reauthenticateWithCredential(user, credential);
     await updatePassword(user, newPassword);
+    window.location.href = "index.html";
  }
 
 export async function deleteCurrentUser() {

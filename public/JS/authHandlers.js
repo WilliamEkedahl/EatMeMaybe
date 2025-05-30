@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, changePassword, deleteUserInventory, deleteCurrentUser } from "./authenticate.js"
+import {signIn, logOut, signUp, changePassword, EmptyUserInventory, deleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-      await passwordChange(currentPassword, newPassword);
+      changePassword(currentPassword, newPassword);
       alert("password updated successfully.");
     } catch (error) {
       alert("Failed to change password: " + error.message);
@@ -143,8 +143,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
  });
+ 
 
-
+document.addEventListener("DOMContentLoaded", async () => {
+  const EmptyInventoryButton = document.getElementById("EmptyInventoryButton");
+  if (EmptyInventoryButton){
+    EmptyInventoryButton.addEventListener("click", (e) =>{
+      e.preventDefault();
+      EmptyUserInventory();
+    });
+  };
+});
 
 
 

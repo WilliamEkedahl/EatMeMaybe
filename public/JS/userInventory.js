@@ -360,4 +360,3 @@ async function updateItemQuantity(itemId, newQuantity) {
         console.error("Error occured when updating quantity:", error);
     }
 }
-
