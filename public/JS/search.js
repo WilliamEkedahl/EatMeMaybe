@@ -224,7 +224,10 @@ async function addNewProductToFirestore() {
         return;
     }
 
-    const product = { name, category, quantity:1, addedAt: new Date() };
+    const quantityInput = document.getElementById("custom-quantity");
+    const quantity = parseInt(quantityInput.value) || 1;
+
+    const product = { name, category, quantity, addedAt: new Date() };
 
     try {
         const user = auth.currentUser;
