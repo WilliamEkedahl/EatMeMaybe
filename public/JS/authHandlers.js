@@ -81,24 +81,31 @@ document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
   signUp(email, username, password);
 });
 
-document.addEventListener("DOMContentLoaded", (e)=> {
-    const signOutButton = document.getElementById("signOutButton");
-    if (signOutButton) {
-        signOutButton.addEventListener("click", (e) =>{
+// Event listener for "Delete account" knappen
+   const signOutButton = ["signOutButtonSidebar", "signOutButtonDropdown"];
+
+signOutButton.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+        btn.addEventListener("click", (e) => {
             e.preventDefault();
             logOut();
         });
     }
 });
 
- // <-- NYTT: Event listener for "Delete account" knappen
-    const deleteAccountButton = document.getElementById("deleteButton"); // Bruker den nye ID-en
-    if (deleteAccountButton) {
-        deleteAccountButton.addEventListener("click", (e) => {
+ // Event listener for "Delete account" knappen
+   const deleteButtonIds = ["deleteButtonSidebar", "deleteButtonDropdown"];
+
+deleteButtonIds.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+        btn.addEventListener("click", (e) => {
             e.preventDefault();
-            deleteCurrentUser(); // Kall funksjonen for å slette brukeren
+            deleteCurrentUser();
         });
     }
+});
 
 
 
@@ -144,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const EmptyInventoryButton = document.getElementById("emptyInventoryButton");
+  const EmptyInventoryButton = document.getElementById("EmptyInventory");
   if (EmptyInventoryButton){
     EmptyInventoryButton.addEventListener("click", (e) =>{
       e.preventDefault();
