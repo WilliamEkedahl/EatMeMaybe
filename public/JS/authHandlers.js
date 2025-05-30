@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.preventDefault();
       EmptyUserInventory();
     });
-  };
+  }
 });
 
 

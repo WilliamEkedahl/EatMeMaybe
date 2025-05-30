@@ -96,7 +96,7 @@ h2 {
   background-color: #d89b00;
 }
 
-#empty-inventory-message {
+.empty-inventory-message {
   display: none;
 }
 
