@@ -110,7 +110,7 @@ export async function deleteCurrentUser() {
 
     try {
         // Steg 1: Slett brukerens inventardata fra Firestore (viktig å slette før brukeren selv)
-        await deleteUserInventory();
+        await EmptyUserInventory();
 
         // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
         await deleteDoc(doc(db, "users", user.uid));
