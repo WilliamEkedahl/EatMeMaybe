@@ -33,7 +33,7 @@ document.getElementById("signInForm")?.addEventListener("submit", (e) => {
     });
 });
 
-document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
+document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -77,8 +77,13 @@ document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
     return;
   }
 
-  // Alt er OK
-  signUp(email, username, password);
+  // Endret her: legg til try/catch for å fange feil fra signUp
+  try {
+    await signUp(email, username, password);
+  } catch (error) {
+    // Viser kun generell feilmelding uten å avsløre detaljer
+    showError("Registration failed. Try again later.");
+  }
 });
 
 // Event listener for "Delete account" knappen

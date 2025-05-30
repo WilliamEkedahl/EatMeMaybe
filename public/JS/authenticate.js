@@ -18,10 +18,12 @@ export async function signUp(email, username, password){
         const cred = await createUserWithEmailAndPassword(auth, email, password);
         const UID = cred.user.uid;
         await setDoc(doc(db, "users", UID), {email, username});
-        signIn(email, password);
-        window.location.href ="index.html";
+        await signIn(email, password);
+        window.location.href = "index.html";
     } catch (error) {
-        alert(error.message);
+        // Skjul spesifikke feil (som om e-post er i bruk)
+        console.error("Sign up failed:", error.code); // Logg internt hvis ønskelig
+        throw new Error("Registrering feilet. Prøv igjen senere.");
     }
 }
 
