@@ -1,4 +1,4 @@
-import {signIn, logOut, signUp, changePassword, EmptyUserInventory, deleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
+import {signIn, logOut, signUp, changePassword, EmptyUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
