@@ -161,13 +161,44 @@ button {
   cursor: pointer;
 }
 
-.category-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0 10px 0;
-  flex-wrap: wrap;
+.top-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Tre kolonner */
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  gap: 1rem;
 }
+
+/* La category-nav gå i midtkolonnen, sentrert */
+.category-nav {
+  grid-column: 2; /* Plasser i midtkolonnen */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Knappen plasseres i høyre kolonne */
+.emptyInventory-btn {
+  grid-column: 3;
+  font-weight: bold;
+  justify-self: end;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ffe3a3;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+  margin-top: 0;
+}
+
+.emptyInventory-btn:hover {
+  background-color: #f5d877;
+}
+
 
 .category-btn {
   background-color: #fff3d8;
