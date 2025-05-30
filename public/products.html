@@ -12,15 +12,20 @@
 <body>
     <nav>
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#" id="hide-sidebar-btn">
+        <li onclick="hideSidebar()">
+            <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
                     <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
                 </svg>
-            </a></li>
+            </a>
+        </li>
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="profileSettings.html">Profile</a></li>
+            <li><a class="dropbtn" id="signInButton" href="signIn.html">Sign in</a></li>
+            <li><a class="dropbtn" id="changePassword-button" href="changePassword.html">Change password</a></li>
+            <li><button class="dropbtn" id="deleteButton">Delete account</button></li>
+            <li><button class="dropbtn" id="signOutButton">Sign out</button></li>
         </ul>
         <header>
             <ul class="logo">
