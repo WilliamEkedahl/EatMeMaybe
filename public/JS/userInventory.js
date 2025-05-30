@@ -59,7 +59,7 @@ auth.onAuthStateChanged(async user => {
                 const username = userDoc.data().username;
                 const inventoryTitle = document.getElementById("inventory-title");
                 if (inventoryTitle) {
-                    inventoryTitle.textContent = `${username}'s inventory`;
+                    inventoryTitle.textContent = `Welcome back, ${username}! Here's your inventory`;
                 }
             }
         } catch (error) {

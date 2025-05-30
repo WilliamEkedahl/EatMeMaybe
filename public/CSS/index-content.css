@@ -131,7 +131,7 @@ td.expiring-red {
 }
 
 td.expiring-orange {
-  color: #e67e22;
+  color: #e6d622;
   font-weight: bold;
 }
 
@@ -305,4 +305,8 @@ button {
 .decrease-btn:hover,
 .delete-btn:hover {
   background-color: #ffde91;
+}
+
+#inventory-title {
+  text-align: center;
 }
