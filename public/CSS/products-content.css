@@ -100,7 +100,7 @@
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 6px;
-  padding: 10px;
+  padding: 15px 0;
   background: #fff;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -133,7 +133,6 @@
 }
 
 #product-table {
-  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
