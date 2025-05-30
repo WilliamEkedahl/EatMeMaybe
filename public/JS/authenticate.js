@@ -23,7 +23,7 @@ export async function signUp(email, username, password){
     } catch (error) {
         // Skjul spesifikke feil (som om e-post er i bruk)
         console.error("Sign up failed:", error.code); // Logg internt hvis ønskelig
-        throw new Error("Registrering feilet. Prøv igjen senere.");
+        throw new Error("Registration failed. Try again later.");
     }
 }
 
