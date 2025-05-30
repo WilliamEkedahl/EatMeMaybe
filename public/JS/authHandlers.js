@@ -122,33 +122,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   const changePasswordForm = document.getElementById("changePasswordForm");
-  changePasswordForm.addEventListener("submit", (e) => {
+  const messageBox = document.getElementById("passwordMessage");
+
+  function showMessage(text, type) {
+    messageBox.textContent = text;
+    messageBox.className = ""; // Reset klasser
+    messageBox.classList.add(type === "success" ? "success" : "error");
+    messageBox.id = "passwordMessage"; // Behold ID-en
+  }
+
+  changePasswordForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const currentPassword = document.getElementById("currentPassword").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
     const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
 
     if (newPassword.length < 8) {
-      alert("New password must be at least 8 characters long.");
+      showMessage("New password must be at least 8 characters long.", "error");
       return;
     }
 
-    if (newPassword !== confirmNewPassword){
-      alert("The new passwords do not match");
+    if (newPassword !== confirmNewPassword) {
+      showMessage("The new passwords do not match.", "error");
       return;
     }
 
     try {
-      changePassword(currentPassword, newPassword);
-      alert("password updated successfully.");
+      await changePassword(currentPassword, newPassword);
+      showMessage("Password updated successfully.", "success");
+      changePasswordForm.reset();
     } catch (error) {
-      alert("Failed to change password: " + error.message);
+      if (error.code === "auth/invalid-credential") {
+        showMessage("Current password is incorrect.", "error");
+      } else {
+        showMessage("Failed to change password: " + error.message, "error");
+      }
       console.error(error);
     }
   });
- });
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
   const EmptyInventoryButton = document.getElementById("deleteInventoryButton");

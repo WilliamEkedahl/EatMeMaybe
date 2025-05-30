@@ -94,3 +94,25 @@
   font-weight: bold;
   display: none;
 }
+#passwordMessage {
+  display: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#passwordMessage.success {
+  background-color: #e6f9e6;
+  color: #2f7a2f;
+  border: 1px solid #2f7a2f;
+  display: block;
+}
+
+#passwordMessage.error {
+  background-color: #ffebeb;
+  color: #b00020;
+  border: 1px solid #b00020;
+  display: block;
+}
