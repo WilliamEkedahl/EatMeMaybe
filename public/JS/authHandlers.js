@@ -1,10 +1,10 @@
-import {signIn, logOut, signUp, deleteUserInventory } from "./authenticate.js"
+import {signIn, logOut, signUp } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  const password = document.getElementById("password").value.trim();
   const errorBox = document.getElementById("signInError");
 
   function showError(message) {
@@ -38,8 +38,8 @@ document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
 
   const email = document.getElementById("email").value.trim();
   const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const confPassword = document.getElementById("confPassword").value;
+  const password = document.getElementById("password").value.trim();
+  const confPassword = document.getElementById("confPassword").value.trim();
   const errorBox = document.getElementById("signUpError");
 
   function showError(message) {
@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", (e)=> {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".toggle-password").forEach(toggle => {
     toggle.addEventListener("click", () => {
@@ -106,17 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.getElementById("EmptyInventory").addEventListener("click", async () => {
-  if (confirm("Are you sure you want to delete your entire inventory?")) {
-    try {
-      await deleteUserInventory();
-      alert("Inventory deleted.");
-      // Optionally refresh UI or redirect
-    } catch (error) {
-      alert("Error deleting inventory: " + error.message);
-    }
-  }
-});
 
 
 
