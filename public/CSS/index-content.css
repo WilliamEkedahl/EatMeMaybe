@@ -7,7 +7,13 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: auto; /* Tillat scrolling ved behov */
+  overflow: hidden; /* Viktig: Fjern scroll her */
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 h2 {
@@ -198,7 +204,6 @@ button {
 .inventory-wrapper {
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;
   margin: 0 1rem 1rem 1rem;
   max-height: calc(100vh - 250px); /* Justeres etter header/nav */
 }
