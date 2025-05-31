@@ -214,57 +214,20 @@ function changeCustomQuantity(amount) {
 async function addNewProductToFirestore() {
     const nameInput = document.getElementById('custom-product-name2');
     const categorySelect = document.getElementById('product-category2');
+    const quantityInput = document.getElementById("custom-quantity");
 
     const name = nameInput.value.trim();
     const category = categorySelect.value;
+    const quantity = parseInt(quantityInput.value);
 
-    if (!name || !category) {
-        showMessageModal("Please enter a name and select a category!");
+    if (!name || !category || isNaN(quantity) || quantity < 1) {
+        showMessageModal("Please enter a name, category and valid quantity.");
         return;
     }
 
-    const quantityInput = document.getElementById("custom-quantity");
-    const quantity = parseInt(quantityInput.value) || 1;
-
-    const product = { name, category, quantity, addedAt: new Date() };
-
-    try {
-        const user = auth.currentUser;
-        if(!user){
-            showMessageModal("You have to be logged in to add a new product");
-            return;
-        }
-        const userId = user.uid;
-
-        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
-        const snapshot = await getDocs(userInventoryCollectionRef);
-        const docRef = await addDoc(userInventoryCollectionRef, product);
-        console.log("Added product with ID:", docRef.id);
-        showMessageModal("Product added successfully!");
-        clearUserInventoryCache(userId); //for å oppdatere i index
-        //reset form
-        nameInput.value = "";
-        categorySelect.value = "";
-
-        //clearProductCache(); går ut pga vi ikke legger til products collection lenger.. for nå
-        //loadProducts();      
-
-    } catch (error) {
-        console.error("Error adding new product:", error);
-        showMessageModal("Failed to add product. Please try again.");
-    }
-}
-
-async function addProductToInventory() {
-    closeModal();
-
-    const quantityInput = document.getElementById('quantity-input');
-    const quantity = parseInt(quantityInput.value);
-
-    const { name, category } = selectedProduct;
-
-    if (!name || !category || quantity < 1) {
-        showMessageModal("Please select a valid product and quantity.");
+    const user = auth.currentUser;
+    if (!user) {
+        showMessageModal("You have to be logged in to add products.");
         return;
     }
 
@@ -276,28 +239,71 @@ async function addProductToInventory() {
     };
 
     try {
-        const user = auth.currentUser;
-        if(!user){
-            showMessageModal("You have to be logged in to add product.");
-            return;
-        }
         const userId = user.uid;
-        
         const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
 
-        //check if the inventory is empty
-        const snapshot = await getDocs(userInventoryCollectionRef);
+        const docRef = await addDoc(userInventoryCollectionRef, product);
+        console.log("Added product with ID:", docRef.id);
+
+        clearUserInventoryCache(userId);
+
+        // Tilbakestill inputs
+        nameInput.value = "";
+        categorySelect.value = "";
+        quantityInput.value = "1";
+
+        closeModal2();
+        showMessageModal("Product added successfully!");
+
+    } catch (error) {
+        console.error("Error adding new product:", error);
+        showMessageModal("Failed to add product. Please try again.");
+    }
+}
+
+
+async function addProductToInventory() {
+    const quantityInput = document.getElementById('quantity-input');
+    const quantity = parseInt(quantityInput.value);
+
+    const { name, category } = selectedProduct;
+
+    // Sjekk om input er gyldig
+    if (!name || !category || quantity < 1) {
+        showMessageModal("Please select a valid quantity.");
+        return;
+    }
+
+    const user = auth.currentUser;
+    if (!user) {
+        showMessageModal("You have to be logged in to add products.");
+        return;
+    }
+
+    const product = {
+        name,
+        category,
+        quantity,
+        addedAt: new Date()
+    };
+
+    try {
+        const userId = user.uid;
+        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
 
         const docRef = await addDoc(userInventoryCollectionRef, product);
         console.log("Added product with ID:", docRef.id);
         showMessageModal("Product added successfully!");
-        clearUserInventoryCache(userId); //for å oppdatere i index
-
+        clearUserInventoryCache(userId); // oppdaterer index
     } catch (err) {
         console.error("Failed to add product:", err);
         showMessageModal("Something went wrong. Please try again.");
+    } finally {
+        // Modal lukkes kun hvis både input er gyldig og bruker er logget inn (altså vi kom så langt)
+        closeModal();
     }
 }
+
 
 // MODAL MELDINGER 
 function showMessageModal(message) {
