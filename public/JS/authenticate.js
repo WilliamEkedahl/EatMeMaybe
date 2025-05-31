@@ -38,6 +38,12 @@ export async function signIn(email, password) {
 }
 
 export async function logOut(){
+    const user = auth.currentUser;
+    if (!user) {
+        alert("Ingen bruker er logget inn.");
+        return;
+    }
+
     await signOut(auth);
     alert("User logged out");
     window.location.href="index.html";
@@ -105,28 +111,29 @@ export async function deleteCurrentUser() {
         return;
     }
 
-    const confirmed = confirm("Er du sikker på at du vil slette kontoen din? Denne handlingen kan ikke angres, og alle dine data vil bli slettet.");
+    const confirmed = confirm("Are you sure you want to delete your account? This change is irreversible, and all of your data will be deleted!");
     if (!confirmed) {
         return;
     }
 
     try {
-        // Steg 1: Slett brukerens inventardata fra Firestore (viktig å slette før brukeren selv)
-        await DeleteUserInventory();
+        // Steg 1: Slett brukerens inventory fra firestore
+        await deleteDoc(doc(db, "users", user.uid, "userInventory", user.uid))
+        console.log("User's userInventory is now deleted from Firestore");
 
         // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
         await deleteDoc(doc(db, "users", user.uid));
-        console.log("Brukerprofil-dokument slettet fra Firestore.");
+        console.log("Userprofile is now deleted from Firestore");
 
         // Steg 3: Slett selve brukeren fra Firebase Authentication
         await deleteUser(user);
-        alert("Kontoen din er slettet.");
+        alert("Your account is now deleted!");
         window.location.href = "signIn.html"; // Omdiriger til påloggingssiden etter sletting
     } catch (error) {
         console.error("Feil ved sletting av bruker:", error);
         if (error.code === 'auth/requires-recent-login') {
             // Håndterer sikkerhetskravet ved å tvinge re-pålogging
-            alert("For sikkerhets skyld må du logge inn på nytt for å slette kontoen din. Videresender til påloggingssiden.");
+            alert("For security reasons, you need to log in again to delete your account. Redirecting to the login page.");
             window.location.href = "signIn.html";
         } else {
             alert(`Feil ved sletting av konto: ${error.message}`);
