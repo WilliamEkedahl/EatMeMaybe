@@ -75,6 +75,12 @@ export async function DeleteUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
     const userId = user.uid;
+
+    const confirmed = confirm("Are you sure you want to delete your inventory? This change is irreversible, and all of your products will be deleted!");
+    if (!confirmed) {
+        return;
+    }
+
     const inventoryRef = collection(db, "users", user.uid, "userInventory");
     try {
         const snapshot = await getDocs(inventoryRef);
