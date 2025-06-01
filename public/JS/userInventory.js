@@ -1,4 +1,4 @@
-/* @author MartinN, cache and firestore: MartinU */
+/* @author MartinN, cache: MartinU */
 
 import { auth, db } from "./firestore.js";
 import {
