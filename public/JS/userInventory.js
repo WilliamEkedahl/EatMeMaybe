@@ -96,12 +96,18 @@ async function fetchUserInventory(userId) {
         return;
     }
 
-    const userCacheKey = `userInventory_${userId}`; // Creates a unique key for storing this user's inventory in local storage
-    const userCacheTimeKey = `userInventory_cache_time_${userId}`; // Creates a key for storing the timestamp of when this user's cache was last updated
-    const cached = localStorage.getItem(userCacheKey); // Tries to get the cached inventory data
-    const timestamp = localStorage.getItem(userCacheTimeKey); // Tries to get the cache timestamp
-    const now = Date.now(); // Gets the current time in milliseconds
-    const CACHE_TTL = 24 * 60 * 60 * 1000; // Defines the cache's "time to live" (1 day)
+    // Creates a unique key for storing this user's inventory in local storage
+    const userCacheKey = `userInventory_${userId}`;
+    // Creates a key for storing the timestamp of when this user's cache was last updated
+    const userCacheTimeKey = `userInventory_cache_time_${userId}`; 
+    // Tries to get the cached inventory data
+    const cached = localStorage.getItem(userCacheKey);
+    // Tries to get the cache timestamp
+    const timestamp = localStorage.getItem(userCacheTimeKey);
+    // Gets the current time
+    const now = Date.now(); 
+    // Defines the cache's "time to live" (1 day)
+    const CACHE_TTL = 24 * 60 * 60 * 1000;
 
     // Check if cached inventory data exists and is still fresh (not older than CACHE_TTL)
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
@@ -142,7 +148,8 @@ async function fetchUserInventory(userId) {
     try {
         // Get a snapshot of the user's inventory documents from Firestore
         const snapshot = await getDocs(userInventoryRef);
-        const inventoryItems = []; // This will hold the parsed inventory items
+        // Holds the parsed inventory items
+        const inventoryItems = [];
 
         // Loop through each document in the snapshot
         snapshot.forEach(doc => {
@@ -155,8 +162,8 @@ async function fetchUserInventory(userId) {
 
             const addedAt = data.addedAt.toDate();
 
-            // Determine shelf life in days for the item's category dynamically
-            let shelfLifeDays = categoryShelfLives[data.category] ?? 7; // Get shelf life based on category or default to 7 days. Either or basically with the "??"
+            // Get shelf life based on category or default to 7 days. Either or basically with the "??"
+            let shelfLifeDays = categoryShelfLives[data.category] ?? 7;
 
             // Calculate the expiration date
             const expirationDate = new Date(addedAt);
@@ -259,7 +266,8 @@ function displayUserInventory(items) {
 
     // For each product, create a table row and populate its data
     items.forEach(({ id, name, category, quantity, addedAt, daysLeft }) => {
-        const row = template.content.cloneNode(true);// Use a template for consistent formatting, used in index.html
+        // Use a template for consistent formatting, used in index.html
+        const row = template.content.cloneNode(true);
 
         // Get references to table cells
         const tdName = row.querySelector(".product-name");
