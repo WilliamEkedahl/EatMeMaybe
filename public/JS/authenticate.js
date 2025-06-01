@@ -1,6 +1,7 @@
 /**
  * @author Marius
  * @author Martin U
+ * @author William
 */
 
 //import firebase modules
@@ -18,6 +19,13 @@ import{
 import {clearUserInventoryCache} from "./cache.js";
 import { doc, setDoc, getDocs, collection, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
+/**
+ * @author William E
+ * @param email
+ * @param username
+ * @param password
+ * @returns {Promise<void>}
+ */
 export async function signUp(email, username, password){
     try {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -32,6 +40,12 @@ export async function signUp(email, username, password){
     }
 }
 
+/**
+ * @author William E
+ * @param email
+ * @param password
+ * @returns {Promise<void>}
+ */
 export async function signIn(email, password) {
     try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -42,6 +56,10 @@ export async function signIn(email, password) {
     }
 }
 
+/**
+ * @author William E
+ * @returns {Promise<void>}
+ */
 export async function logOut(){
     const user = auth.currentUser;
     if (!user) {
@@ -54,6 +72,10 @@ export async function logOut(){
     window.location.href="index.html";
 }
 
+/**
+ * @author Martin U
+ * @param callback
+ */
 export function userAuthenticated(callback = null) { // Gjør callback valgfri med standardverdi null
     onAuthStateChanged(auth, (user) => {
         const mainContent = document.getElementById("main-content");
@@ -76,7 +98,12 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
     });
 }
 
-export async function DeleteUserInventory() {
+/**
+ *
+ * @returns {Promise<void>}
+ * @constructor
+ */
+export async function deleteUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
     const userId = user.uid;
@@ -104,6 +131,12 @@ export async function DeleteUserInventory() {
     }
  }
 
+/**
+ *
+ * @param currentPassword
+ * @param newPassword
+ * @returns {Promise<void>}
+ */
  export async function changePassword(currentPassword, newPassword ){
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
@@ -114,9 +147,10 @@ export async function DeleteUserInventory() {
     window.location.href = "index.html";
  }
 
- /**
-  * @author Martin U
-  */
+/**
+ * @author Martin U
+ * @returns {Promise<void>}
+ */
 export async function deleteCurrentUser() {
     const user = auth.currentUser;
 
