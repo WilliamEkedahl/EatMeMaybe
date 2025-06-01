@@ -72,6 +72,7 @@ nav {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
+
 nav ul {
   width: 100%;
   list-style: none;
@@ -79,10 +80,12 @@ nav ul {
   justify-content: flex-end;
   align-items: center;
 }
+
 nav li {
   height: 50px;
   padding-right: 10px;
 }
+
 nav a {
   font-weight: bold;
   height: 100%;
@@ -94,16 +97,23 @@ nav a {
   border-radius: 8px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
 }
+
 nav a:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
- 
+
 nav a:active {
   background-color: #b07c00;
   transform: scale(0.97);
 }
- 
-/* Sidebar styling */
+
+nav a.active {
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .sidebar {
   position: fixed;
   top: 83px;
@@ -120,7 +130,7 @@ nav a:active {
   align-items: center;
   justify-content: flex-start;
   transition: right 0.3s ease-in-out, opacity 0.2s ease-in-out;
-  opacity: 0; /* Hidden by default */
+  opacity: 0;
 }
 
 /* Sidebar active state */

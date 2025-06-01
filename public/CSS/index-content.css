@@ -211,21 +211,31 @@ button {
 .category-btn {
   background-color: #fff3d8;
   border: 2px solid #ffe2bf;
+  font-weight: bold;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
   display: flex;
+  flex-direction: column;         /* Viktig: legg bilde over tekst */
   align-items: center;
   justify-content: center;
   width: 60px;
-  height: 60px;
+  height: 80px;                   /* Økt høyde for å få plass til tekst */
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .category-btn img {
   width: 32px;
   height: 32px;
+  margin-bottom: 4px;            /* Litt luft mellom bilde og tekst */
+}
+
+.category-btn span {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .category-btn:hover,
@@ -237,6 +247,11 @@ button {
 .category-btn:hover img,
 .category-btn.active img {
   filter: brightness(0) invert(1);
+}
+
+.category-btn:hover span,
+.category-btn.active span {
+  color: white;
 }
 
 .inventory-wrapper {
