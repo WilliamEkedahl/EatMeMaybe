@@ -1,6 +1,6 @@
 /**
  * @author Marius
- * 
+ * @author Martin U
 */
 
 //import firebase modules
@@ -114,6 +114,9 @@ export async function DeleteUserInventory() {
     window.location.href = "index.html";
  }
 
+ /**
+  * @author Martin U
+  */
 export async function deleteCurrentUser() {
     const user = auth.currentUser;
 
@@ -124,26 +127,27 @@ export async function deleteCurrentUser() {
 
     const confirmed = confirm("Are you sure you want to delete your account? This change is irreversible, and all of your data will be deleted!");
     if (!confirmed) {
-        return;
+        return; // Stops the process if user cancels
     }
 
     try {
-        // Steg 1: Slett brukerens inventory fra firestore
+        // Delete the user's inventory from Firestore based of the uid
         await deleteDoc(doc(db, "users", user.uid, "userInventory", user.uid))
         console.log("User's userInventory is now deleted from Firestore");
 
-        // Steg 2: Slett brukerens hovedprofil-dokument fra "users"-samlingen
+        // Delete user's profile doc from "users" collection
         await deleteDoc(doc(db, "users", user.uid));
         console.log("Userprofile is now deleted from Firestore");
 
-        // Steg 3: Slett selve brukeren fra Firebase Authentication
+        // Delete user from Firebase Authentication
         await deleteUser(user);
         alert("Your account is now deleted!");
-        window.location.href = "signIn.html"; // Omdiriger til påloggingssiden etter sletting
+        window.location.href = "signIn.html"; // Redircects user to sign-in page after deletion
     } catch (error) {
         console.error("Feil ved sletting av bruker:", error);
         if (error.code === 'auth/requires-recent-login') {
-            // Håndterer sikkerhetskravet ved å tvinge re-pålogging
+            // Checks if user is logged in recently. If not it will, for security reasons, 
+            // ask user to log in again to comlete deletion.
             alert("For security reasons, you need to log in again to delete your account. Redirecting to the login page.");
             window.location.href = "signIn.html";
         } else {
@@ -151,4 +155,5 @@ export async function deleteCurrentUser() {
         }
     }
 }
+
 userAuthenticated();

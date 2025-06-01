@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 1 day in milliseconds
-const CACHE_TTL = 24 * 60 * 60 * 1000;
-
 let allInventoryItems = [];         // Store for all products from Firestore
 let activeCategoryFilter = null;    // Active category for filtering
 let userInventoryRef = null;        // Reference to user's Firestore inventory
@@ -75,19 +72,26 @@ auth.onAuthStateChanged(async user => {
     }
 });
 
-// Fetch user's inventory, first from cache if possible
+
+/**
+ * @author Martin N
+ * @author Martin U
+ * Fetch user's inventory, first from cache if possible
+ */
+
 async function fetchUserInventory(userId) {
-    if (!userInventoryRef) {
+    if (!userInventoryRef) { // Checks if the reference to the user's inventory in Firestore is set.
         console.error("Cannot fetch inventory: userInventoryRef is not set (no user is logged in?).");
-        displayUserInventory([]);
+        displayUserInventory([]); // Clears the display.
         return;
     }
 
-    const userCacheKey = `userInventory_${userId}`;
-    const userCacheTimeKey = `userInventory_cache_time_${userId}`;
-    const cached = localStorage.getItem(userCacheKey);
-    const timestamp = localStorage.getItem(userCacheTimeKey);
-    const now = Date.now();
+    const userCacheKey = `userInventory_${userId}`; // Creates a unique key for storing this user's inventory in local storage
+    const userCacheTimeKey = `userInventory_cache_time_${userId}`; // Creates a key for storing the timestamp of when this user's cache was last updated
+    const cached = localStorage.getItem(userCacheKey); // Tries to get the cached inventory data
+    const timestamp = localStorage.getItem(userCacheTimeKey); // Tries to get the cache timestamp
+    const now = Date.now(); // Gets the current time in milliseconds
+    const CACHE_TTL = 24 * 60 * 60 * 1000; // Defines the cache's "time to live" (1 day)
 
     // Check if cached inventory data exists and is still fresh (not older than CACHE_TTL)
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
@@ -142,7 +146,7 @@ async function fetchUserInventory(userId) {
             const addedAt = data.addedAt.toDate();
 
             // Determine shelf life in days for the item's category dynamically
-            let shelfLifeDays = categoryShelfLives[data.category] ?? 7;
+            let shelfLifeDays = categoryShelfLives[data.category] ?? 7; // Get shelf life based on category or default to 7 days. Either or basically with the "??"
 
             // Calculate the expiration date
             const expirationDate = new Date(addedAt);
@@ -199,9 +203,9 @@ async function fetchUserInventory(userId) {
             displayUserInventory(inventoryItems);
         }
 
-        // Store the processed inventory in localStorage for caching
+        // Stores the processed inventory in localStorage for caching
         localStorage.setItem(userCacheKey, JSON.stringify(inventoryItems));
-        // Store the current timestamp to track cache time
+        // Stores the current timestamp to track cache time
         localStorage.setItem(userCacheTimeKey, now.toString());
 
     } catch (error) {

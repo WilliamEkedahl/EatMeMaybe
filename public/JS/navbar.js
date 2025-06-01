@@ -1,7 +1,7 @@
 /**
-@author Martin U
-@author Martin N
-@author Atle
+ *@author Martin U
+ *@author Martin N
+ *@author Atle
 */
 
 // Function to toggle the dropdown menu visibility

@@ -1,6 +1,6 @@
 /**
  * @author Marius
- * 
+ * @author Martin U
 */
 
 import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
@@ -104,14 +104,22 @@ signOutButton.forEach(id => {
     }
 });
 
- // Event listener for "Delete account" knappen
+/**
+ * @author Martin U
+ * 
+ */
+  
+   /**
+    * For defining the different IDs for "Delete account" bottons
+    * One for sidebar and one for dropdown
+    */
    const deleteButtonIds = ["deleteButtonSidebar", "deleteButtonDropdown"];
 
-deleteButtonIds.forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
+deleteButtonIds.forEach(id => { // Loops first through each IDs
+    const btn = document.getElementById(id); // Finds the button element by its id
+    if (btn) { // Goes through if button exists
+        btn.addEventListener("click", (e) => { // Adds event listener for when button is clicked
+            e.preventDefault(); // Prevents the default action of the button (e.g., submitting a form or navigating).
             deleteCurrentUser();
         });
     }
