@@ -1,3 +1,9 @@
+/* 
+@author: Martin N
+@author: Atle
+*/
+
+/* Global reset for margin, padding, and box-sizing */
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +29,7 @@ h2 {
   color: black;
 }
 
+/* Authentication buttons styling */
 .auth-message {
   display: flex;
   flex-direction: column;
@@ -100,7 +107,7 @@ h2 {
   display: none;
 }
 
-/* Tabellen */
+/* The table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -139,6 +146,7 @@ td.expiring-green {
   font-weight: bold;
 }
 
+/* Status message box styling */
 #status-message {
   display: none;
   margin-top: 1rem;
@@ -160,23 +168,25 @@ button {
   cursor: pointer;
 }
 
+/* Top bar layout with grid: category nav in center, empty inventory button on right */
 .top-bar {
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* Tre kolonner */
+  grid-template-columns: 1fr auto 1fr; /* Trhree columns */
   align-items: center;
   padding: 0 1rem;
   margin-bottom: 1rem;
   gap: 1rem;
 }
 
+/* Category buttons container in center column */
 .category-nav {
-  grid-column: 2; /* Plasser i midtkolonnen */
+  grid-column: 2; /* Place in middle column */
   display: flex;
   gap: 0.5rem;
   justify-content: center;
 }
 
-/* Knappen plasseres i høyre kolonne */
+/* Button to empty inventory, placed in right column */
 .emptyInventory-btn {
   grid-column: 3;
   font-weight: bold;
