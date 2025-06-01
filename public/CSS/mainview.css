@@ -1,4 +1,6 @@
+/* @author: MartinN, Atle */
 
+/* Reset default styles for all elements, before/after for good practice */
 *,
 *::before,
 *::after {
@@ -42,15 +44,16 @@ header {
   transition: width 0.3s ease;
 }
  
+/* Responsive adjustments for logo image on smaller screens */
 @media (max-width: 768px) {
   .logo-img {
-    width: 180px; /* mindre på mobil */
+    width: 180px; /* smaller on mobile */
   }
 }
  
 @media (max-width: 400px) {
   .logo-img {
-    width: 140px; /* enda mindre på små mobiler */
+    width: 140px; /* even smaller on very small devices */
   }
 }
  
@@ -60,6 +63,7 @@ header {
   box-shadow: none !important;
 }
  
+/* Navbar container */
 nav {
   background-color: #F1AD00;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
@@ -96,7 +100,7 @@ nav a:active {
   transform: scale(0.97);
 }
  
- 
+/* Sidebar styling */
 .sidebar {
   position: fixed;
   top: 83px;
@@ -112,22 +116,25 @@ nav a:active {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transition: right 0.3s ease-in-out, opacity 0.2s ease-in-out; /* Gliding animasjon */
-  opacity: 0; /* Hidden as a standard */
+  transition: right 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0; /* Hidden by default */
 }
+
+/* Sidebar active state */
 .sidebar.show {
-  right: 0; /* When active it get moved in */
-  opacity: 1; /* Shows as a fade in */
+  right: 0; 
+  opacity: 1; 
 }
+
 .sidebar li {
   width: 100%;
   text-align: center;
 }
 
-
+/* Sidebar links and buttons */
 .sidebar a,
 .sidebar button {
-  all: unset; /* Fjerner alle standardstiler */
+  all: unset; /* Remove default styles */
   display: block;
   width: 100%;
   text-align: center;
@@ -138,7 +145,6 @@ nav a:active {
   transition: background 0.3s;
 }
 
- 
 .sidebar li:first-child {
   padding-top: 1rem;
   padding-bottom: 50px;
@@ -152,6 +158,7 @@ nav a:active {
   display: none;
 }
  
+/* Responsive adjustments for navbar and sidebar */
 @media (max-width: 768px) {
   .hideOnMobile, .dropdown{
     display: none !important;
@@ -160,6 +167,7 @@ nav a:active {
     display: block;
   }
 }
+
 @media (max-width: 600px) {
   .sidebar {
     width: 100%;
@@ -167,15 +175,13 @@ nav a:active {
 }
 
  
-/*For dropdown menu on profile*/
-/* Dropdown container */
+/*For dropdown*/
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: 9999; /* Sørger for at den ligger over alt */
+  z-index: 9999; /* Ensures it's on top of other elements */
 }
 
-/* Dropdown button */
 .dropbtn {
   height: 100%;
   padding: 0 20px;
@@ -202,12 +208,11 @@ nav a:active {
   box-shadow: none;
 }
 
-/* Dropdown content */
 .dropdown-content {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #F1AD00; /* Samme som sidebar */
+  background-color: #F1AD00; 
   min-width: 160px;
   display: flex;
   flex-direction: column;
@@ -225,7 +230,7 @@ nav a:active {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Synlighet når man hovrer over knappen eller menyen */
+/* Show dropdown when hovering over the container */
 .dropdown:hover .dropdown-content,
 .dropdown-content:hover {
   opacity: 1;
@@ -233,7 +238,7 @@ nav a:active {
   transform: translateY(0);
 }
 
-/* Felles stil for både <a> og <button> */
+/* Styling for links and buttons inside dropdown */
 .dropdown-content button,
 .dropdown-content a {
   display: block;
@@ -250,7 +255,6 @@ nav a:active {
   transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 
-/* Hover-effekt for menyvalg */
 .dropdown-content button:hover,
 .dropdown-content a:hover {
   background-color: rgba(255, 255, 255, 0.15);
@@ -258,7 +262,7 @@ nav a:active {
   box-shadow: none;
 }
 
-/* SVG-ikoner inni menyvalg */
+/* Dropdown SVG icon */
 .dropdown-content svg {
   fill: black !important;
 }
