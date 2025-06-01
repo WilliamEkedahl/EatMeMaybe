@@ -20,10 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeUI();
 });
 
-// VARIABLER 
-let selectedProduct = { name: "", category: "" };
-let currentSuggestion = "";
-
 
 /**
  * Prepares the UI when the page finishes loading.
@@ -136,6 +132,9 @@ function filterItems() {
  * Updates currentSuggestion to be used if accepted.
  * Clears suggestion if no match or input is empty.
  */
+
+let currentSuggestion = "";
+
 function showGhostSuggestion() {
     const input = document.getElementById("search-bar");
     const ghost = document.getElementById("ghost-suggestion");
@@ -185,6 +184,9 @@ function acceptGhostSuggestion(e) {
  * Clears cached data and shows success or error alerts.
  * Closes modal only if the product was added without errors.
  */
+
+let selectedProduct = { name: "", category: "" };
+
 async function addProductToInventory() {
     const quantityInput = document.getElementById('quantity-input');
     const quantity = parseInt(quantityInput.value);
