@@ -1,4 +1,8 @@
-// @author Marius
+/**
+ * @author Marius
+ * 
+*/
+
 import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {

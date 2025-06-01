@@ -1,4 +1,8 @@
-//@author Marius
+/**
+ * @author Marius
+ * 
+*/
+
 //import firebase modules
 import {auth, db } from "./firestore.js";
 import{
