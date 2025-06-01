@@ -3,6 +3,11 @@
  * @author Martin U 
  */
 
+/**
+ * Loads Firebase login and database setup.
+ * Gets functions to read from and write to the database.
+ * Also brings in a tool to clear saved inventory data.
+ */
 import { auth, db } from "./firestore.js";
 import {
     collection,
@@ -12,23 +17,28 @@ import {
     deleteDoc,
     updateDoc
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { clearUserInventoryCache } from "./cache.js"; // Antar denne finnes
+import { clearUserInventoryCache } from "./cache.js"; 
 
+// Wait for the DOM content to fully load before executing code
 document.addEventListener("DOMContentLoaded", () => {
-    // Add event listeners for category buttons
+    // Add event listener for category button
     const categoryButtons = document.querySelectorAll(".category-btn");
 
-    // Set "All Products" as the default active button on load
+    // Set "All Products" as the default active button on load (from category-btn, "empty" = all category)
     const defaultBtn = document.querySelector('.category-btn[data-category=""]');
     if (defaultBtn) defaultBtn.classList.add("active");
 
+    // Add a click event listener to each category button
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // Update active button
+            // When a button is clicked, remove "active" class from all buttons
             categoryButtons.forEach(b => b.classList.remove("active"));
+            // Add the "active" class to the clicked button
             btn.classList.add("active");
 
+            // Get the category associated with the clicked button
             const category = btn.getAttribute("data-category");
+            // Filter the inventory by the selected category
             filterInventoryByCategory(category);
         });
     });
