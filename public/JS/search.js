@@ -148,7 +148,7 @@ function filterItems() {
     displayProducts(filtered);
 }
 
-// GHOST AUTOCOMPLETE 
+// GHOST AUTOCOMPLETE  @author Marius
 function showGhostSuggestion() {
     const input = document.getElementById("search-bar");
     const ghost = document.getElementById("ghost-suggestion");
