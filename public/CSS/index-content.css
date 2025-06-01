@@ -217,18 +217,18 @@ button {
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
   display: flex;
-  flex-direction: column;         /* Viktig: legg bilde over tekst */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 60px;
-  height: 80px;                   /* Økt høyde for å få plass til tekst */
+  height: 80px;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .category-btn img {
   width: 32px;
   height: 32px;
-  margin-bottom: 4px;            /* Litt luft mellom bilde og tekst */
+  margin-bottom: 4px;
 }
 
 .category-btn span {

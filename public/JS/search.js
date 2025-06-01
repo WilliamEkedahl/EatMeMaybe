@@ -1,3 +1,8 @@
+/**
+ * Loads Firebase login and database setup.
+ * Gets functions to read from and write to the database.
+ * Also brings in a tool to clear saved inventory data.
+ */
 import { auth, db } from "./firestore.js"
 import { 
     collection,  
@@ -5,12 +10,17 @@ import {
     addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { clearUserInventoryCache } from "./cache.js";
 
-// INIT 
+// Waits until the webpage is fully loaded, then runs the main setup function
 document.addEventListener("DOMContentLoaded", () => {
     initializeUI();
 });
 
-// VARIABLER 
+/**
+ * Sets up product data and local storage.
+ * Starts with an empty product list and default selection.
+ * Sets cache keys and a 24-hour time limit.
+ * Connects to the 'products' collection in Firestore.
+ */
 let products = [];
 let selectedProduct = { name: "", category: "" };
 let currentSuggestion = "";
@@ -21,11 +31,16 @@ const CACHE_TTL = 24 * 60 * 60 * 1000;
 
 const productsCollectionRef = collection(db, "products")
 
-// UI INIT 
+/**
+ * Prepares the UI when the page finishes loading.
+ * Loads and shows products, and adds event listeners.
+ * Handles search, filtering, modals, and quantity buttons.
+ * Also sets up the mobile sidebar menu.
+ */
 function initializeUI() {
+  
     loadProducts();
 
-    //Modal2 (custom product modal)
     document.getElementById('add-new-product-btn').addEventListener('click', openModal2);
     document.getElementById('custom-modal-close-btn2').addEventListener('click', closeModal2);
     document.getElementById("custom-decrease-btn").addEventListener("click", () => changeCustomQuantity(-1));
@@ -40,7 +55,7 @@ function initializeUI() {
     document.getElementById("search-bar").addEventListener("input", showGhostSuggestion);
     document.getElementById("search-bar").addEventListener("keydown", acceptGhostSuggestion);
 
-    document.getElementById("add-custom-product-btn").addEventListener("click", addNewProductToFirestore);
+    document.getElementById("add-custom-product-btn").addEventListener("click", addCustomProductToInventory);
     document.getElementById("modal-close-btn").addEventListener("click", closeModal);
     document.getElementById("decrease-btn").addEventListener("click", () => changeQuantity(-1));
     document.getElementById("increase-btn").addEventListener("click", () => changeQuantity(1));
@@ -52,7 +67,11 @@ function initializeUI() {
     document.querySelector('.add-product-btn').addEventListener('click', addProductToInventory);
 }
 
-//  DATAHÅNDTERING AV FIRESTORE PRODUCTS TIL CACHE LAGRING
+/**
+ * Gets products from Firestore and saves them in `products`.
+ * Then shows them on the page using `displayProducts`.
+ * Only runs once when the app starts.
+ */
     async function loadProducts() {
         const cached = localStorage.getItem(CACHE_KEY);
         const timestamp = localStorage.getItem(CACHE_TIME_KEY);
@@ -85,17 +104,15 @@ function initializeUI() {
     }
 }
 
-/**unction clearProductCache() {
-    localStorage.removeItem(CACHE_KEY);
-    localStorage.removeItem(CACHE_TIME_KEY);
-}*/
-
-// DISPLAY
+/**
+ * Shows the list of products in the table on the page.
+ * Adds icons for categories and "Select" buttons to each.
+ * Clicking a row or button opens the product details modal.
+ */
 function displayProducts(items) {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
 
-    // Kartlegger kategori til bilde
     const categoryIcons = {
         "Fruits and Vegetables": "MEDIA/vegetable.png",
         "Cooling Products": "MEDIA/fridge.png",
@@ -106,7 +123,6 @@ function displayProducts(items) {
     items.forEach(({ name, category }) => {
         const row = document.createElement("tr");
 
-        // Finn riktig ikon, eller bruk en fallback
         const iconPath = categoryIcons[category] || "../MEDIA/grocery-cart.png";
 
         row.innerHTML = `
@@ -120,9 +136,8 @@ function displayProducts(items) {
             </td>
         `;
 
-        // Åpner modal ved klikk på hele raden eller knappen
         row.querySelector(".select-button").addEventListener("click", (e) => {
-            e.stopPropagation(); // Hindrer dobbel modal-åpning
+            e.stopPropagation();
             openModal(name, category);
         });
 
@@ -132,6 +147,12 @@ function displayProducts(items) {
     });
 }
 
+/**
+ * Filters products by search text and chosen category.
+ * Shows products that start with the search and match the category.
+ * Sorts results alphabetically if searching.
+ * Updates the product list display.
+ */
 function filterItems() {
     const query = document.getElementById("search-bar").value.toLowerCase();
     const category = document.getElementById("category-dropdown").value;
@@ -148,7 +169,14 @@ function filterItems() {
     displayProducts(filtered);
 }
 
-// GHOST AUTOCOMPLETE  @author Marius
+// @author Marius
+/**
+ * Shows a faint autocomplete suggestion in the search box.
+ * Finds the first product name starting with what the user typed.
+ * Displays the suggestion after the typed text.
+ * Updates currentSuggestion to be used if accepted.
+ * Clears suggestion if no match or input is empty.
+ */
 function showGhostSuggestion() {
     const input = document.getElementById("search-bar");
     const ghost = document.getElementById("ghost-suggestion");
@@ -173,6 +201,11 @@ function showGhostSuggestion() {
     }
 }
 
+/**
+ * When user presses Tab or Right Arrow, fills search with the suggestion.
+ * Replaces input with currentSuggestion and stops default key action.
+ * Clears the suggestion and updates the product list to match.
+ */
 function acceptGhostSuggestion(e) {
     if ((e.key === "ArrowRight" || e.key === "Tab") && currentSuggestion) {
         e.preventDefault();
@@ -183,7 +216,58 @@ function acceptGhostSuggestion(e) {
     }
 }
 
-// MODAL 
+/**
+ * Adds chosen product and amount to the logged-in user's inventory in Firestore.
+ * Checks if quantity is valid and user is logged in before saving.
+ * Clears cached data and shows success or error alerts.
+ * Closes modal only if the product was added without errors.
+ */
+async function addProductToInventory() {
+    const quantityInput = document.getElementById('quantity-input');
+    const quantity = parseInt(quantityInput.value);
+
+    const { name, category } = selectedProduct;
+
+    if (!name || !category || quantity < 1) {
+        showMessageModal("Please select a valid quantity.");
+        return;
+    }
+
+    const user = auth.currentUser;
+    if (!user) {
+        showMessageModal("You have to be logged in to add products.");
+        return;
+    }
+
+    const product = {
+        name,
+        category,
+        quantity,
+        addedAt: new Date()
+    };
+
+    try {
+        const userId = user.uid;
+        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
+
+        const docRef = await addDoc(userInventoryCollectionRef, product);
+        console.log("Added product with ID:", docRef.id);
+        showMessageModal("Product added successfully!");
+        clearUserInventoryCache(userId);
+    } catch (err) {
+        console.error("Failed to add product:", err);
+        showMessageModal("Something went wrong. Please try again.");
+    } finally {
+        closeModal();
+    }
+}
+
+/**
+ * Opens the product details modal.
+ * Sets the selected product's name and category in the modal.
+ * Resets quantity input to 1.
+ * Shows the modal by adding the 'show' class.
+ */
 function openModal(name, category) {
     selectedProduct = { name, category };
 
@@ -194,22 +278,30 @@ function openModal(name, category) {
     document.getElementById('product-modal').classList.add('show');
 }
 
+/**
+ * Closes the product details modal.
+ * Simply removes the 'show' class from the modal element, hiding it from view.
+ */
 function closeModal() {
     document.getElementById('product-modal').classList.remove('show');
 }
 
+/**
+ * Adjusts the quantity value in the product modal.
+ * Adds or subtracts the given amount but ensures the quantity never goes below 1.
+ */
 function changeQuantity(amount) {
     const input = document.getElementById('quantity-input');
     input.value = Math.max(1, parseInt(input.value) + amount);
 }
 
-function changeCustomQuantity(amount) {
-    const input = document.getElementById('custom-quantity');
-    input.value = Math.max(1, parseInt(input.value) + amount);
-}
-
-// PRODUKTHÅNDTERING 
-async function addNewProductToFirestore() {
+/**
+ * Adds a new custom product to the user's inventory.
+ * Validates input fields, checks user login, then writes product data to Firestore.
+ * Clears input fields, closes modal, and shows success/error messages.
+ * Also clears local cache for user inventory after adding.
+ */
+async function addCustomProductToInventory() {
     const nameInput = document.getElementById('custom-product-name2');
     const categorySelect = document.getElementById('product-category2');
     const quantityInput = document.getElementById("custom-quantity");
@@ -245,7 +337,6 @@ async function addNewProductToFirestore() {
 
         clearUserInventoryCache(userId);
 
-        // Tilbakestill inputs
         nameInput.value = "";
         categorySelect.value = "";
         quantityInput.value = "1";
@@ -259,51 +350,36 @@ async function addNewProductToFirestore() {
     }
 }
 
-
-async function addProductToInventory() {
-    const quantityInput = document.getElementById('quantity-input');
-    const quantity = parseInt(quantityInput.value);
-
-    const { name, category } = selectedProduct;
-
-    // Sjekk om input er gyldig
-    if (!name || !category || quantity < 1) {
-        showMessageModal("Please select a valid quantity.");
-        return;
-    }
-
-    const user = auth.currentUser;
-    if (!user) {
-        showMessageModal("You have to be logged in to add products.");
-        return;
-    }
-
-    const product = {
-        name,
-        category,
-        quantity,
-        addedAt: new Date()
-    };
-
-    try {
-        const userId = user.uid;
-        const userInventoryCollectionRef = collection(db, "users", userId, "userInventory");
-
-        const docRef = await addDoc(userInventoryCollectionRef, product);
-        console.log("Added product with ID:", docRef.id);
-        showMessageModal("Product added successfully!");
-        clearUserInventoryCache(userId); // oppdaterer index
-    } catch (err) {
-        console.error("Failed to add product:", err);
-        showMessageModal("Something went wrong. Please try again.");
-    } finally {
-        // Modal lukkes kun hvis både input er gyldig og bruker er logget inn (altså vi kom så langt)
-        closeModal();
-    }
+/**
+ * Opens the second custom product modal by adding the 'show' class.
+ * This modal allows users to add new custom products manually.
+ */
+function openModal2() {
+ document.getElementById('custom-product-modal2').classList.add('show');
 }
 
+/**
+ * Closes the second custom product modal by removing the 'show' class.
+ */
+function closeModal2() {
+ document.getElementById('custom-product-modal2').classList.remove('show');
+}
 
-// MODAL MELDINGER 
+/**
+ * Adjusts the quantity value in the custom product modal.
+ * Similar to changeQuantity but targets the custom product input field.
+ * Ensures quantity does not go below 1.
+ */
+function changeCustomQuantity(amount) {
+    const input = document.getElementById('custom-quantity');
+    input.value = Math.max(1, parseInt(input.value) + amount);
+}
+
+/**
+ * Shows a temporary message modal with the given text.
+ * Displays the message and automatically hides the modal after 2,5 seconds.
+ * I used to show feedback like success or error notifications.
+ */ 
 function showMessageModal(message) {
     const modal = document.getElementById('custom-modal');
     const messageElement = document.getElementById('modal-message');
@@ -313,13 +389,5 @@ function showMessageModal(message) {
 
     setTimeout(() => {
         modal.classList.remove('show');
-    }, 2000);
-}
-
-function openModal2() {
- document.getElementById('custom-product-modal2').classList.add('show');
-}
-
-function closeModal2() {
- document.getElementById('custom-product-modal2').classList.remove('show');
+    }, 2500);
 }
