@@ -1,3 +1,9 @@
+
+/**
+ * @ Atle
+ * @ Martin U
+ */
+
 /**
  * Loads Firebase login and database setup.
  * Gets functions to read from and write to the database.
@@ -169,7 +175,6 @@ function filterItems() {
     displayProducts(filtered);
 }
 
-// @author Marius
 /**
  * Shows a faint autocomplete suggestion in the search box.
  * Finds the first product name starting with what the user typed.
@@ -201,6 +206,7 @@ function showGhostSuggestion() {
     }
 }
 
+// @author Marius
 /**
  * When user presses Tab or Right Arrow, fills search with the suggestion.
  * Replaces input with currentSuggestion and stops default key action.
