@@ -1,9 +1,8 @@
 import { auth, db } from "./firestore.js"
 import { 
-    collection,  
-    getDocs, 
+    collection, 
     addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { clearUserInventoryCache } from "./cache.js";
+import { clearUserInventoryCache, loadProducts, getCachedProducts } from "./cache.js";
 
 // INIT 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,19 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // VARIABLER 
-let products = [];
 let selectedProduct = { name: "", category: "" };
 let currentSuggestion = "";
 
-const CACHE_KEY = "products";
-const CACHE_TIME_KEY = "products_cache_time";
-const CACHE_TTL = 24 * 60 * 60 * 1000;
-
-const productsCollectionRef = collection(db, "products")
 
 // UI INIT 
-function initializeUI() {
-    loadProducts();
+async function initializeUI() {
+    const products = await loadProducts();
+    displayProducts(products);
 
     //Modal2 (custom product modal)
     document.getElementById('add-new-product-btn').addEventListener('click', openModal2);
@@ -51,44 +45,7 @@ function initializeUI() {
 
     document.querySelector('.add-product-btn').addEventListener('click', addProductToInventory);
 }
-
-//  DATAHÅNDTERING AV FIRESTORE PRODUCTS TIL CACHE LAGRING
-    async function loadProducts() {
-        const cached = localStorage.getItem(CACHE_KEY);
-        const timestamp = localStorage.getItem(CACHE_TIME_KEY);
-        const now = Date.now();
-
-    if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
-        console.log("Laster produkter fra cache");
-        products = JSON.parse(cached);
-        displayProducts(products);
-        return;
-    }
-
-    try {
-        console.log("Henter produkter fra Firestore");
-        const snapshot = await getDocs(productsCollectionRef);
-        products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        products.sort((a, b) => {
-            if (a.category.toLowerCase() < b.category.toLowerCase()) return -1;
-            if (a.category.toLowerCase() > b.category.toLowerCase()) return 1;
-            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-        });
-
-        displayProducts(products);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(products));
-        localStorage.setItem(CACHE_TIME_KEY, now.toString());
-
-    } catch (error) {
-        console.error("Feil ved henting fra Firestore:", error);
-    }
-}
-
-/**unction clearProductCache() {
-    localStorage.removeItem(CACHE_KEY);
-    localStorage.removeItem(CACHE_TIME_KEY);
-}*/
+ 
 
 // DISPLAY
 function displayProducts(items) {
@@ -136,7 +93,9 @@ function filterItems() {
     const query = document.getElementById("search-bar").value.toLowerCase();
     const category = document.getElementById("category-dropdown").value;
 
-    const filtered = products.filter(({ name, category: cat }) =>
+    const allProducts = getCachedProducts(); // Get products from cache.js
+
+    const filtered = allProducts.filter(({ name, category: cat }) =>
         (!category || cat === category) &&
         (!query || name.toLowerCase().startsWith(query))
     );
@@ -154,13 +113,15 @@ function showGhostSuggestion() {
     const ghost = document.getElementById("ghost-suggestion");
     const query = input.value.toLowerCase().trim();
 
-    if (!query || products.length === 0) {
+    const allProducts = getCachedProducts(); // Get products from cache.js
+
+    if (!query || allProducts.length === 0) {
         ghost.textContent = "";
         currentSuggestion = "";
         return;
     }
 
-    const match = products
+    const match = allProducts
         .map(p => p.name)
         .find(name => name.toLowerCase().startsWith(query));
 

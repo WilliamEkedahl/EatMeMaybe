@@ -32,7 +32,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function hideSidebar() {
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.classList.remove("show");
-}
+
