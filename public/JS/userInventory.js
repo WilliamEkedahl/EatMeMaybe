@@ -1,3 +1,5 @@
+/* @author MartinN, cache and firestore: MartinU */
+
 import { auth, db } from "./firestore.js";
 import {
     collection,
@@ -10,18 +12,17 @@ import {
 import { clearUserInventoryCache } from "./cache.js"; // Antar denne finnes
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Event listeners for kategoriknapper
+    // Add event listeners for category buttons
     const categoryButtons = document.querySelectorAll(".category-btn");
 
-    // Sett "All Products" som aktiv ved start
+    // Set "All Products" as the default active button on load
     const defaultBtn = document.querySelector('.category-btn[data-category=""]');
     if (defaultBtn) defaultBtn.classList.add("active");
 
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // Fjern 'active' fra alle knapper
+            // Update active button
             categoryButtons.forEach(b => b.classList.remove("active"));
-            // Legg til 'active' på valgt knapp
             btn.classList.add("active");
 
             const category = btn.getAttribute("data-category");
@@ -30,13 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// 1 day in milliseconds
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 
-let allInventoryItems = [];
-let activeCategoryFilter = null;
-let userInventoryRef = null;
+let allInventoryItems = [];         // Store for all products from Firestore
+let activeCategoryFilter = null;    // Active category for filtering
+let userInventoryRef = null;        // Reference to user's Firestore inventory
 
-// Unngå duplisering av category
+// Shelf life (in days) for each category
 const categoryShelfLives = {
     "Cooling Products": 7,
     "Frozen Products": 179,
@@ -44,15 +46,14 @@ const categoryShelfLives = {
     "Dry Products": 239
 };
 
-// Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
+// Looking for whether a user is logged in or not
 auth.onAuthStateChanged(async user => {
     if (user) {
         const userId = user.uid;
-        // Firebase v9/v11 sintaks for samlingsreferanse
         userInventoryRef = collection(doc(db, "users", userId), "userInventory");
-        fetchUserInventory(userId); // Send userId til fetchUserInventory
+        fetchUserInventory(userId);
 
-        // Hent brukernavnet fra Firestore og oppdater h2-tittel
+        // Fetch the username from firestore and update the heading h2
         try {
             const userDoc = await getDoc(doc(db, "users", userId));
             if (userDoc.exists) {
@@ -67,42 +68,34 @@ auth.onAuthStateChanged(async user => {
         }
     } else {
         console.error("No user is logged in.");
-        // <--- NYTT: Legg til logikk her for å tømme tabell / vise "ikke logget inn" melding,
-        // hvis dette ikke håndteres av authenticate.js eller HTML.
-        // For eksempel, hvis #main-content styres fra authenticate.js.
-        // Men vi tømmer i det minste inventaret her:
-        displayUserInventory([]); // Tøm tabellen når ingen er logget inn
+        displayUserInventory([]); // Clear the table if no user is logged in
     }
 });
 
-async function fetchUserInventory(userId) { // Mottar userId som argument
-    // <--- NYTT: Sjekk om userInventoryRef er null (bruker ikke logget inn) for robusthet
+// Fetch user's inventory, first from cache if possible
+async function fetchUserInventory(userId) {
     if (!userInventoryRef) {
         console.error("Cannot fetch inventory: userInventoryRef is not set (no user is logged in?).");
-        displayUserInventory([]); // Vis tom tabell
-        return; // Avbryt funksjonen
+        displayUserInventory([]);
+        return;
     }
 
     const userCacheKey = `userInventory_${userId}`;
     const userCacheTimeKey = `userInventory_cache_time_${userId}`;
-
     const cached = localStorage.getItem(userCacheKey);
     const timestamp = localStorage.getItem(userCacheTimeKey);
     const now = Date.now();
 
+    // Check if cached inventory exists and is not too old
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
         console.log("Loading user inventory from cache", userId);
         allInventoryItems = JSON.parse(cached);
 
         allInventoryItems.forEach(item => {
             item.addedAt = new Date(item.addedAt);
-
-            // Bruk categoryShelfLives objektet
             let shelfLifeDays = categoryShelfLives[item.category] ?? 7;
-
             const expirationDate = new Date(item.addedAt);
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
-
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             expirationDate.setHours(0, 0, 0, 0);
@@ -117,7 +110,6 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
         } else {
             if (emptyMessage) emptyMessage.style.display = "none";
         }
-        // <--- SLUTT NYTT
 
         if (activeCategoryFilter) {
             filterInventoryByCategory(activeCategoryFilter);
@@ -127,7 +119,7 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
         return;
     }
 
-    //hent fra firestore om ikke i cache
+    // Fetch inventory from Firestore if no cache
     try {
         const snapshot = await getDocs(userInventoryRef);
         const inventoryItems = [];
@@ -163,7 +155,7 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
             });
         });
 
-        // Sorter etter dager igjen, deretter kategori, deretter produktnavn
+        // Sort products by days left, then category, then product name
         inventoryItems.sort((a, b) => {
             if (a.daysLeft !== b.daysLeft) {
                 return a.daysLeft - b.daysLeft;
@@ -176,14 +168,12 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
 
         allInventoryItems = inventoryItems;
 
-        // <--- NYTT: Legg til logikk for empty-inventory-message fra gammel fil
         const emptyMessage = document.getElementById("empty-inventory-message");
         if (allInventoryItems.length === 0) {
             if (emptyMessage) emptyMessage.style.display = "block";
         } else {
             if (emptyMessage) emptyMessage.style.display = "none";
         }
-        // <--- SLUTT NYTT
 
         if (activeCategoryFilter) {
             filterInventoryByCategory(activeCategoryFilter);
@@ -200,37 +190,36 @@ async function fetchUserInventory(userId) { // Mottar userId som argument
     }
 }
 
+// Update active category and filter
 function filterInventoryByCategory(category) {
     activeCategoryFilter = category;
-    // <--- ENDRET FRA GAMMEL: Fikk redisplayFilteredInventory() fra gammel fil
     redisplayFilteredInventory();
 }
 
-function redisplayFilteredInventory() { // <--- NYTT: Lagt til denne funksjonen, som eksisterte i gammel fil
+// Display products in active category to prevent having to reload db
+function redisplayFilteredInventory() {
     const itemsToDisplay = activeCategoryFilter
         ? allInventoryItems.filter(item => item.category === activeCategoryFilter)
         : allInventoryItems;
     displayUserInventory(itemsToDisplay);
 }
 
+// Display the products in the table
 function displayUserInventory(items) {
     const inventoryTable = document.getElementById("inventory-table-body");
     const template = document.getElementById("inventory-row-template");
-    // <--- NYTT: Hent emptyMessage elementet
     const emptyMessage = document.getElementById("empty-inventory-message");
 
-    // <--- NYTT: Skjul emptyMessage i starten av displayUserInventory fra gammel fil
     if (emptyMessage) emptyMessage.style.display = "none";
 
-    // Tøm eksisterende rader
+    // Clear existing rows
     while (inventoryTable.firstChild) {
         inventoryTable.removeChild(inventoryTable.firstChild);
     }
 
-    // <--- NYTT: Vis emptyMessage hvis det ikke er noen varer fra gammel fil
     if (items.length === 0) {
         if (emptyMessage) emptyMessage.style.display = "block";
-        return; // Avbryt videre visning
+        return; 
     }
 
     items.forEach(({ id, name, category, quantity, addedAt, daysLeft }) => {
@@ -251,7 +240,7 @@ function displayUserInventory(items) {
         tdAddedAt.textContent = addedAt.toLocaleDateString("no-NO");
         tdDaysLeft.textContent = daysLeft === 0 ? "EXPIRED" : `${daysLeft} days`;
 
-        // Legg til fargeklasse basert på dager igjen
+        // Color indicator for expiration status
         if (daysLeft <= 3) {
             tdDaysLeft.classList.add("expiring-red");
         } else if (daysLeft <= 7) {
@@ -260,10 +249,7 @@ function displayUserInventory(items) {
             tdDaysLeft.classList.add("expiring-green");
         }
 
-        // <--- Endret: Knappelyttere er nå direkte her, som i din nye fil.
-        // Tidligere i attachInventoryEventListeners i gammel fil
-
-        // Øk kvantitet
+        // Handle increasing quantity
         increaseBtn.addEventListener("click", async () => {
             const newQuantity = Number(quantity) + 1;
             await updateItemQuantity(id, newQuantity);
@@ -274,7 +260,7 @@ function displayUserInventory(items) {
             redisplayFilteredInventory(); // <--- Endret: Kaller redisplayFilteredInventory
         });
 
-        // Reduser kvantitet
+        // Handle decreasing quantity
         decreaseBtn.addEventListener("click", async () => {
             const currentQuantity = Number(quantity);
             if (currentQuantity > 1) {
@@ -283,19 +269,19 @@ function displayUserInventory(items) {
                 const item = allInventoryItems.find(item => item.id === id);
                 if (item) item.quantity = currentQuantity - 1;
 
-                redisplayFilteredInventory(); // <--- Endret: Kaller redisplayFilteredInventory
+                redisplayFilteredInventory();
             } else {
                 const confirmed = window.confirm("Quantity is 1. Remove product completely?");
                 if (confirmed) {
                     await deleteInventoryItem(id);
 
                     allInventoryItems = allInventoryItems.filter(item => item.id !== id);
-                    redisplayFilteredInventory(); // <--- Endret: Kaller redisplayFilteredInventory
+                    redisplayFilteredInventory();
                 }
             }
         });
 
-        // Slett produktet
+        // Handle deleting product
         deleteBtn.setAttribute("data-id", id);
         deleteBtn.addEventListener("click", async () => {
             const confirmed = window.confirm("Are you sure you want to remove this product?");
@@ -303,11 +289,10 @@ function displayUserInventory(items) {
                 await deleteInventoryItem(id);
 
                 allInventoryItems = allInventoryItems.filter(item => item.id !== id);
-                redisplayFilteredInventory(); // <--- Endret: Kaller redisplayFilteredInventory
+                redisplayFilteredInventory();
 
-                // <--- NYTT: Statusmelding fra gammel fil
                 const statusMessage = document.getElementById("status-message");
-                if (statusMessage) { // <--- NYTT: Lagt til sjekk for eksistens
+                if (statusMessage) {
                     statusMessage.textContent = "Product removed.";
                     statusMessage.style.display = "block";
                     setTimeout(() => {
@@ -315,7 +300,6 @@ function displayUserInventory(items) {
                         statusMessage.textContent = "";
                     }, 3000);
                 }
-                // <--- SLUTT NYTT
             }
         });
 
@@ -323,10 +307,11 @@ function displayUserInventory(items) {
     });
 }
 
+// Delete a product from Firestore and update cache
 async function deleteInventoryItem(itemId) {
     try {
         const user = auth.currentUser;
-        if (!user) { // <--- NYTT: Brukersjekk for robusthet
+        if (!user) { 
             console.error("No user is logged in to delete this element");
             return;
         }
@@ -334,17 +319,18 @@ async function deleteInventoryItem(itemId) {
 
         await deleteDoc(doc(db, "users", userId, "userInventory", itemId));
         console.log(`Element with ID ${itemId} is deleted.`);
-        clearUserInventoryCache(userId); // <--- NYTT: Kall til clearUserInventoryCache
+        clearUserInventoryCache(userId);
 
     } catch (error) {
         console.error("Error occured when deleting element:", error);
     }
 }
 
+// Update quantity for a product in Firestore and update cache
 async function updateItemQuantity(itemId, newQuantity) {
     try {
         const user = auth.currentUser;
-        if (!user) { // <--- NYTT: Brukersjekk for robusthet
+        if (!user) {
             console.error("No user is logged in to update element");
             return;
         }
@@ -354,7 +340,7 @@ async function updateItemQuantity(itemId, newQuantity) {
             quantity: newQuantity
         });
         console.log(`Updated quantity for ${itemId} til ${newQuantity}.`);
-        clearUserInventoryCache(userId); // <--- NYTT: Kall til clearUserInventoryCache
+        clearUserInventoryCache(userId);
 
     } catch (error) {
         console.error("Error occured when updating quantity:", error);
