@@ -44,8 +44,6 @@ function initializeUI() {
     document.getElementById("modal-close-btn").addEventListener("click", closeModal);
     document.getElementById("decrease-btn").addEventListener("click", () => changeQuantity(-1));
     document.getElementById("increase-btn").addEventListener("click", () => changeQuantity(1));
-    document.getElementById("hide-sidebar-btn").addEventListener("click", hideSidebar);
-    document.getElementById("show-sidebar-btn").addEventListener("click", showSidebar);
 
     document.getElementById("product-modal").addEventListener("click", function (e) {
         if (e.target === e.currentTarget) closeModal();
@@ -317,15 +315,6 @@ function showMessageModal(message) {
         modal.classList.remove('show');
     }, 2000);
 }
-
-
-function hideSidebar() {
-    document.getElementById("sidebar").classList.add("hidden");
-}
-function showSidebar() {
-    document.getElementById("sidebar").classList.remove("hidden");
-}
-
 
 function openModal2() {
  document.getElementById('custom-product-modal2').classList.add('show');

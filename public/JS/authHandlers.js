@@ -131,43 +131,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const changePasswordForm = document.getElementById("changePasswordForm");
   const messageBox = document.getElementById("passwordMessage");
 
-  function showMessage(text, type) {
-    messageBox.textContent = text;
-    messageBox.className = ""; // Reset klasser
-    messageBox.classList.add(type === "success" ? "success" : "error");
-    messageBox.id = "passwordMessage"; // Behold ID-en
-  }
-
-  changePasswordForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const currentPassword = document.getElementById("currentPassword").value.trim();
-    const newPassword = document.getElementById("newPassword").value.trim();
-    const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
-
-    if (newPassword.length < 8) {
-      showMessage("New password must be at least 8 characters long.", "error");
-      return;
+  
+  // Koden inni denne blokken vil KUN kjøre hvis man er på change password siden.
+  if (changePasswordForm && messageBox) {
+    function showMessage(text, type) {
+      messageBox.textContent = text;
+      messageBox.className = ""; // Reset klasser
+      messageBox.classList.add(type === "success" ? "success" : "error");
     }
 
-    if (newPassword !== confirmNewPassword) {
-      showMessage("The new passwords do not match.", "error");
-      return;
-    }
+    // Denne linjen vil nå bare kjøre hvis changePasswordForm IKKE er null
+    changePasswordForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    try {
-      await changePassword(currentPassword, newPassword);
-      showMessage("Password updated successfully.", "success");
-      changePasswordForm.reset();
-    } catch (error) {
-      if (error.code === "auth/invalid-credential") {
-        showMessage("Current password is incorrect.", "error");
-      } else {
-        showMessage("Failed to change password: " + error.message, "error");
+      const currentPassword = document.getElementById("currentPassword").value.trim();
+      const newPassword = document.getElementById("newPassword").value.trim();
+      const confirmNewPassword = document.getElementById("confirmNewPassword").value.trim();
+
+      if (newPassword.length < 8) {
+        showMessage("New password must be at least 8 characters long.", "error");
+        return;
       }
-      console.error(error);
-    }
-  });
+
+      if (newPassword !== confirmNewPassword) {
+        showMessage("The new passwords do not match.", "error");
+        return;
+      }
+
+      try {
+        // Antar at 'changePassword' funksjonen er definert andre steder (f.eks. i Firebase-integrasjonen)
+        await changePassword(currentPassword, newPassword);
+        showMessage("Password updated successfully.", "success");
+        changePasswordForm.reset();
+      } catch (error) {
+        if (error.code === "auth/invalid-credential") {
+          showMessage("Current password is incorrect.", "error");
+        } else {
+          showMessage("Failed to change password: " + error.message, "error");
+        }
+        console.error(error);
+      }
+    });
+  }
 });
 
 document.addEventListener("DOMContentLoaded", async () => {

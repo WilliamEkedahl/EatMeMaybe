@@ -39,9 +39,9 @@ let userInventoryRef = null;
 // Unngå duplisering av category
 const categoryShelfLives = {
     "Cooling Products": 7,
-    "Frozen Products": 180,
+    "Frozen Products": 179,
     "Fruits and Vegetables": 5,
-    "Dry Products": 240
+    "Dry Products": 239
 };
 
 // Vent til brukeren er logget inn og sett opp riktig referanse til inventaret
