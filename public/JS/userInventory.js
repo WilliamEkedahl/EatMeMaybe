@@ -86,11 +86,12 @@ async function fetchUserInventory(userId) {
     const timestamp = localStorage.getItem(userCacheTimeKey);
     const now = Date.now();
 
-    // Check if cached inventory exists and is not too old
+    // Check if cached inventory data exists and is still fresh (not older than CACHE_TTL)
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
         console.log("Loading user inventory from cache", userId);
         allInventoryItems = JSON.parse(cached);
 
+        // Recalculate the days left for each inventory item (since dates may have changed)
         allInventoryItems.forEach(item => {
             item.addedAt = new Date(item.addedAt);
             let shelfLifeDays = categoryShelfLives[item.category] ?? 7;
@@ -103,7 +104,7 @@ async function fetchUserInventory(userId) {
             item.daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
         });
 
-        // <--- NYTT: Legg til logikk for empty-inventory-message fra gammel fil
+        // Show or hide the empty inventory message depending on whether there are items
         const emptyMessage = document.getElementById("empty-inventory-message");
         if (allInventoryItems.length === 0) {
             if (emptyMessage) emptyMessage.style.display = "block";
@@ -111,6 +112,7 @@ async function fetchUserInventory(userId) {
             if (emptyMessage) emptyMessage.style.display = "none";
         }
 
+        // Show the filtered inventory if a category filter is active, otherwise show all items
         if (activeCategoryFilter) {
             filterInventoryByCategory(activeCategoryFilter);
         } else {
@@ -121,30 +123,38 @@ async function fetchUserInventory(userId) {
 
     // Fetch inventory from Firestore if no cache
     try {
+        // Get a snapshot of the user's inventory documents from Firestore
         const snapshot = await getDocs(userInventoryRef);
-        const inventoryItems = [];
+        const inventoryItems = []; // This will hold the parsed inventory items
 
+        // Loop through each document in the snapshot
         snapshot.forEach(doc => {
             const data = doc.data();
+            // Check if 'addedAt' exists and is a valid Firestore Timestamp object
             if (!(data.addedAt && typeof data.addedAt.toDate === "function")) {
                 console.warn(`Invalid or missing 'addedAt' for document. ${doc.id}, skips this element.`);
-                return; // Hopp over dette dokumentet i snapshot.forEach
+                return; 
             }
 
             const addedAt = data.addedAt.toDate();
 
-            // Dynamisk holdbarhet basert på kategori ved å bruke categoryShelfLives
+            // Determine shelf life in days for the item's category dynamically
             let shelfLifeDays = categoryShelfLives[data.category] ?? 7;
 
+            // Calculate the expiration date
             const expirationDate = new Date(addedAt);
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
 
+            // Normalize today's date to midnight for consistency
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             expirationDate.setHours(0, 0, 0, 0);
+
+            // Calculate the number of days left until the item expires
             const timeDiff = expirationDate.getTime() - today.getTime();
             const daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
 
+            // Push the parsed and processed inventory item to the array
             inventoryItems.push({
                 id: doc.id,
                 name: data.name,
@@ -157,17 +167,21 @@ async function fetchUserInventory(userId) {
 
         // Sort products by days left, then category, then product name
         inventoryItems.sort((a, b) => {
+            // Sort first by days left (ascending)
             if (a.daysLeft !== b.daysLeft) {
                 return a.daysLeft - b.daysLeft;
             }
+            // If daysLeft is the same, sort by category in alphabetical order
             if (a.category !== b.category) {
                 return a.category.localeCompare(b.category);
             }
+            // If category is also the same, sort by product name
             return a.name.localeCompare(b.name);
         });
 
         allInventoryItems = inventoryItems;
 
+        // Show or hide the empty inventory message
         const emptyMessage = document.getElementById("empty-inventory-message");
         if (allInventoryItems.length === 0) {
             if (emptyMessage) emptyMessage.style.display = "block";
@@ -175,14 +189,16 @@ async function fetchUserInventory(userId) {
             if (emptyMessage) emptyMessage.style.display = "none";
         }
 
+        // Display the inventory, possibly applying a category filter
         if (activeCategoryFilter) {
             filterInventoryByCategory(activeCategoryFilter);
         } else {
             displayUserInventory(inventoryItems);
         }
 
-        // for å lagre til cache etter behandling
+        // Store the processed inventory in localStorage for caching
         localStorage.setItem(userCacheKey, JSON.stringify(inventoryItems));
+        // Store the current timestamp to track cache time
         localStorage.setItem(userCacheTimeKey, now.toString());
 
     } catch (error) {
@@ -196,8 +212,9 @@ function filterInventoryByCategory(category) {
     redisplayFilteredInventory();
 }
 
-// Display products in active category to prevent having to reload db
+// Display products in the active category to avoid reloading from the database
 function redisplayFilteredInventory() {
+    // If a category filter is active, filter items accordingly; otherwise, show all items
     const itemsToDisplay = activeCategoryFilter
         ? allInventoryItems.filter(item => item.category === activeCategoryFilter)
         : allInventoryItems;
@@ -212,19 +229,22 @@ function displayUserInventory(items) {
 
     if (emptyMessage) emptyMessage.style.display = "none";
 
-    // Clear existing rows
+    // Clear existing rows in the inventory table
     while (inventoryTable.firstChild) {
         inventoryTable.removeChild(inventoryTable.firstChild);
     }
 
+    // If no items to display, show the empty inventory message and exit
     if (items.length === 0) {
         if (emptyMessage) emptyMessage.style.display = "block";
         return; 
     }
 
+    // For each product, create a table row and populate its data
     items.forEach(({ id, name, category, quantity, addedAt, daysLeft }) => {
-        const row = template.content.cloneNode(true);
+        const row = template.content.cloneNode(true);// Use a template for consistent formatting, used in index.html
 
+        // Get references to table cells
         const tdName = row.querySelector(".product-name");
         const tdCategory = row.querySelector(".product-category");
         const tdQuantity = row.querySelector(".product-quantity");
@@ -234,6 +254,7 @@ function displayUserInventory(items) {
         const increaseBtn = row.querySelector(".increase-btn");
         const decreaseBtn = row.querySelector(".decrease-btn");
 
+        // Fill in the product data
         tdName.textContent = name;
         tdCategory.textContent = category;
         tdQuantity.textContent = quantity;
@@ -249,18 +270,19 @@ function displayUserInventory(items) {
             tdDaysLeft.classList.add("expiring-green");
         }
 
-        // Handle increasing quantity
+        // Increase product quantity
         increaseBtn.addEventListener("click", async () => {
             const newQuantity = Number(quantity) + 1;
             await updateItemQuantity(id, newQuantity);
 
+            // Update the item in the local cache
             const item = allInventoryItems.find(item => item.id === id);
             if (item) item.quantity = newQuantity;
 
-            redisplayFilteredInventory(); // <--- Endret: Kaller redisplayFilteredInventory
+            redisplayFilteredInventory(); 
         });
 
-        // Handle decreasing quantity
+        // Decrease product quantity
         decreaseBtn.addEventListener("click", async () => {
             const currentQuantity = Number(quantity);
             if (currentQuantity > 1) {
@@ -271,26 +293,30 @@ function displayUserInventory(items) {
 
                 redisplayFilteredInventory();
             } else {
+                // If quantity is 1, confirm removal
                 const confirmed = window.confirm("Quantity is 1. Remove product completely?");
                 if (confirmed) {
                     await deleteInventoryItem(id);
 
+                    // Remove the item from the local cache
                     allInventoryItems = allInventoryItems.filter(item => item.id !== id);
                     redisplayFilteredInventory();
                 }
             }
         });
 
-        // Handle deleting product
+        // Handle deleting a product entirely
         deleteBtn.setAttribute("data-id", id);
         deleteBtn.addEventListener("click", async () => {
             const confirmed = window.confirm("Are you sure you want to remove this product?");
             if (confirmed) {
                 await deleteInventoryItem(id);
 
+                // Remove the item from the local cache
                 allInventoryItems = allInventoryItems.filter(item => item.id !== id);
                 redisplayFilteredInventory();
 
+                // Show a temporary status message to the user
                 const statusMessage = document.getElementById("status-message");
                 if (statusMessage) {
                     statusMessage.textContent = "Product removed.";
@@ -303,6 +329,7 @@ function displayUserInventory(items) {
             }
         });
 
+        // Finally, add the row to the inventory table
         inventoryTable.appendChild(row);
     });
 }
@@ -317,8 +344,11 @@ async function deleteInventoryItem(itemId) {
         }
         const userId = user.uid;
 
+        // Delete the document from Firestore
         await deleteDoc(doc(db, "users", userId, "userInventory", itemId));
         console.log(`Element with ID ${itemId} is deleted.`);
+
+        // Clear cache so the next fetch will get the latest data
         clearUserInventoryCache(userId);
 
     } catch (error) {
@@ -336,10 +366,13 @@ async function updateItemQuantity(itemId, newQuantity) {
         }
         const userId = user.uid;
 
+        // Update the quantity in Firestore
         await updateDoc(doc(db, "users", userId, "userInventory", itemId), {
             quantity: newQuantity
         });
         console.log(`Updated quantity for ${itemId} til ${newQuantity}.`);
+
+        // Clear cache so the next fetch will get the latest data
         clearUserInventoryCache(userId);
 
     } catch (error) {
