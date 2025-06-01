@@ -7,7 +7,7 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden; /* Viktig: Fjern scroll her */
+  overflow: hidden; 
 }
 
 .main-content {
@@ -100,7 +100,7 @@ h2 {
   display: none;
 }
 
-/* Tabellen (gammel wrapper-styling fjernet og ny lagt til under) */
+/* Tabellen */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -124,7 +124,6 @@ tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-/* fargekoder for dager igjen */
 td.expiring-red {
   color: #e74c3c;
   font-weight: bold;
@@ -170,7 +169,6 @@ button {
   gap: 1rem;
 }
 
-/* La category-nav gå i midtkolonnen, sentrert */
 .category-nav {
   grid-column: 2; /* Plasser i midtkolonnen */
   display: flex;
@@ -192,7 +190,7 @@ button {
   cursor: pointer;
   box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s ease;
-  margin-top: 0; /* Fjern margin-top */
+  margin-top: 0; 
 }
 
 .emptyInventory-btn:hover {
@@ -231,12 +229,11 @@ button {
   filter: brightness(0) invert(1);
 }
 
-/* Ny og riktig wrapper-styling */
 .inventory-wrapper {
   flex: 1;
   overflow-y: auto;
   margin: 0 1rem 1rem 1rem;
-  max-height: calc(100vh - 250px); /* Justeres etter header/nav */
+  max-height: calc(100vh - 250px); 
 }
 
 .inventory-wrapper table {
