@@ -133,11 +133,11 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
    /**
     * For adding the eye icon and making it clickable to show or hide password
     */
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".toggle-password").forEach(toggle => {
-    toggle.addEventListener("click", () => {
-      const input = document.getElementById(toggle.getAttribute("data-target"));
-      if (input.type === "password") {
+document.addEventListener("DOMContentLoaded", () => { 
+  document.querySelectorAll(".toggle-password").forEach(toggle => { //Finds all elements that share the class "toggle password" (for example eye icon)
+    toggle.addEventListener("click", () => { //Adds the ability to click each icon
+      const input = document.getElementById(toggle.getAttribute("data-target")); // Fetches the ID to the input-field that the icon is going to check from "data target" attribute
+      if (input.type === "password") { //if the input-field exists, toggle between showing and hiding the password
         input.type = "text";
       } else {
         input.type = "password";
