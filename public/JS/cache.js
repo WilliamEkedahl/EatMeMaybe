@@ -14,7 +14,11 @@ const productsCollectionRef = collection(db, "products")
 
 let products = [];
 
-//  DATAHÅNDTERING AV FIRESTORE PRODUCTS TIL CACHE LAGRING
+/**
+ * Gets products from Firestore and saves them in `products`.
+ * Then shows them on the page using `displayProducts`.
+ * Only runs once when the app starts.
+ */
  export async function loadProducts() {
         const cached = localStorage.getItem(CACHE_KEY);
         const timestamp = localStorage.getItem(CACHE_TIME_KEY);

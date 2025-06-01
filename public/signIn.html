@@ -1,16 +1,24 @@
+<!-- @author: William -->
+<!-- @author: Martin N -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Meta and page setup -->
     <meta name ="viewport" content ="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>EatMeMaybe - Sign in</title>
+    <!-- CSS stylesheets -->
     <link rel="icon" type="image/png" href="MEDIA/EatMeMaybeLogo1.png">
     <link rel="stylesheet" href="CSS/mainview.css">
     <link rel ="stylesheet" href ="CSS/stylesheet-signUp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Navigation Sidebar and Top Header --> 
      <nav>
+        <!-- Sidebar (mobile navigation) -->
         <ul class="sidebar">
         <li><a href="#" id="hide-sidebar-btn"></a>
             <a href="#">
@@ -27,8 +35,11 @@
             <li><button class="dropbtn" id="deleteButton">Delete account</button></li>
             <li><button class="dropbtn" id="signOutButton">Sign out</button></li>
         </ul>
+
+        <!-- Header with logo and top-level navigation links -->
         <header>
             <ul class="logo">
+                <!-- Logo linking to index.html -->
                 <li><a href="index.html"><img src="MEDIA/EatMeMaybeLogo2RemoveBG.png" alt="logo" class="logo-img"></a></li>
             </ul>
             <ul>
@@ -52,6 +63,7 @@
                         <button class="dropbtn" id="signOutButton">Sign out</button>
                     </div>
                 </li>
+                <!-- Sidebar toggle button (hamburger menu icon) -->
                 <li class="menuButton"><a href="#" id="show-sidebar-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
                         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
@@ -60,6 +72,7 @@
         </header>
     </nav>
 
+<!-- Main content container -->
 <div class="container">
     <h2>Sign in</h2>
     <form id="signInForm" action="#">
@@ -77,6 +90,8 @@
         <a href="signUp.html">Don't have an account? Register!</a>
     </form>
 </div>
+
+    <!-- JavaScript imports -->
     <script type="module" src="JS/authHandlers.js"></script>
     <script src="JS/navbar.js"></script>
 
