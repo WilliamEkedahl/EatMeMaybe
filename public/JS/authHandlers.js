@@ -5,17 +5,17 @@
 
 import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
-document.getElementById("signInForm")?.addEventListener("submit", (e) => {
-  e.preventDefault();
+document.getElementById("signInForm")?.addEventListener("submit", (e) => { // Adds an event listener that triggers when the sign-in form is submitted
+  e.preventDefault();  // Prevents the default form submission behavior (such as page reload)
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const errorBox = document.getElementById("signInError");
+  const email = document.getElementById("email").value.trim(); // Retrieves and trims the email input value
+  const password = document.getElementById("password").value.trim(); // Retrieves and trims the password input value
+  const errorBox = document.getElementById("signInError"); // Selects the element where error messages will be displayed
 
-  function showError(message) {
+  function showError(message) { // If the error box doesn't exist, exit the function
     if (!errorBox) return;
-    errorBox.textContent = message;
-    errorBox.style.display = "block";
+    errorBox.textContent = message;// Set the error message
+    errorBox.style.display = "block"; // Make the error box visible
   }
 
   if (errorBox) {

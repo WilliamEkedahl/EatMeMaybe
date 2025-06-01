@@ -131,29 +131,36 @@ function filterItems() {
  * Clears suggestion if no match or input is empty.
  */
 
-let currentSuggestion = "";
+let currentSuggestion = ""; // Stores the currently suggested product name (used for autocomplete functionality)
 
+/**
+ * Displays a "ghost" suggestion in the search bar based on cached product names.
+ * This visually autocompletes the user's input without changing the actual value.
+ */
 function showGhostSuggestion() {
-    const input = document.getElementById("search-bar");
+    const input = document.getElementById("search-bar"); // Get references to the input field and the ghost suggestion container
     const ghost = document.getElementById("ghost-suggestion");
-    const query = input.value.toLowerCase().trim();
+    const query = input.value.toLowerCase().trim();// Normalize the user's input: convert to lowercase and remove extra whitespace
 
-    const allProducts = getCachedProducts(); // Get products from cache.js
+    const allProducts = getCachedProducts(); // Retrieve the list of product objects from a local cache (from cache.js)
 
-    if (!query || allProducts.length === 0) {
+    if (!query || allProducts.length === 0) {    // If the input is empty or there are no products, clear any ghost suggestion and exit
         ghost.textContent = "";
         currentSuggestion = "";
         return;
     }
 
-    const match = allProducts
-        .map(p => p.name)
-        .find(name => name.toLowerCase().startsWith(query));
+    const match = allProducts // Try to find the first product name that starts with the user's input
+        .map(p => p.name)  // Extract the name from each product
+        .find(name => name.toLowerCase().startsWith(query));  // Look for a name starting with the query
 
     if (match) {
+         // If a match is found, visually display the suggestion:
+        // - Highlight the typed part
+        // - Append the rest of the suggestion in lighter style (CSS handles appearance)
         ghost.innerHTML = `<span class="typed">${input.value}</span>${match.slice(query.length)}`;
-        currentSuggestion = match;
-    } else {
+        currentSuggestion = match;  // Update the currentSuggestion for potential use in other logic (e.g., autocomplete on Enter)
+    } else {  // If no match is found, clear the ghost suggestion
         ghost.textContent = "";
         currentSuggestion = "";
     }
