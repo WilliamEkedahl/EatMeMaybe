@@ -125,8 +125,14 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
     }
 });
 
-
-
+/**
+ * @author Marius
+ * 
+ */
+  
+   /**
+    * For adding the eye icon and making it clickable to show or hide password
+    */
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".toggle-password").forEach(toggle => {
     toggle.addEventListener("click", () => {
