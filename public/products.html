@@ -1,17 +1,24 @@
-<!-- @author Marius -->
+<!-- @author: Atle -->
+<!-- @author: Martin N -->
+<!-- @author: (ghost-text) Marius -->
+ 
 <!DOCTYPE html>
 <html lang="no">
 <head>
+    <!-- Meta and page setup -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>EatMeMaybe - Add products</title>
+    <!-- CSS stylesheets -->
     <link rel="icon" type="image/png" href="MEDIA/EatMeMaybeLogo1.png">
     <link rel="stylesheet" href="CSS/mainview.css">
     <link rel="stylesheet" href="CSS/products-content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Navigation Sidebar and Top Header -->   
     <nav>
+        <!-- Sidebar (mobile navigation) -->
         <ul class="sidebar">
         <li><a href="#" id="hide-sidebar-btn"></a>
             <a href="#">
@@ -28,6 +35,8 @@
             <li><button class="dropbtn" id="deleteButtonSidebar">Delete account</button></li>
             <li><button class="dropbtn" id="signOutButtonSidebar">Sign out</button></li>
         </ul>
+
+        <!-- Header (desktop navigation) -->
         <header>
             <ul class="logo">
                 <li><a href="index.html"><img src="MEDIA/EatMeMaybeLogo2RemoveBG.png" alt="logo" class="logo-img"></a></li>
@@ -61,10 +70,11 @@
         </header>
     </nav>
 
+    <!-- Main content area -->
     <div class="content">
-        
+        <!-- Search and filter section -->
         <div class="search-container">
-
+        <!-- Category dropdown -->
         <select id="category-dropdown" class="category-dropdown">
             <option value="">All Categories</option>
             <option value="Fruits and Vegetables">Fruits and Vegetables</option>
@@ -73,20 +83,24 @@
             <option value="Dry Products">Dry Products</option>
         </select>
 
+        <!-- Search bar with ghost suggestion text -->
         <div class="input-wrapper">
             <input type="text" id="search-bar" class="search-bar" placeholder="Search product name" autocomplete="off">
             <div id="ghost-suggestion" class="ghost-text"></div>
         </div>
 
+        <!-- Button to add a custom product -->
         <button class="nav-btn" id="add-new-product-btn">Add Custom product</button>
     </div>
     
+        <!-- Table header for product listing -->
         <div class="table-header">
             <div class="header-item">Product Name</div>
             <div class="header-item">Product Category</div>
             <div class="header-item"></div> 
         </div>
 
+        <!-- Product list container -->
         <div class="table-container">
             <table id="product-table">
                 <tbody id="product-list"></tbody>
@@ -94,6 +108,7 @@
         </div>
     </div>
 
+    <!-- Modal for adding product to inventory -->
     <div id="product-modal" class="modal-overlay">
         <div class="modal-content">
             <button type="button" class="modal-close-btn" id="modal-close-btn">✖</button>
@@ -111,7 +126,7 @@
         </div>
     </div>
 
-    <!-- Custom Product Modal -->
+<!-- Modal for adding a completely custom product -->
 <div id="custom-product-modal2" class="modal2">
   <div class="modal-content2">
     <button type="button" class="close2" id="custom-modal-close-btn2">✖</button>
@@ -140,12 +155,14 @@
   </div>
 </div>
 
+    <!-- Message modal for feedback message -->
     <div id="custom-modal" class="message-modal">
         <div class="message-modal-content">
             <p id="modal-message"></p>
         </div>
     </div>
 
+    <!-- JavaScript imports -->
     <script type="module" src="JS/authHandlers.js"></script>
     <script type="module" src= "JS/search.js"></script>
     <script src="JS/navbar.js"></script>
