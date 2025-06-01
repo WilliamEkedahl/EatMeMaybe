@@ -17,10 +17,10 @@ import {signIn, logOut, signUp, changePassword, deleteUserInventory, deleteCurre
  *@author William
  * @author Marius (error handling messageBox)
  * Runs the firebase method signIn if none of the if statements are "activated"
- * Event listener that listens if the form is submitted with the id "signInForm" it has 3 constants
+ * Event listener that listens if the object exists ?., the form is submitted with the id "signInForm" it has 3 constants
  * email
  * password
- * signInError
+ * signInError - A div where the error message is displayed.
  *
  * The error handling is styled to appear in the signIn form if an error is "triggered"
  *The information that the user writes into the email and password field is submitted as parameters in the signIn function
@@ -68,6 +68,19 @@ document.getElementById("signInForm")?.addEventListener("submit", (e) => { // Ad
  * @Author William
  * @Author Marius (error handling messageBox)
  *
+ * Event listener that adds an event listener if the element signUpForm exists (?.addEventListener)
+ * the event listener has
+ *5 constants
+ * email
+ * username
+ * password
+ * confPassword
+ * it also has a error handling constant that displays error handling messages in a div in the signUpForm,
+ * the success scenario activates when none of the error messages are triggered the requirements are that the username
+ * and password has to be less than 45 characters, the password needs to be at least 8 characters long, the password and
+ * confpassword input field texts need to match. The signUp method is run in the success scenarios with the parameter values
+ * that are input by the user and copied into the email, username and password constants that are passed as parameters in
+ * the signUp function.
  */
 document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -122,7 +135,8 @@ document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   }
 });
 
-// Event listener for "Delete account" knappen
+
+// Event listener for "signOut" knappen
    const signOutButton = ["signOutButtonSidebar", "signOutButtonDropdown"];
 
 signOutButton.forEach(id => {
@@ -163,6 +177,8 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
   
    /**
     * For adding the eye icon and making it clickable to show or hide password
+    * uses a toggle to switch between text field text and password styling to toggle between showing and hiding
+    * the password.
     */
 document.addEventListener("DOMContentLoaded", () => { 
   document.querySelectorAll(".toggle-password").forEach(toggle => { //Finds all elements that share the class "toggle password" (for example eye icon)
@@ -180,6 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  *@Author William
  * @Author Marius (error handling messageBox)
+ * @author Martin U
+ * Event listener for changePasswordForm
  */
 document.addEventListener("DOMContentLoaded", () => {
   const changePasswordForm = document.getElementById("changePasswordForm");
