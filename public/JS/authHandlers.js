@@ -139,12 +139,12 @@ document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
 // Event listener for "signOut" knappen
    const signOutButton = ["signOutButtonSidebar", "signOutButtonDropdown"];
 
-signOutButton.forEach(id => {
-    const btn = document.getElementById(id);
+signOutButton.forEach(id => { // Loops first through each IDs
+    const btn = document.getElementById(id); // Finds the button element by its id
     if (btn) {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            logOut();
+        btn.addEventListener("click", (e) => { // Adds event listener for when button is clicked
+            e.preventDefault();// Prevents the default action of the button (e.g., submitting a form or navigating).
+            logOut(); //runs the function defined in authenticate.js
         });
     }
 });
@@ -165,7 +165,7 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
     if (btn) { // Goes through if button exists
         btn.addEventListener("click", (e) => { // Adds event listener for when button is clicked
             e.preventDefault(); // Prevents the default action of the button (e.g., submitting a form or navigating).
-            deleteCurrentUser();
+            deleteCurrentUser(); //runs the function defined in authenticate.js
         });
     }
 });

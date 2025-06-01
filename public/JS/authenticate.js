@@ -4,6 +4,9 @@
  * @author William
 */
 
+/**
+ *
+ */
 //import firebase modules
 import {auth, db } from "./firestore.js";
 import{
@@ -57,7 +60,7 @@ export async function signIn(email, password) {
 }
 
 /**
- * @author William E
+ * @author William
  * @returns {Promise<void>}
  */
 export async function logOut(){
