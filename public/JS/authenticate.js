@@ -33,12 +33,28 @@ import{
 import {clearUserInventoryCache} from "./cache.js";
 import { doc, setDoc, getDocs, collection, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-/**
+/**SignUp()
  * @author William
  * @param email
  * @param username
  * @param password
  * @returns {Promise<void>}
+ *
+ * tries to run the fireBase function createUserWithEmailAndPassword which takes 3 arguments auth, email, password
+ * the email and password are passed in from the user entered fields in the formed and checked for basic criterias
+ * in authHandlers where the eventListener is located.
+ *
+ * auth is passed from firestore.js and keeps track of the authentication state.
+ * if the promise succeeds we set the email and username using setDoc imported from firebase-firestore, it uses UID
+ * which is the unique code created when the account was created with createUserWithEmailAndPassword to match where to
+ * create the new document. The email is not unique, and is only checked if it is not too long, if that succeeds we run
+ * our user created function signIn that in turn runs the firebase function
+ * signInWithEmailAndPassword (Auth, email, password) which logs us into the application instantly after creating
+ * our account since we got user feedback telling us that users did not want to signUp and then sigIn again directly
+ * afterwards to use the application. If an error occurs the program throws the error message in the console for
+ * troubleshooting and displays an error message to the user, that is designed to be vague for security reasons to not
+ * expose user registered emails. The password storing is handled by google backend and is not controlled by the
+ * application directly.
  */
 export async function signUp(email, username, password){
     try {
@@ -50,15 +66,22 @@ export async function signUp(email, username, password){
     } catch (error) {
         // Skjul spesifikke feil (som om e-post er i bruk)
         console.error("Sign up failed:", error.code); // Logg internt hvis ønskelig
-        throw new Error("Registration failed. Try again later.");
+        throw new Error("Registration failed. Try a different email or password");
     }
 }
 
-/**
+/**SigIn()
  * @author William
  * @param email
  * @param password
  * @returns {Promise<void>}
+ *
+ * Tries to use the firebase auth method signInWIthEmailAndPassword, passes the auth imported from firestore.js again
+ * as well as the constants email and password that are stored in  the system. auth can also be run with the function
+ * getAuth(); the password and email are validated against the authentication. The client send the email and password
+ * to firebase authentication server using HTTPS (secure protocol) Firebase matches the email and checks it against the
+ * securely stored hashed password in their servers. If the function is successful firebase returns the authenticated
+ * users info, an access-token and a refresh token to renew the tokens validity in the background if it expires.
  */
 export async function signIn(email, password) {
     try {
@@ -70,9 +93,17 @@ export async function signIn(email, password) {
     }
 }
 
-/**
+/**logOut()
  * @author William
  * @returns {Promise<void>}
+ *
+ * auth.current user returns the user object from the user that is currently signed in.
+ * if the user is not signed in no (auth.currentUser object exists) it alerts the user,
+ * otherwise it runs the signOut function after the promise to check if the user is logged in or not is finished.
+ * signOut() is a firebase function that takes an argument of auth that gets the signed-in users unique user ID
+ * which controls the data that the user can see and "signs out the user by removing their rights to view their data"
+ * after signOut is completed if it passes an alert user logged out is thrown and the user is switched to the index page
+ * where there is code that checks if the user is logged in or not to display a message to the user to logIn or signUp.
  */
 export async function logOut(){
     const user = auth.currentUser;
@@ -80,7 +111,6 @@ export async function logOut(){
         alert("Ingen bruker er logget inn.");
         return;
     }
-
     await signOut(auth);
     alert("User logged out");
     window.location.href="index.html";
@@ -116,6 +146,10 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
  * @author William
  * @returns {Promise<void>}
  * @constructor
+ *
+ * The method Starts with checking for the unique auth id of the user to check if a user is signed in or not,
+ * the userId is copied and stored in the constant userId, before running the method the user has to confirm that they
+ * wish to proceed with deleting their entire inventory.
  */
 export async function deleteUserInventory() {
     const user = auth.currentUser;
@@ -145,11 +179,17 @@ export async function deleteUserInventory() {
     }
  }
 
-/**
+/**changePassword()
  *@author William
  * @param currentPassword
  * @param newPassword
  * @returns {Promise<void>}
+ *
+ * Firstly the method checks if the user is signed in or not by checking for the users unique userID,
+ * if the user is signed in the user is authenticated again since firebase only allows you to change your password
+ * if you signed in, in the last 5 minutes. It uses the method reauthenticateWithCredential to reAuthenticate the user
+ * if it returns a success promise then updatePassword is run where some logic in authHandlers makes sure the same
+ * password security criteria are met and error handling, afterward the user is switched to the index page.
  */
  export async function changePassword(currentPassword, newPassword ){
     const user = auth.currentUser;
