@@ -106,13 +106,10 @@ signOutButton.forEach(id => {
 
 /**
  * @author Martin U
- * 
+ * For defining the different IDs for "Delete account" bottons
+ * One for sidebar and one for dropdown
  */
-  
-   /**
-    * For defining the different IDs for "Delete account" bottons
-    * One for sidebar and one for dropdown
-    */
+   
    const deleteButtonIds = ["deleteButtonSidebar", "deleteButtonDropdown"];
 
 deleteButtonIds.forEach(id => { // Loops first through each IDs
