@@ -155,7 +155,8 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
  * that is created by inventoryRef (users/{userId}/userInventory
  *  uses getDocs to fetch all the documents in the userInventory collection at that moment of time,
  *  creates an array of all the documents and loops trough them using the javascript map() method to
- *  loop through the array of documents it collects the IDS and creates an array of delete promises
+ *  loop through the array of documents it collects the IDS and creates an array of delete promises that references
+ *  the unique items in the database like a pointer.
  *  the method calls deleteDoc on every document found to delete it and then waits until all items are deleted from
  *  the database. When all Items are deleted from the database the method
  *  clearUserInventoryCache() is called that clears the local cache so that the inventory shows up as
