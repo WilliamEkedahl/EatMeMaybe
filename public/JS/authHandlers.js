@@ -1,9 +1,34 @@
 /**
  * @author Marius
  * @author Martin U
+ * @author William
+ *
+ * The main responsibility of authHandler is to act as a middleware between the userInterface and the backend logic,
+ * it handles error handling and listening after button presses or form submissions before running the desired function
+ * in authenticate to execute the user requested authentication task.
 */
 
-import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
+/**
+ * Imports functions created in authenticate.js, that use the auth instance created in firestore.js
+ */
+import {signIn, logOut, signUp, changePassword, deleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
+
+/**SignIn() EVENT LISTENER
+ *@author William
+ * @author Marius (error handling messageBox)
+ * Runs the firebase method signIn if none of the if statements are "activated"
+ * Event listener that listens if the object exists ?., the form is submitted with the id "signInForm" it has 3 constants
+ * email
+ * password
+ * signInError - A div where the error message is displayed.
+ *
+ * The error handling is styled to appear in the signIn form if an error is "triggered"
+ *The information that the user writes into the email and password field is submitted as parameters in the signIn function
+ * if the success scenario occurs.
+ *
+ * the error handling checks if both fields are filled in, if the email contains an @ symbol or if the password and email
+ * are correct by using a catch() method to that is called when a promise is rejected.
+ */
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => { // Adds an event listener that triggers when the sign-in form is submitted
   e.preventDefault();  // Prevents the default form submission behavior (such as page reload)
@@ -38,6 +63,25 @@ document.getElementById("signInForm")?.addEventListener("submit", (e) => { // Ad
     });
 });
 
+
+/**
+ * @Author William
+ * @Author Marius (error handling messageBox)
+ *
+ * Event listener that adds an event listener if the element signUpForm exists (?.addEventListener)
+ * the event listener has
+ *5 constants
+ * email
+ * username
+ * password
+ * confPassword
+ * it also has a error handling constant that displays error handling messages in a div in the signUpForm,
+ * the success scenario activates when none of the error messages are triggered the requirements are that the username
+ * and password has to be less than 45 characters, the password needs to be at least 8 characters long, the password and
+ * confpassword input field texts need to match. The signUp method is run in the success scenarios with the parameter values
+ * that are input by the user and copied into the email, username and password constants that are passed as parameters in
+ * the signUp function.
+ */
 document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -91,15 +135,16 @@ document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   }
 });
 
-// Event listener for "Delete account" knappen
+
+// Event listener for "signOut" knappen
    const signOutButton = ["signOutButtonSidebar", "signOutButtonDropdown"];
 
-signOutButton.forEach(id => {
-    const btn = document.getElementById(id);
+signOutButton.forEach(id => { // Loops first through each IDs
+    const btn = document.getElementById(id); // Finds the button element by its id
     if (btn) {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            logOut();
+        btn.addEventListener("click", (e) => { // Adds event listener for when button is clicked
+            e.preventDefault();// Prevents the default action of the button (e.g., submitting a form or navigating).
+            logOut(); //runs the function defined in authenticate.js
         });
     }
 });
@@ -117,7 +162,7 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
     if (btn) { // Goes through if button exists
         btn.addEventListener("click", (e) => { // Adds event listener for when button is clicked
             e.preventDefault(); // Prevents the default action of the button (e.g., submitting a form or navigating).
-            deleteCurrentUser();
+            deleteCurrentUser(); //runs the function defined in authenticate.js
         });
     }
 });
@@ -129,6 +174,8 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
   
    /**
     * For adding the eye icon and making it clickable to show or hide password
+    * uses a toggle to switch between text field text and password styling to toggle between showing and hiding
+    * the password.
     */
 document.addEventListener("DOMContentLoaded", () => { 
   document.querySelectorAll(".toggle-password").forEach(toggle => { //Finds all elements that share the class "toggle password" (for example eye icon)
@@ -143,6 +190,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/**
+ *@Author William
+ * @Author Marius (error handling messageBox)
+ * @author Martin U
+ * Event listener for changePasswordForm
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const changePasswordForm = document.getElementById("changePasswordForm");
   const messageBox = document.getElementById("passwordMessage");
@@ -191,12 +244,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/**
+ *@author William
+ *Eventlistener listening using DOMContentLoaded that has an async listener that waits for the whole webpage to load
+ * before firing the event and returns promise<void> meaning an asynchronous action that does not produce a result.
+ * It listens after a click on the button with id "deleteInventoryButton" on the index page. e.preventDefault() is
+ * used to stop the default behaviour of the form. If the event listener registers it runs the method DeleteUserInventory()
+ * that is imported from authenticate.js
+ */
 document.addEventListener("DOMContentLoaded", async () => {
   const EmptyInventoryButton = document.getElementById("deleteInventoryButton");
   if (EmptyInventoryButton){
     EmptyInventoryButton.addEventListener("click", (e) =>{
       e.preventDefault();
-      DeleteUserInventory();
+      deleteUserInventory();
     });
   }
 });

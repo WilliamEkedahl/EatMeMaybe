@@ -1,6 +1,7 @@
 /**
  * @author Martin N
- * @author Martin U 
+ * @author Martin U
+ * @author Atle
  */
 
 /**

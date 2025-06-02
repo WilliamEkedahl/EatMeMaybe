@@ -1,4 +1,3 @@
-
 /**
  * @author Martin U
  * @author William
@@ -12,8 +11,7 @@
  * handling our account manager use cases FR1-5 in authenticate.js, as well as handling authentication in userInventory.js and Search.js.
  *
  *Firebase Firestore
- * Intializes our cloud-hosted NOSQL database that is used to store the userInventory, user information and the available products.
- *
+ * Initializes our cloud-hosted NOSQL database that is used to store the userInventory, user information and the available products.
  *
  * FirebaseApp consists of the initialization information for a bunch of services,
  * Properties:
@@ -23,9 +21,6 @@
  *
  * We only use the FirebaseApp Options property.
  */
-
-
-
 
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getAuth} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
@@ -42,7 +37,6 @@ const firebaseConfig = {
     measurementId: "G-L6PV0K8TZ1"
 };
 
-
 /**InitializeApp()
  * @param FirebaseOptions, ({object}, firebaseConfig)
  * @param FirebaseAppSettings,
@@ -51,10 +45,8 @@ const firebaseConfig = {
  * but lets you enable DataCollection and set a custom name for the Firebase App.
  */
 
-
 //initialize new version firebase V11
 const app = initializeApp(firebaseConfig);
-
 
 /**getFirestore()
  *@param *{FirebaseApp} app, which is the initialized connection from initializeApp(),
@@ -63,16 +55,12 @@ const app = initializeApp(firebaseConfig);
  */
 const db = getFirestore(app);
 
-
 /**getAuth()
  * @param *{FirebaseApp} app, which is the initialized database connection from initializeApp()
  *@Returns *{Auth} Authentication instance used for authenticating the user, mainly used in authenticate.js and the following functions
  * signUp, logOut, signIn, changePassword, DeleteUserInventory and deleteCurrentUser.
  */
 const auth = getAuth(app);
-
-
-
 
 /**
  * We Use the export keyword to export the auth and db objects

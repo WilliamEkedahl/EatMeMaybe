@@ -1,8 +1,23 @@
 /**
  * @author Marius
  * @author Martin U
+ * @author William
 */
 
+/**
+ *Authenticate.js relies on the auth and db (firestore database) that were imported from firestore.js,
+ * that originally imported them from firebase Auth and Firebase Firestore modules.
+ *
+ * It also imports a lot of functions directly from firebase-auth that are used to achieve the desired outcome in
+ * the defined functions that more serve as wrappers to decide how the function should be executed and error messages.
+ *
+ * ClearUserInventoryCache is also imported from cache.js to clear (reload) the cache so that the user inventory is displayed
+ * as empty locally as well when its only reading from the cache that otherwise only clears every 24 hours by itself.
+ *
+ *And a few functions are imported directly from firebase-firestore to handle
+ * writing to the database and updating the database.
+ *
+ */
 //import firebase modules
 import {auth, db } from "./firestore.js";
 import{
@@ -18,6 +33,13 @@ import{
 import {clearUserInventoryCache} from "./cache.js";
 import { doc, setDoc, getDocs, collection, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
+/**
+ * @author William
+ * @param email
+ * @param username
+ * @param password
+ * @returns {Promise<void>}
+ */
 export async function signUp(email, username, password){
     try {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -32,6 +54,12 @@ export async function signUp(email, username, password){
     }
 }
 
+/**
+ * @author William
+ * @param email
+ * @param password
+ * @returns {Promise<void>}
+ */
 export async function signIn(email, password) {
     try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -42,6 +70,10 @@ export async function signIn(email, password) {
     }
 }
 
+/**
+ * @author William
+ * @returns {Promise<void>}
+ */
 export async function logOut(){
     const user = auth.currentUser;
     if (!user) {
@@ -54,6 +86,10 @@ export async function logOut(){
     window.location.href="index.html";
 }
 
+/**
+ * @author Martin U
+ * @param callback
+ */
 export function userAuthenticated(callback = null) { // Gjør callback valgfri med standardverdi null
     onAuthStateChanged(auth, (user) => {
         const mainContent = document.getElementById("main-content");
@@ -76,7 +112,12 @@ export function userAuthenticated(callback = null) { // Gjør callback valgfri m
     });
 }
 
-export async function DeleteUserInventory() {
+/**
+ * @author William
+ * @returns {Promise<void>}
+ * @constructor
+ */
+export async function deleteUserInventory() {
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
     const userId = user.uid;
@@ -104,6 +145,12 @@ export async function DeleteUserInventory() {
     }
  }
 
+/**
+ *@author William
+ * @param currentPassword
+ * @param newPassword
+ * @returns {Promise<void>}
+ */
  export async function changePassword(currentPassword, newPassword ){
     const user = auth.currentUser;
     if (!user) throw new Error("User is not signed in.");
@@ -114,9 +161,10 @@ export async function DeleteUserInventory() {
     window.location.href = "index.html";
  }
 
- /**
-  * @author Martin U
-  */
+/**
+ * @author Martin U
+ * @returns {Promise<void>}
+ */
 export async function deleteCurrentUser() {
     const user = auth.currentUser;
 
