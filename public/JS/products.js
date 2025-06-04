@@ -152,8 +152,8 @@ function showGhostSuggestion() {
     }
 
     const match = allProducts // Try to find the first product name that starts with the user's input
-        .map(p => p.name)  // Extract the name from each product
-        .find(name => name.toLowerCase().startsWith(query));  // Look for a name starting with the query
+        .map(p => p.name) // "This line iterates through the entire allProducts array (which contains objects for each product) and extracts only the names (name) from each product object."
+        .find(name => name.toLowerCase().startsWith(query));  // "This line goes through the list of product names (which we just created with .map) and looks for the first name that starts with the user's input (query)."
 
     if (match) {
          // If a match is found, visually display the suggestion:
