@@ -288,10 +288,7 @@ async function addCustomProductToInventory() {
     const name = nameInput.value.trim();
     const category = categorySelect.value;
     const quantity = parseInt(quantityInput.value);
-
-    if (name.length > 0) {
-        name = name.charAt(0).toUpperCase() + name.slice(1);
-    }
+    const capitalizedName = name ? name[0].toUpperCase() + name.slice(1) : "";
 
     if (!name || !category || isNaN(quantity) || quantity < 1 || !expirationValue){
         showMessageModal("Please enter a name, category and valid quantity, and date.");
