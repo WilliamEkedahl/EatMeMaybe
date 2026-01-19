@@ -278,10 +278,16 @@ async function addCustomProductToInventory() {
     const quantityInput = document.getElementById("custom-quantity");
     const expirationInput = document.getElementById("custom-expiration-date");
 
+    if (!expirationInput) {
+        showMessageModal("Expiration date field is missing.");
+        return;
+    }
+
+    const expirationValue = expirationInput.value;
+
     const name = nameInput.value.trim();
     const category = categorySelect.value;
     const quantity = parseInt(quantityInput.value);
-    const expirationValue = expirationInput.value;
 
     if (!name || !category || isNaN(quantity) || quantity < 1 || !expirationValue){
         showMessageModal("Please enter a name, category and valid quantity, and date.");
