@@ -165,7 +165,7 @@ async function fetchUserInventory(userId) {
             const addedAt = data.addedAt.toDate();
             //testing merge
             // Get shelf life based on category or default to 7 days. Either or basically with the "??"
-            let shelfLifeDays = categoryShelfLives[data.category] ?? 7;
+            let shelfLifeDays = data.shelfLife ?? categoryShelfLives[data.category] ?? 7;
 
             // Calculate the expiration date
             const expirationDate = new Date(addedAt);
