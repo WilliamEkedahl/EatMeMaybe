@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="">
 <<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/NODE_LOGIN/passportConfig.js" afterDir="false" />
@@ -20,6 +21,9 @@
       <change beforePath="$PROJECT_DIR$/public/JS/userInventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JS/userInventory.js" afterDir="false" />
 >>>>>>> f418895ac5bb1c7553d2610ad601728e5eabbe69
     </list>
+=======
+    <list default="true" id="a61ed760-5b0e-48da-831e-e3980bd1ee65" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,8 +173,12 @@
       <workItem from="1748531783753" duration="45523000" />
       <workItem from="1749541398734" duration="1796000" />
       <workItem from="1756417895215" duration="18000" />
+<<<<<<< Updated upstream
       <workItem from="1768499420980" duration="7730000" />
 >>>>>>> f418895ac5bb1c7553d2610ad601728e5eabbe69
+=======
+      <workItem from="1768499420980" duration="7965000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
