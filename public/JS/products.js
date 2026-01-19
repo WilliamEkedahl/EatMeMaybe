@@ -211,7 +211,7 @@ async function addProductToInventory() {
     }
 
     const product = {
-        name,
+        name: capitalizedName,
         category,
         quantity,
         addedAt: new Date()
