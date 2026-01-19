@@ -118,12 +118,13 @@ async function fetchUserInventory(userId) {
         // Recalculate the days left for each inventory item (since dates may have changed)
         allInventoryItems.forEach(item => {
             item.addedAt = new Date(item.addedAt);
-            const shelfLifeDays = item.shelfLife ?? (categoryShelfLives[data.category] ?? 7);
+            const shelfLifeDays = item.shelfLife ?? (categoryShelfLives[item.category] ?? 7);
             const expirationDate = new Date(item.addedAt);
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            expirationDate.setHours(0, 0, 0, 0);
+            expirationDate.setHours(0, 0,
+                0, 0);
             const timeDiff = expirationDate.getTime() - today.getTime();
             item.daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
         });
