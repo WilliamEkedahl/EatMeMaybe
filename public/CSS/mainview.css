@@ -93,7 +93,7 @@ nav a {
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: white;
+  color: black;
   border-radius: 8px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
 }
@@ -108,7 +108,7 @@ nav a:active {
 }
 
 nav a.active {
-  color: white;
+  color: black;
   font-weight: bold;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -202,7 +202,7 @@ nav a.active {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: white;
+  color: black;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
@@ -213,7 +213,7 @@ nav a.active {
 }
 
 .dropbtn svg {
-  fill: white;
+  fill: black;
 }
 
 .dropbtn:active {
@@ -258,7 +258,7 @@ nav a.active {
   width: 100%;
   box-sizing: border-box;
   background-color: transparent;
-  color: white;
+  color: black;
   padding: 12px 16px;
   text-align: left;
   font-size: 16px;

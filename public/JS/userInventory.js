@@ -1,8 +1,14 @@
 /**
  * @author Martin N
- * @author Martin U 
+ * @author Martin U
+ * @author Atle
  */
 
+/**
+ * Loads Firebase login and database setup.
+ * Gets functions to read from and write to the database.
+ * Also brings in a tool to clear saved inventory data.
+ */
 import { auth, db } from "./firestore.js";
 import {
     collection,
@@ -12,23 +18,28 @@ import {
     deleteDoc,
     updateDoc
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { clearUserInventoryCache } from "./cache.js"; // Antar denne finnes
+import { clearUserInventoryCache } from "./cache.js"; 
 
+// Wait for the DOM content to fully load before executing code
 document.addEventListener("DOMContentLoaded", () => {
-    // Add event listeners for category buttons
+    // Add event listener for category button
     const categoryButtons = document.querySelectorAll(".category-btn");
 
-    // Set "All Products" as the default active button on load
+    // Set "All Products" as the default active button on load (from category-btn, "empty" = all category)
     const defaultBtn = document.querySelector('.category-btn[data-category=""]');
     if (defaultBtn) defaultBtn.classList.add("active");
 
+    // Add a click event listener to each category button
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // Update active button
+            // When a button is clicked, remove "active" class from all buttons
             categoryButtons.forEach(b => b.classList.remove("active"));
+            // Add the "active" class to the clicked button
             btn.classList.add("active");
 
+            // Get the category associated with the clicked button
             const category = btn.getAttribute("data-category");
+            // Filter the inventory by the selected category
             filterInventoryByCategory(category);
         });
     });
@@ -86,12 +97,18 @@ async function fetchUserInventory(userId) {
         return;
     }
 
-    const userCacheKey = `userInventory_${userId}`; // Creates a unique key for storing this user's inventory in local storage
-    const userCacheTimeKey = `userInventory_cache_time_${userId}`; // Creates a key for storing the timestamp of when this user's cache was last updated
-    const cached = localStorage.getItem(userCacheKey); // Tries to get the cached inventory data
-    const timestamp = localStorage.getItem(userCacheTimeKey); // Tries to get the cache timestamp
-    const now = Date.now(); // Gets the current time in milliseconds
-    const CACHE_TTL = 24 * 60 * 60 * 1000; // Defines the cache's "time to live" (1 day)
+    // Creates a unique key for storing this user's inventory in local storage
+    const userCacheKey = `userInventory_${userId}`;
+    // Creates a key for storing the timestamp of when this user's cache was last updated
+    const userCacheTimeKey = `userInventory_cache_time_${userId}`; 
+    // Tries to get the cached inventory data
+    const cached = localStorage.getItem(userCacheKey);
+    // Tries to get the cache timestamp
+    const timestamp = localStorage.getItem(userCacheTimeKey);
+    // Gets the current time
+    const now = Date.now(); 
+    // Defines the cache's "time to live" (1 day)
+    const CACHE_TTL = 24 * 60 * 60 * 1000;
 
     // Check if cached inventory data exists and is still fresh (not older than CACHE_TTL)
     if (cached && timestamp && now - parseInt(timestamp) < CACHE_TTL) {
@@ -101,12 +118,13 @@ async function fetchUserInventory(userId) {
         // Recalculate the days left for each inventory item (since dates may have changed)
         allInventoryItems.forEach(item => {
             item.addedAt = new Date(item.addedAt);
-            let shelfLifeDays = categoryShelfLives[item.category] ?? 7;
+            const shelfLifeDays = item.shelfLife ?? (categoryShelfLives[item.category] ?? 7);
             const expirationDate = new Date(item.addedAt);
             expirationDate.setDate(expirationDate.getDate() + shelfLifeDays);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            expirationDate.setHours(0, 0, 0, 0);
+            expirationDate.setHours(0, 0,
+                0, 0);
             const timeDiff = expirationDate.getTime() - today.getTime();
             item.daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
         });
@@ -132,7 +150,8 @@ async function fetchUserInventory(userId) {
     try {
         // Get a snapshot of the user's inventory documents from Firestore
         const snapshot = await getDocs(userInventoryRef);
-        const inventoryItems = []; // This will hold the parsed inventory items
+        // Holds the parsed inventory items
+        const inventoryItems = [];
 
         // Loop through each document in the snapshot
         snapshot.forEach(doc => {
@@ -145,8 +164,8 @@ async function fetchUserInventory(userId) {
 
             const addedAt = data.addedAt.toDate();
 
-            // Determine shelf life in days for the item's category dynamically
-            let shelfLifeDays = categoryShelfLives[data.category] ?? 7; // Get shelf life based on category or default to 7 days. Either or basically with the "??"
+            // Get shelf life based on category or default to 7 days. Either or basically with the "??"
+            let shelfLifeDays = categoryShelfLives[data.category] ?? 7;
 
             // Calculate the expiration date
             const expirationDate = new Date(addedAt);
@@ -168,6 +187,7 @@ async function fetchUserInventory(userId) {
                 category: data.category,
                 quantity: data.quantity,
                 addedAt,
+                shelfLife: shelfLifeDays,
                 daysLeft,
             });
         });
@@ -244,12 +264,13 @@ function displayUserInventory(items) {
     // If no items to display, show the empty inventory message and exit
     if (items.length === 0) {
         if (emptyMessage) emptyMessage.style.display = "block";
-        return; 
+        return; a
     }
 
     // For each product, create a table row and populate its data
     items.forEach(({ id, name, category, quantity, addedAt, daysLeft }) => {
-        const row = template.content.cloneNode(true);// Use a template for consistent formatting, used in index.html
+        // Use a template for consistent formatting, used in index.html
+        const row = template.content.cloneNode(true);
 
         // Get references to table cells
         const tdName = row.querySelector(".product-name");

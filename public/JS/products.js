@@ -2,6 +2,7 @@
 /**
  * @author Atle
  * @author Martin U
+ * @author Marius
  */
 
 /**
@@ -10,7 +11,7 @@
  * Also brings in a tool to clear saved inventory data.
  */
 import { auth, db } from "./firestore.js"
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { collection, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { clearUserInventoryCache, loadProducts, getCachedProducts } from "./cache.js";
 
 // Waits until the webpage is fully loaded, then runs the main setup function
@@ -131,29 +132,36 @@ function filterItems() {
  * Clears suggestion if no match or input is empty.
  */
 
-let currentSuggestion = "";
+let currentSuggestion = ""; // Stores the currently suggested product name (used for autocomplete functionality)
 
+/**
+ * Displays a "ghost" suggestion in the search bar based on cached product names.
+ * This visually autocompletes the user's input without changing the actual value.
+ */
 function showGhostSuggestion() {
-    const input = document.getElementById("search-bar");
+    const input = document.getElementById("search-bar"); // Get references to the input field and the ghost suggestion container
     const ghost = document.getElementById("ghost-suggestion");
-    const query = input.value.toLowerCase().trim();
+    const query = input.value.toLowerCase().trim();// Normalize the user's input: convert to lowercase and remove extra whitespace
 
-    const allProducts = getCachedProducts(); // Get products from cache.js
+    const allProducts = getCachedProducts(); // Retrieve the list of product objects from a local cache (from cache.js)
 
-    if (!query || allProducts.length === 0) {
+    if (!query || allProducts.length === 0) {    // If the input is empty or there are no products, clear any ghost suggestion and exit
         ghost.textContent = "";
         currentSuggestion = "";
         return;
     }
 
-    const match = allProducts
-        .map(p => p.name)
-        .find(name => name.toLowerCase().startsWith(query));
+    const match = allProducts // Try to find the first product name that starts with the user's input
+        .map(p => p.name) // "This line iterates through the entire allProducts array (which contains objects for each product) and extracts only the names (name) from each product object."
+        .find(name => name.toLowerCase().startsWith(query));  // "This line goes through the list of product names (which we just created with .map) and looks for the first name that starts with the user's input (query)."
 
     if (match) {
+         // If a match is found, visually display the suggestion:
+        // - Highlight the typed part
+        // - Append the rest of the suggestion in lighter style (CSS handles appearance)
         ghost.innerHTML = `<span class="typed">${input.value}</span>${match.slice(query.length)}`;
-        currentSuggestion = match;
-    } else {
+        currentSuggestion = match;  // Update the currentSuggestion for potential use in other logic (e.g., autocomplete on Enter)
+    } else {  // If no match is found, clear the ghost suggestion
         ghost.textContent = "";
         currentSuggestion = "";
     }
@@ -268,13 +276,21 @@ async function addCustomProductToInventory() {
     const nameInput = document.getElementById('custom-product-name2');
     const categorySelect = document.getElementById('product-category2');
     const quantityInput = document.getElementById("custom-quantity");
+    const expirationInput = document.getElementById("custom-expiration-date");
+
+    if (!expirationInput) {
+        showMessageModal("Expiration date field is missing.");
+        return;
+    }
+
+    const expirationValue = expirationInput.value;
 
     const name = nameInput.value.trim();
     const category = categorySelect.value;
     const quantity = parseInt(quantityInput.value);
 
-    if (!name || !category || isNaN(quantity) || quantity < 1) {
-        showMessageModal("Please enter a name, category and valid quantity.");
+    if (!name || !category || isNaN(quantity) || quantity < 1 || !expirationValue){
+        showMessageModal("Please enter a name, category and valid quantity, and date.");
         return;
     }
 
@@ -284,11 +300,31 @@ async function addCustomProductToInventory() {
         return;
     }
 
+    // Normalize dates to midnight
+    const addedAt = new Date();
+    addedAt.setHours(0, 0, 0, 0);
+
+    const expirationDate = new Date(expirationValue);
+    expirationDate.setHours(0, 0, 0, 0);
+
+
+    // Calculate shelf life in days
+    const shelfLife = Math.ceil(
+        (expirationDate.getTime() - addedAt.getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
+
+    if (shelfLife <= 0) {
+        showMessageModal("Expiration date must be after today.");
+        return;
+    }
+
     const product = {
         name,
         category,
         quantity,
-        addedAt: new Date()
+        addedAt: Timestamp.fromDate(addedAt),
+        shelfLife
     };
 
     try {
@@ -303,6 +339,22 @@ async function addCustomProductToInventory() {
         nameInput.value = "";
         categorySelect.value = "";
         quantityInput.value = "1";
+        expirationInput.value = "";
+
+        function openModal2() {
+            document.getElementById('custom-product-modal2').classList.add('show');
+
+            const categorySelect = document.getElementById('product-category2');
+            const expirationInput = document.getElementById("custom-expiration-date");
+
+            const defaultShelfLife = categoryShelfLives[categorySelect.value] ?? 7;
+
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + defaultShelfLife);
+
+            expirationInput.value = defaultDate.toISOString().split("T")[0];
+        }
+
 
         closeModal2();
         showMessageModal("Product added successfully!");

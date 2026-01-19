@@ -16,17 +16,17 @@
  * FirebaseApp consists of the initialization information for a bunch of services,
  * Properties:
  * automaticDataCollectionEnabled -Boolean, A config flag to opt in/out of GDPR default set to TRUE:
- * name - -String, A custom name for the application.
- * options -  The firebase config information to initialize the firebase connection with the database.
+ * name - -String, A custom name for the application
+ * options -  The firebase config information to initialize the firebase connection with the database
  *
  * We only use the FirebaseApp Options property.
-*/
+ */
 
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getAuth} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-// connection to 'EatMeMaybe' project in Firebase
+// connetion to 'EatMeMaybe' project in Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA1F8A9ct-uYem7euL3lv5ONhfbWTcow_M",
     authDomain: "eatmemaybe-d8140.firebaseapp.com",
