@@ -1,8 +1,12 @@
 /**
  * @author Marius
  * @author Martin U
+ * @author William
 */
 
+/**
+ *
+ */
 import {signIn, logOut, signUp, changePassword, DeleteUserInventory, deleteCurrentUser  } from "./authenticate.js"
 
 document.getElementById("signInForm")?.addEventListener("submit", (e) => {
@@ -38,6 +42,9 @@ document.getElementById("signInForm")?.addEventListener("submit", (e) => {
     });
 });
 
+/**
+ *
+ */
 document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -91,6 +98,9 @@ document.getElementById("signUpForm")?.addEventListener("submit", async (e) => {
   }
 });
 
+/**
+ *
+ */
 // Event listener for "Delete account" knappen
    const signOutButton = ["signOutButtonSidebar", "signOutButtonDropdown"];
 
@@ -126,7 +136,9 @@ deleteButtonIds.forEach(id => { // Loops first through each IDs
 });
 
 
-
+/**
+ *
+ */
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".toggle-password").forEach(toggle => {
     toggle.addEventListener("click", () => {
@@ -140,6 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/**
+ *
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const changePasswordForm = document.getElementById("changePasswordForm");
   const messageBox = document.getElementById("passwordMessage");
