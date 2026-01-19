@@ -11,7 +11,7 @@
  * Also brings in a tool to clear saved inventory data.
  */
 import { auth, db } from "./firestore.js"
-import { collection, addDoc, TimeStamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { collection, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { clearUserInventoryCache, loadProducts, getCachedProducts } from "./cache.js";
 
 // Waits until the webpage is fully loaded, then runs the main setup function
