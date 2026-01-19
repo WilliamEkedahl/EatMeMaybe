@@ -262,7 +262,7 @@ function displayUserInventory(items) {
     // If no items to display, show the empty inventory message and exit
     if (items.length === 0) {
         if (emptyMessage) emptyMessage.style.display = "block";
-        return; 
+        return; a
     }
 
     // For each product, create a table row and populate its data

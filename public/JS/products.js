@@ -11,7 +11,7 @@
  * Also brings in a tool to clear saved inventory data.
  */
 import { auth, db } from "./firestore.js"
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { collection, addDoc, TimeStamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { clearUserInventoryCache, loadProducts, getCachedProducts } from "./cache.js";
 
 // Waits until the webpage is fully loaded, then runs the main setup function
@@ -276,13 +276,15 @@ async function addCustomProductToInventory() {
     const nameInput = document.getElementById('custom-product-name2');
     const categorySelect = document.getElementById('product-category2');
     const quantityInput = document.getElementById("custom-quantity");
+    const expirationInput = document.getElementById("custom-expiration-date");
 
     const name = nameInput.value.trim();
     const category = categorySelect.value;
     const quantity = parseInt(quantityInput.value);
+    const expirationValue = expirationInput.value;
 
-    if (!name || !category || isNaN(quantity) || quantity < 1) {
-        showMessageModal("Please enter a name, category and valid quantity.");
+    if (!name || !category || isNaN(quantity) || quantity < 1 || !expirationValue){
+        showMessageModal("Please enter a name, category and valid quantity, and date.");
         return;
     }
 
@@ -292,11 +294,31 @@ async function addCustomProductToInventory() {
         return;
     }
 
+    // Normalize dates to midnight
+    const addedAt = new Date();
+    addedAt.setHours(0, 0, 0, 0);
+
+    const expirationDate = new Date(expirationValue);
+    expirationDate.setHours(0, 0, 0, 0);
+
+
+    // Calculate shelf life in days
+    const shelfLife = Math.ceil(
+        (expirationDate.getTime() - addedAt.getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
+
+    if (shelfLife <= 0) {
+        showMessageModal("Expiration date must be after today.");
+        return;
+    }
+
     const product = {
         name,
         category,
         quantity,
-        addedAt: new Date()
+        addedAt: Timestamp.fromDate(addedAt),
+        shelfLife
     };
 
     try {
@@ -311,6 +333,18 @@ async function addCustomProductToInventory() {
         nameInput.value = "";
         categorySelect.value = "";
         quantityInput.value = "1";
+        expirationInput.value = "";
+
+        function openModal2() {
+            document.getElementById('custom-product-modal2').classList.add('show');
+
+            // Default expiration = today + 7 days
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + 7);
+
+            document.getElementById("custom-expiration-date").value =
+                defaultDate.toISOString().split("T")[0];
+        }
 
         closeModal2();
         showMessageModal("Product added successfully!");
