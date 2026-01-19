@@ -344,13 +344,17 @@ async function addCustomProductToInventory() {
         function openModal2() {
             document.getElementById('custom-product-modal2').classList.add('show');
 
-            // Default expiration = today + 7 days
-            const defaultDate = new Date();
-            defaultDate.setDate(defaultDate.getDate() + 7);
+            const categorySelect = document.getElementById('product-category2');
+            const expirationInput = document.getElementById("custom-expiration-date");
 
-            document.getElementById("custom-expiration-date").value =
-                defaultDate.toISOString().split("T")[0];
+            const defaultShelfLife = categoryShelfLives[categorySelect.value] ?? 7;
+
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + defaultShelfLife);
+
+            expirationInput.value = defaultDate.toISOString().split("T")[0];
         }
+
 
         closeModal2();
         showMessageModal("Product added successfully!");
