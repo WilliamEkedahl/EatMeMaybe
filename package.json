@@ -1,13 +1,10 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^16.4.7",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
-=======
+    "passport-local": "^1.0.0",
     "firebase": "^11.6.0"
->>>>>>> f418895ac5bb1c7553d2610ad601728e5eabbe69
   }
 }
