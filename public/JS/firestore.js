@@ -62,7 +62,6 @@ const db = getFirestore(app);
  * signUp, logOut, signIn, changePassword, DeleteUserInventory and deleteCurrentUser.
  */
 const auth = getAuth(app);
-const db = getFirestore(app);
 
 /**
  * We Use the export keyword to export the auth and db objects
