@@ -287,7 +287,7 @@ function displayUserInventory(items) {
         tdCategory.textContent = category;
         tdQuantity.textContent = quantity;
         tdAddedAt.textContent = addedAt.toLocaleDateString("no-NO");
-        tdDaysLeft.textContent = daysLeft === 0 ? "EXPIRED" : `${daysLeft} days`;
+        tdDaysLeft.textContent = daysLeft < 0 ? "EXPIRED" : `${daysLeft} days`;
 
         // Color indicator for expiration status
         if (daysLeft <= 3) {
